@@ -753,6 +753,7 @@ namespace Microsoft.Dafny {
         } else if (d is DatatypeDecl) {
           var dd = (DatatypeDecl)d;
           AddDatatype(dd);
+          Console.WriteLine("datatype decl");
           AddClassMembers(dd, true, true);
         } else if (d is ArrowTypeDecl) {
           var ad = (ArrowTypeDecl)d;
@@ -760,6 +761,7 @@ namespace Microsoft.Dafny {
           AddArrowTypeAxioms(ad);
         } else if (d is ClassDecl) {
           var cl = (ClassDecl)d;
+          Console.WriteLine("class decl");
           AddClassMembers(cl, true, true);
           if (cl.NonNullTypeDecl != null) {
             AddTypeDecl(cl.NonNullTypeDecl);
@@ -807,10 +809,19 @@ namespace Microsoft.Dafny {
           if (impl.FindStringAttribute("checksum") == null) {
             impl.AddAttribute("checksum", "stable");
           }
+                    bool result = false;
+          if (impl.CheckBooleanAttribute("inline",ref result) ) {
+            Console.WriteLine("found inline!");
+          }
+          
         }
         foreach (var func in sink.Functions) {
           if (func.FindStringAttribute("checksum") == null) {
             func.AddAttribute("checksum", "stable");
+          }
+          bool result = false;
+          if (func.CheckBooleanAttribute("inline",ref result) ) {
+            Console.WriteLine("found inline!");
           }
         }
       }
@@ -908,6 +919,7 @@ namespace Microsoft.Dafny {
     ///     assumes "resultType" is actually Bpl.Type.Bool).
     /// </summary>
     private void AddBitvectorFunction(int w, string namePrefix, string smtFunctionName, bool binary = true, Bpl.Type resultType = null, bool bodyForBv0 = false) {
+      Console.WriteLine("add bitvector function");
       Contract.Requires(0 <= w);
       Contract.Requires(namePrefix != null);
       Contract.Requires(smtFunctionName != null);
@@ -1886,8 +1898,15 @@ namespace Microsoft.Dafny {
 
     public static Bpl.QKeyValue InlineAttribute(Bpl.IToken tok, Bpl.QKeyValue/*?*/ next = null) {
       Contract.Requires(tok != null);
+      Console.WriteLine("InlineAttribute Created");
       return new QKeyValue(tok, "inline", new List<object>(), next);
     }
+  
+    public static Bpl.QKeyValue DefineAttribute(Bpl.IToken tok, Bpl.QKeyValue/*?*/ next = null) {
+    Contract.Requires(tok != null);
+    Console.WriteLine("DefineAttribute Created");
+    return new QKeyValue(tok, "define", new List<object>(), next);
+  }
 
     class Specialization {
       public readonly List<Formal/*!*/> Formals;
@@ -1952,6 +1971,67 @@ namespace Microsoft.Dafny {
         ReplacementFormals.AddRange(mc.Arguments);
         SubstMap.Add(formal, r);
       }
+    }
+
+    private Expr GetFunctionBody(Function f, Expression body, List<Formal> lits) {
+      Contract.Requires(f != null);
+      // find user input attributes
+      if (Attributes.Contains(f.Attributes, "define")){
+        Console.WriteLine("!!Found Define attribute");
+      }
+      var substMap = new Dictionary<IVariable, Expression>();
+      Bpl.BoundVariable layer;
+      if (f.IsFuelAware()) {
+        layer = new Bpl.BoundVariable(f.tok, new Bpl.TypedIdent(f.tok, "$ly", predef.LayerType));
+      } else {
+        layer = null;
+      }
+      bool readsHeap = AlwaysUseHeap || f.ReadsHeap;
+      foreach (AttributedExpression e in f.Req) {
+        readsHeap = readsHeap || UsesHeap(e.E);
+      }
+
+      if (body != null && UsesHeap(body)) {
+        readsHeap = true;
+      }
+      ExpressionTranslator etran;
+      Bpl.BoundVariable bvPrevHeap = null;
+      if (f is TwoStateFunction) {
+        bvPrevHeap = new Bpl.BoundVariable(f.tok, new Bpl.TypedIdent(f.tok, "$prevHeap", predef.HeapType));
+        etran = new ExpressionTranslator(this, predef,
+          f.ReadsHeap ? new Bpl.IdentifierExpr(f.tok, predef.HeapVarName, predef.HeapType) : null,
+          new Bpl.IdentifierExpr(f.tok, bvPrevHeap));
+      } else {
+        etran = readsHeap
+          ? new ExpressionTranslator(this, predef, f.tok)
+          : new ExpressionTranslator(this, predef, (Bpl.Expr)null);
+      }
+
+      
+      Expression receiverReplacement = null;
+Console.WriteLine("!!body: "+body);
+        var bodyWithSubst = Substitute(body, receiverReplacement, substMap);
+        if (f is PrefixPredicate) {
+          var pp = (PrefixPredicate)f;
+          bodyWithSubst = PrefixSubstitution(pp, bodyWithSubst);
+        }
+
+        Bpl.Expr ly = null;
+        if (layer != null) {
+          ly = new Bpl.IdentifierExpr(f.tok, layer);
+          if (lits != null) {
+            // Lit axiom doesn't consume any fuel
+            ly = LayerSucc(ly);
+          }
+        
+        }
+        var etranBody = layer == null ? etran : etran.LimitedFunctions(f, ly);
+        Console.WriteLine("!!etranBody: "+etranBody);
+        Console.WriteLine("!!bodywithsubst: "+bodyWithSubst);
+        Expr trbody = etranBody.TrExpr(bodyWithSubst);
+        Console.WriteLine( "!!trbody: "+trbody);
+
+      return trbody;
     }
 
     void AddFunctionAxiom(Bpl.Function boogieFunction, Function f, Expression body) {
@@ -2493,7 +2573,7 @@ namespace Microsoft.Dafny {
         // axiom (forall params :: { f#requires(params) }  ante ==> f#requires(params) == pre);
         AddOtherDefinition(precondF, new Axiom(f.tok,
           BplForall(forallFormals, trig, BplImp(anteReqAxiom, Bpl.Expr.Eq(appl, preReqAxiom))),
-          "#requires axiom for " + f.FullSanitizedName));
+          "livia #requires axiom for " + f.FullSanitizedName));
       }
 
       if (body == null || !RevealedInScope(f)) {
@@ -2556,8 +2636,8 @@ namespace Microsoft.Dafny {
 
         var etranBody = layer == null ? etran : etran.LimitedFunctions(f, ly);
         var trbody = etranBody.TrExpr(bodyWithSubst);
-        tastyVegetarianOption = BplAnd(CanCallAssumption(bodyWithSubst, etranBody),
-          BplAnd(TrFunctionSideEffect(bodyWithSubst, etranBody), Bpl.Expr.Eq(funcAppl, trbody)));
+        tastyVegetarianOption = BplAnd(TrFunctionSideEffect(bodyWithSubst, etranBody), Bpl.Expr.Eq(funcAppl, trbody));
+        Console.WriteLine( trbody);
       }
 
       QKeyValue kv = null;
@@ -2569,7 +2649,7 @@ namespace Microsoft.Dafny {
         Bpl.Expr.Imp(ante, tastyVegetarianOption));
       var activate = AxiomActivation(f, etran);
       string comment;
-      comment = "definition axiom for " + f.FullSanitizedName;
+      comment = "livia function definition axiom for " + f.FullSanitizedName;
       if (lits != null) {
         if (lits.Count == f.Formals.Count + (f.IsStatic ? 0 : 1)) {
           comment += " for all literals";
@@ -2583,6 +2663,8 @@ namespace Microsoft.Dafny {
       } else {
         comment += " (opaque)";
       }
+
+      
       return new Axiom(f.tok, Bpl.Expr.Imp(activate, ax), comment);
     }
 
@@ -2842,6 +2924,7 @@ namespace Microsoft.Dafny {
       Bpl.Trigger tr = new Bpl.Trigger(f.tok, true, new List<Bpl.Expr> { funcAppl1 });
       Bpl.Expr ax = new Bpl.ForallExpr(f.tok, new List<Bpl.TypeVariable>(), formals, null, tr, Bpl.Expr.Eq(funcAppl1, funcAppl0));
       AddOtherDefinition(GetOrCreateFunction(f), new Bpl.Axiom(f.tok, ax, "layer synonym axiom"));
+    Console.WriteLine("2845 line");
     }
 
     void AddFuelZeroSynonymAxiom(Function f) {
@@ -2908,6 +2991,8 @@ namespace Microsoft.Dafny {
       Bpl.Trigger tr = new Bpl.Trigger(f.tok, true, new List<Bpl.Expr> { funcAppl2 });
       Bpl.Expr ax = new Bpl.ForallExpr(f.tok, new List<Bpl.TypeVariable>(), formals, null, tr, Bpl.Expr.Eq(funcAppl1, funcAppl0));
       AddOtherDefinition(GetOrCreateFunction(f), (new Bpl.Axiom(f.tok, ax, "fuel synonym axiom")));
+        Console.WriteLine("2912 line");
+
     }
 
     /// <summary>
@@ -5724,6 +5809,8 @@ namespace Microsoft.Dafny {
 
           AddOtherDefinition(GetOrCreateFunction(f), (new Axiom(f.tok,
             BplForall(Concat(vars, bvars), BplTrigger(lhs), Bpl.Expr.Eq(lhs, rhs_boxed)))));
+            Console.WriteLine("5730 line");
+
         }
 
         {
@@ -5776,6 +5863,8 @@ namespace Microsoft.Dafny {
 
           AddOtherDefinition(GetOrCreateFunction(f), (new Axiom(f.tok,
             BplForall(Concat(vars, func_vars), tr, Bpl.Expr.Eq(lhs, rhs_unboxed)))));
+            Console.WriteLine("5784 line");
+
         }
       }
       return name;
@@ -5855,6 +5944,7 @@ namespace Microsoft.Dafny {
     }
 
     private void AddArrowTypeAxioms(ArrowTypeDecl ad) {
+      Console.WriteLine("AddArrowTypeAxioms");
       Contract.Requires(ad != null);
       var arity = ad.Arity;
       var tok = ad.tok;
@@ -5965,13 +6055,19 @@ namespace Microsoft.Dafny {
           rhsargs.Add(BplFormalVar("f", predef.HandleType, true, formals));
 
           MapM(Enumerable.Range(0, arity), i => rhsargs.Add(BplFormalVar("bx" + i, predef.BoxType, true, formals)));
-
+          Console.WriteLine("call to inlineattribute");
           sink.AddTopLevelDeclaration(
             new Bpl.Function(f.tok, f.FullSanitizedName + "#canCall", new List<TypeVariable>(), formals,
               BplFormalVar(null, Bpl.Type.Bool, false), null,
               InlineAttribute(f.tok)) {
               Body = Bpl.Expr.True
             });
+          // sink.AddTopLevelDeclaration(
+          //   new Bpl.Function(f.tok, f.FullSanitizedName + "#canCall", new List<TypeVariable>(), formals,
+          //     BplFormalVar(null, Bpl.Type.Bool, false), null
+          //   ) {
+          //     Body = Bpl.Expr.True
+          //   });
         };
 
         UserSelectorFunction(Requires(ad.Arity), ad.Requires);
@@ -6636,10 +6732,17 @@ namespace Microsoft.Dafny {
           formals.Add(new Bpl.Formal(p.tok, new Bpl.TypedIdent(p.tok, p.AssignUniqueName(f.IdGenerator), TrType(p.Type)), true));
         }
         var res = new Bpl.Formal(f.tok, new Bpl.TypedIdent(f.tok, Bpl.TypedIdent.NoName, TrType(f.ResultType)), false);
-        func = new Bpl.Function(f.tok, f.FullSanitizedName, new List<Bpl.TypeVariable>(), formals, res, "function declaration for " + f.FullName);
+        func = new Bpl.Function(f.tok, f.FullSanitizedName, new List<Bpl.TypeVariable>(), formals, res, "livia function declaration for " + f.FullName);
+
         if (InsertChecksums) {
           InsertChecksum(f, func);
         }
+        Console.WriteLine("f sanitized name !!! "+f.SanitizedName);
+        Expr functionbody = GetFunctionBody(f, f.Body, null);
+        func.DefinitionBody =  func.CreateFunctionDefinition(functionbody);
+        Console.WriteLine("AddFunctionAxiom call completed. Printing function attribute");
+        func.printAttribute();
+        func.AddAttribute("define");
         sink.AddTopLevelDeclaration(func);
       }
 
@@ -10290,6 +10393,7 @@ namespace Microsoft.Dafny {
 
     private bool TrSplitFunctionCallExpr(Expression expr, List<SplitExprInfo> splits, int heightLimit, bool inlineProtectedFunctions,
       bool apply_induction, ExpressionTranslator etran, FunctionCallExpr fexp) {
+      Console.WriteLine("TrSplitFunctionCallExpr:"+inlineProtectedFunctions);
       var f = fexp.Function;
       Contract.Assert(f != null); // filled in during resolution
       var module = f.EnclosingClass.EnclosingModuleDefinition;
@@ -10340,6 +10444,7 @@ namespace Microsoft.Dafny {
             splits.Add(new SplitExprInfo(SplitExprInfo.K.Free, fr));
           } else {
             // inline this body
+            Console.WriteLine("inline this body");
             var typeSpecializedBody = GetSubstitutedBody(fexp, f);
             var typeSpecializedResultType = Resolver.SubstType(f.ResultType, fexp.GetTypeArgumentSubstitutions());
 
@@ -10613,6 +10718,7 @@ namespace Microsoft.Dafny {
     }
 
     public static Expression InlineLet(LetExpr letExpr) {
+      Console.WriteLine("InlineLet");
       Contract.Requires(letExpr.LHSs.All(p => p.Var != null));
       var substMap = new Dictionary<IVariable, Expression>();
       for (var i = 0; i < letExpr.LHSs.Count; i++) {
