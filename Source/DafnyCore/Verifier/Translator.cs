@@ -166,6 +166,10 @@ namespace Microsoft.Dafny {
 
       if (d.IsVisibleInScope(verificationScope)) {
         Contract.Assert(d.IsRevealedInScope(verificationScope));
+        if (d is MemberDecl m && m.EnclosingClass.EnclosingModuleDefinition is { IsFacade: true }) {
+          return false;
+        }
+
         return true;
       }
       return false;
@@ -5632,10 +5636,14 @@ Console.WriteLine("!!body: "+body);
       if (rdt is SubsetTypeDecl) {
         baseType = ((SubsetTypeDecl)rdt).RhsWithArgument(udt.TypeArgs);
         kind = "subset type";
-      } else {
+      } else if (rdt is NewtypeDecl) {
         baseType = ((NewtypeDecl)rdt).BaseType;
         kind = "newtype";
+      } else {
+        baseType = ((TypeSynonymDecl)rdt).RhsWithArgument(udt.TypeArgs);
+        kind = "type synonym";
       }
+
       if (baseType.AsRedirectingType != null) {
         CheckResultToBeInType_Aux(tok, expr, baseType, builder, etran, errorMsgPrefix);
       }
@@ -8492,11 +8500,11 @@ Console.WriteLine("!!body: "+body);
         } else if (lhs is SeqSelectExpr) {
           var e = (SeqSelectExpr)lhs;
           lhsType = null;  // for an array update, always make sure the value assigned is boxed
-          rhsTypeConstraint = e.Seq.Type.TypeArgs[0];
+          rhsTypeConstraint = e.Seq.Type.NormalizeExpand().TypeArgs[0];
         } else {
           var e = (MultiSelectExpr)lhs;
           lhsType = null;  // for an array update, always make sure the value assigned is boxed
-          rhsTypeConstraint = e.Array.Type.TypeArgs[0];
+          rhsTypeConstraint = e.Array.Type.NormalizeExpand().TypeArgs[0];
         }
         var bRhs = TrAssignmentRhs(rhss[i].Tok, null, (lhs as IdentifierExpr)?.Var, lhsType, rhss[i], rhsTypeConstraint, builder, locals, etran);
         finalRhss.Add(bRhs);
