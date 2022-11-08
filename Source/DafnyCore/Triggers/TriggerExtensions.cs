@@ -48,6 +48,7 @@ namespace Microsoft.Dafny.Triggers {
 
   internal static class ExprExtensions {
     internal static bool IsInlineable(this LetExpr expr) {
+      Console.WriteLine("IsInlineable");
       return expr.LHSs.All(p => p.Var != null) && expr.Exact;
     }
 

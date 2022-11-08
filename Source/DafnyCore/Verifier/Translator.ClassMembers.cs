@@ -66,6 +66,7 @@ namespace Microsoft.Dafny {
           }
           AddAllocationAxiom(fieldDeclaration, f, c);
         } else if (member is Function function) {
+          Console.WriteLine("add function top");
           AddFunction_Top(function, includeAllMethods);
         } else if (member is Method method) {
           AddMethod_Top(method, false, includeAllMethods);
@@ -481,6 +482,8 @@ namespace Microsoft.Dafny {
 
       // declare function
       var boogieFunction = GetOrCreateFunction(f);
+
+      boogieFunction.printAttribute();
       // add synonym axiom
       if (f.IsFuelAware()) {
         AddFuelSuccSynonymAxiom(f);
@@ -494,8 +497,10 @@ namespace Microsoft.Dafny {
       AddFunctionConsequenceAxiom(boogieFunction, f, f.Ens);
       // add definition axioms, suitably specialized for literals
       if (f.Body != null && RevealedInScope(f)) {
+        Console.WriteLine("add function axiom");
         AddFunctionAxiom(boogieFunction, f, f.Body.Resolved);
       } else {
+        Console.WriteLine("bodyless");
         // for body-less functions, at least generate its #requires function
         var b = GetFunctionAxiom(f, null, null);
         Contract.Assert(b == null);
@@ -509,7 +514,7 @@ namespace Microsoft.Dafny {
       if (f is ExtremePredicate) {
         AddPrefixPredicateAxioms(((ExtremePredicate)f).PrefixPredicate);
       }
-
+      boogieFunction.printAttribute();
       Reset();
     }
 
