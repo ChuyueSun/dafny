@@ -1,5 +1,5 @@
 // Dafny 3.9.1.41027
-// Command Line Options: ../Test/mytest/assert.dfy /print:../Test/mytest/assert.bpl
+// Command Line Options: ../Test/mytest/seq.dfy /print:../Test/mytest/seq_generated.bpl
 
 const $$Language$Dafny: bool;
 
@@ -2800,44 +2800,119 @@ axiom (forall $o: ref, $h: Heap ::
   $IsAlloc($o, Tclass._module.__default(), $h)
      <==> $o == null || read($h, $o, alloc));
 
-// livia function declaration for _module._default.abs
-function {:define} _module.__default.abs(x#0: int) : int
+// livia function declaration for _module._default.sorted
+function {:define} _module.__default.sorted(s#0: Seq Box) : bool
 {
-  (if x#0 < 0 then 0 - x#0 else x#0)
+  (forall i#0: int, j#0: int :: 
+    { $Unbox(Seq#Index(s#0, j#0)): int, $Unbox(Seq#Index(s#0, i#0)): int } 
+    true
+       ==> 
+      LitInt(0) <= i#0 && i#0 < j#0 && j#0 < Seq#Length(s#0)
+       ==> $Unbox(Seq#Index(s#0, i#0)): int <= $Unbox(Seq#Index(s#0, j#0)): int)
 }
 
-function _module.__default.abs#canCall(x#0: int) : bool;
+function _module.__default.sorted#canCall(s#0: Seq Box) : bool;
 
-// consequence axiom for _module.__default.abs
+// consequence axiom for _module.__default.sorted
 axiom 0 <= $FunctionContextHeight
-   ==> (forall x#0: int :: 
-    { _module.__default.abs(x#0) } 
-    _module.__default.abs#canCall(x#0) || 0 != $FunctionContextHeight ==> true);
+   ==> (forall s#0: Seq Box :: 
+    { _module.__default.sorted(s#0) } 
+    _module.__default.sorted#canCall(s#0)
+         || (0 != $FunctionContextHeight && $Is(s#0, TSeq(TInt)))
+       ==> true);
 
-function _module.__default.abs#requires(int) : bool;
+function _module.__default.sorted#requires(Seq Box) : bool;
 
-// livia #requires axiom for _module.__default.abs
-axiom (forall x#0: int :: 
-  { _module.__default.abs#requires(x#0) } 
-  _module.__default.abs#requires(x#0) == true);
+// livia #requires axiom for _module.__default.sorted
+axiom (forall s#0: Seq Box :: 
+  { _module.__default.sorted#requires(s#0) } 
+  $Is(s#0, TSeq(TInt)) ==> _module.__default.sorted#requires(s#0) == true);
 
-// livia function definition axiom for _module.__default.abs (revealed)
+// livia function definition axiom for _module.__default.sorted (revealed)
 axiom 0 <= $FunctionContextHeight
-   ==> (forall x#0: int :: 
-    { _module.__default.abs(x#0) } 
-    _module.__default.abs#canCall(x#0) || 0 != $FunctionContextHeight
-       ==> _module.__default.abs(x#0) == (if x#0 < 0 then 0 - x#0 else x#0));
+   ==> (forall s#0: Seq Box :: 
+    { _module.__default.sorted(s#0) } 
+    _module.__default.sorted#canCall(s#0)
+         || (0 != $FunctionContextHeight && $Is(s#0, TSeq(TInt)))
+       ==> _module.__default.sorted(s#0)
+         == (forall i#1: int, j#1: int :: 
+          { $Unbox(Seq#Index(s#0, j#1)): int, $Unbox(Seq#Index(s#0, i#1)): int } 
+          true
+             ==> 
+            LitInt(0) <= i#1 && i#1 < j#1 && j#1 < Seq#Length(s#0)
+             ==> $Unbox(Seq#Index(s#0, i#1)): int <= $Unbox(Seq#Index(s#0, j#1)): int));
 
-// livia function definition axiom for _module.__default.abs for all literals (revealed)
+// livia function definition axiom for _module.__default.sorted for all literals (revealed)
 axiom 0 <= $FunctionContextHeight
-   ==> (forall x#0: int :: 
-    {:weight 3} { _module.__default.abs(LitInt(x#0)) } 
-    _module.__default.abs#canCall(LitInt(x#0)) || 0 != $FunctionContextHeight
-       ==> _module.__default.abs(LitInt(x#0)) == (if x#0 < 0 then 0 - x#0 else x#0));
+   ==> (forall s#0: Seq Box :: 
+    {:weight 3} { _module.__default.sorted(Lit(s#0)) } 
+    _module.__default.sorted#canCall(Lit(s#0))
+         || (0 != $FunctionContextHeight && $Is(s#0, TSeq(TInt)))
+       ==> _module.__default.sorted(Lit(s#0))
+         == (forall i#2: int, j#2: int :: 
+          { $Unbox(Seq#Index(s#0, j#2)): int, $Unbox(Seq#Index(s#0, i#2)): int } 
+          true
+             ==> 
+            LitInt(0) <= i#2 && i#2 < j#2 && j#2 < Seq#Length(Lit(s#0))
+             ==> $Unbox(Seq#Index(Lit(s#0), i#2)): int <= $Unbox(Seq#Index(Lit(s#0), j#2)): int));
 
-procedure {:verboseName "abs (well-formedness)"} CheckWellformed$$_module.__default.abs(x#0: int);
+procedure {:verboseName "sorted (well-formedness)"} CheckWellformed$$_module.__default.sorted(s#0: Seq Box where $Is(s#0, TSeq(TInt)));
   free requires 0 == $FunctionContextHeight;
   modifies $Heap, $Tick;
+
+
+
+implementation {:verboseName "sorted (well-formedness)"} CheckWellformed$$_module.__default.sorted(s#0: Seq Box)
+{
+  var $_Frame: <beta>[ref,Field beta]bool;
+  var i#3: int;
+  var j#3: int;
+
+
+    // AddWellformednessCheck for function sorted
+    $_Frame := (lambda<alpha> $o: ref, $f: Field alpha :: 
+      $o != null && read($Heap, $o, alloc) ==> false);
+    if (*)
+    {
+        assume false;
+    }
+    else
+    {
+        $_Frame := (lambda<alpha> $o: ref, $f: Field alpha :: 
+          $o != null && read($Heap, $o, alloc) ==> false);
+        // Begin Comprehension WF check
+        havoc i#3;
+        havoc j#3;
+        if (true)
+        {
+            if (LitInt(0) <= i#3)
+            {
+            }
+
+            if (LitInt(0) <= i#3 && i#3 < j#3)
+            {
+            }
+
+            if (LitInt(0) <= i#3 && i#3 < j#3 && j#3 < Seq#Length(s#0))
+            {
+                assert 0 <= i#3 && i#3 < Seq#Length(s#0);
+                assert 0 <= j#3 && j#3 < Seq#Length(s#0);
+            }
+        }
+
+        // End Comprehension WF check
+        assume _module.__default.sorted(s#0)
+           == (forall i#4: int, j#4: int :: 
+            { $Unbox(Seq#Index(s#0, j#4)): int, $Unbox(Seq#Index(s#0, i#4)): int } 
+            true
+               ==> 
+              LitInt(0) <= i#4 && i#4 < j#4 && j#4 < Seq#Length(s#0)
+               ==> $Unbox(Seq#Index(s#0, i#4)): int <= $Unbox(Seq#Index(s#0, j#4)): int);
+        assume true;
+        // CheckWellformedWithResult: any expression
+        assume $Is(_module.__default.sorted(s#0), TBool);
+    }
+}
 
 
 
@@ -2873,19 +2948,33 @@ procedure {:verboseName "m (correctness)"} Impl$$_module.__default.m() returns (
 implementation {:verboseName "m (correctness)"} Impl$$_module.__default.m() returns ($_reverifyPost: bool)
 {
   var $_Frame: <beta>[ref,Field beta]bool;
-  var ##x#0: int;
+  var ##s#0: Seq Box;
 
     // AddMethodImpl: m, Impl$$_module.__default.m
     $_Frame := (lambda<alpha> $o: ref, $f: Field alpha :: 
       $o != null && read($Heap, $o, alloc) ==> false);
     $_reverifyPost := false;
-    // ----- assert statement ----- /home/livia/dafny/Test/mytest/assert.dfy(7,3)
-    ##x#0 := LitInt(3);
+    // ----- assert statement ----- /home/livia/dafny/Test/mytest/seq.dfy(9,3)
+    ##s#0 := Lit(Seq#Build(Seq#Build(Seq#Empty(): Seq Box, $Box(LitInt(1))), $Box(LitInt(2))));
     // assume allocatedness for argument to function
-    assume $IsAlloc(##x#0, TInt, $Heap);
-    assume _module.__default.abs#canCall(LitInt(3));
-    assume _module.__default.abs#canCall(LitInt(3));
-    assert LitInt(_module.__default.abs(LitInt(3))) == LitInt(3);
+    assume $IsAlloc(##s#0, TSeq(TInt), $Heap);
+    assume _module.__default.sorted#canCall(Lit(Seq#Build(Seq#Build(Seq#Empty(): Seq Box, $Box(LitInt(1))), $Box(LitInt(2)))));
+    assume _module.__default.sorted#canCall(Lit(Seq#Build(Seq#Build(Seq#Empty(): Seq Box, $Box(LitInt(1))), $Box(LitInt(2)))));
+    assert {:subsumption 0} _module.__default.sorted#canCall(Lit(Seq#Build(Seq#Build(Seq#Empty(): Seq Box, $Box(LitInt(1))), $Box(LitInt(2)))))
+       ==> Lit(_module.__default.sorted(Lit(Seq#Build(Seq#Build(Seq#Empty(): Seq Box, $Box(LitInt(1))), $Box(LitInt(2))))))
+         || (forall i#0: int, j#0: int :: 
+          { $Unbox(Seq#Index(Seq#Build(Seq#Build(Seq#Empty(): Seq Box, $Box(1)), $Box(2)), j#0)): int, $Unbox(Seq#Index(Seq#Build(Seq#Build(Seq#Empty(): Seq Box, $Box(1)), $Box(2)), i#0)): int } 
+          true
+             ==> 
+            LitInt(0) <= i#0
+               && i#0 < j#0
+               && j#0
+                 < Seq#Length(Lit(Seq#Build(Seq#Build(Seq#Empty(): Seq Box, $Box(LitInt(1))), $Box(LitInt(2)))))
+             ==> $Unbox(Seq#Index(Lit(Seq#Build(Seq#Build(Seq#Empty(): Seq Box, $Box(LitInt(1))), $Box(LitInt(2)))), 
+                  i#0)): int
+               <= $Unbox(Seq#Index(Lit(Seq#Build(Seq#Build(Seq#Empty(): Seq Box, $Box(LitInt(1))), $Box(LitInt(2)))), 
+                  j#0)): int);
+    assume Lit(_module.__default.sorted(Lit(Seq#Build(Seq#Build(Seq#Empty(): Seq Box, $Box(LitInt(1))), $Box(LitInt(2))))));
 }
 
 

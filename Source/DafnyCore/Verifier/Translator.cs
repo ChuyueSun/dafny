@@ -6750,7 +6750,10 @@ Console.WriteLine("!!body: "+body);
         func.DefinitionBody =  func.CreateFunctionDefinition(functionbody);
         Console.WriteLine("AddFunctionAxiom call completed. Printing function attribute");
         func.printAttribute();
-        func.AddAttribute("define");
+        if (Attributes.Contains(f.Attributes, "define")){
+          func.AddAttribute("define");
+        }
+        
         sink.AddTopLevelDeclaration(func);
       }
 
