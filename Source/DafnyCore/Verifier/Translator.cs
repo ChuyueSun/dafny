@@ -2013,7 +2013,7 @@ namespace Microsoft.Dafny {
 
       
       Expression receiverReplacement = null;
-Console.WriteLine("!!body: "+body);
+// Console.WriteLine("!!body: "+body);
         var bodyWithSubst = Substitute(body, receiverReplacement, substMap);
         if (f is PrefixPredicate) {
           var pp = (PrefixPredicate)f;

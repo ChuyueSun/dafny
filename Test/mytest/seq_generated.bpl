@@ -1,5 +1,5 @@
-// Dafny 3.9.1.41027
-// Command Line Options: ../Test/mytest/seq.dfy /print:../Test/mytest/seq_generated.bpl
+// Dafny 2.3.0.10506
+// Command Line Options: Test/mytest/seq.dfy /print:Test/mytest/seq_generated.bpl
 
 const $$Language$Dafny: bool;
 
@@ -11,85 +11,63 @@ type Bv0 = int;
 
 const unique TBool: Ty;
 
-axiom Tag(TBool) == TagBool;
-
 const unique TChar: Ty;
-
-axiom Tag(TChar) == TagChar;
 
 const unique TInt: Ty;
 
-axiom Tag(TInt) == TagInt;
-
 const unique TReal: Ty;
-
-axiom Tag(TReal) == TagReal;
 
 const unique TORDINAL: Ty;
 
-axiom Tag(TORDINAL) == TagORDINAL;
-
-axiom (forall w: int :: { TBitvector(w) } Inv0_TBitvector(TBitvector(w)) == w);
-
 function TBitvector(int) : Ty;
-
-axiom (forall t: Ty :: { TSet(t) } Inv0_TSet(TSet(t)) == t);
-
-axiom (forall t: Ty :: { TSet(t) } Tag(TSet(t)) == TagSet);
 
 function TSet(Ty) : Ty;
 
-axiom (forall t: Ty :: { TISet(t) } Inv0_TISet(TISet(t)) == t);
-
-axiom (forall t: Ty :: { TISet(t) } Tag(TISet(t)) == TagISet);
-
 function TISet(Ty) : Ty;
-
-axiom (forall t: Ty :: { TMultiSet(t) } Inv0_TMultiSet(TMultiSet(t)) == t);
-
-axiom (forall t: Ty :: { TMultiSet(t) } Tag(TMultiSet(t)) == TagMultiSet);
 
 function TMultiSet(Ty) : Ty;
 
-axiom (forall t: Ty :: { TSeq(t) } Inv0_TSeq(TSeq(t)) == t);
-
-axiom (forall t: Ty :: { TSeq(t) } Tag(TSeq(t)) == TagSeq);
-
 function TSeq(Ty) : Ty;
 
-axiom (forall t: Ty, u: Ty :: { TMap(t, u) } Inv0_TMap(TMap(t, u)) == t);
-
-axiom (forall t: Ty, u: Ty :: { TMap(t, u) } Inv1_TMap(TMap(t, u)) == u);
-
-axiom (forall t: Ty, u: Ty :: { TMap(t, u) } Tag(TMap(t, u)) == TagMap);
-
 function TMap(Ty, Ty) : Ty;
-
-axiom (forall t: Ty, u: Ty :: { TIMap(t, u) } Inv0_TIMap(TIMap(t, u)) == t);
-
-axiom (forall t: Ty, u: Ty :: { TIMap(t, u) } Inv1_TIMap(TIMap(t, u)) == u);
-
-axiom (forall t: Ty, u: Ty :: { TIMap(t, u) } Tag(TIMap(t, u)) == TagIMap);
 
 function TIMap(Ty, Ty) : Ty;
 
 function Inv0_TBitvector(Ty) : int;
 
+axiom (forall w: int :: { TBitvector(w) } Inv0_TBitvector(TBitvector(w)) == w);
+
 function Inv0_TSet(Ty) : Ty;
+
+axiom (forall t: Ty :: { TSet(t) } Inv0_TSet(TSet(t)) == t);
 
 function Inv0_TISet(Ty) : Ty;
 
+axiom (forall t: Ty :: { TISet(t) } Inv0_TISet(TISet(t)) == t);
+
 function Inv0_TSeq(Ty) : Ty;
 
+axiom (forall t: Ty :: { TSeq(t) } Inv0_TSeq(TSeq(t)) == t);
+
 function Inv0_TMultiSet(Ty) : Ty;
+
+axiom (forall t: Ty :: { TMultiSet(t) } Inv0_TMultiSet(TMultiSet(t)) == t);
 
 function Inv0_TMap(Ty) : Ty;
 
 function Inv1_TMap(Ty) : Ty;
 
+axiom (forall t: Ty, u: Ty :: { TMap(t, u) } Inv0_TMap(TMap(t, u)) == t);
+
+axiom (forall t: Ty, u: Ty :: { TMap(t, u) } Inv1_TMap(TMap(t, u)) == u);
+
 function Inv0_TIMap(Ty) : Ty;
 
 function Inv1_TIMap(Ty) : Ty;
+
+axiom (forall t: Ty, u: Ty :: { TIMap(t, u) } Inv0_TIMap(TIMap(t, u)) == t);
+
+axiom (forall t: Ty, u: Ty :: { TIMap(t, u) } Inv1_TIMap(TIMap(t, u)) == u);
 
 type TyTag;
 
@@ -119,35 +97,51 @@ const unique TagIMap: TyTag;
 
 const unique TagClass: TyTag;
 
-type TyTagFamily;
+axiom Tag(TBool) == TagBool;
 
-function TagFamily(Ty) : TyTagFamily;
+axiom Tag(TChar) == TagChar;
 
-axiom (forall<T> x: T :: { $Box(Lit(x)) } $Box(Lit(x)) == Lit($Box(x)));
+axiom Tag(TInt) == TagInt;
 
-function {:identity} Lit<T>(x: T) : T;
+axiom Tag(TReal) == TagReal;
 
-axiom (forall<T> x: T :: {:identity} { Lit(x): T } Lit(x): T == x);
+axiom Tag(TORDINAL) == TagORDINAL;
 
-axiom (forall x: int :: { $Box(LitInt(x)) } $Box(LitInt(x)) == Lit($Box(x)));
+axiom (forall t: Ty :: { TSet(t) } Tag(TSet(t)) == TagSet);
+
+axiom (forall t: Ty :: { TISet(t) } Tag(TISet(t)) == TagISet);
+
+axiom (forall t: Ty :: { TMultiSet(t) } Tag(TMultiSet(t)) == TagMultiSet);
+
+axiom (forall t: Ty :: { TSeq(t) } Tag(TSeq(t)) == TagSeq);
+
+axiom (forall t: Ty, u: Ty :: { TMap(t, u) } Tag(TMap(t, u)) == TagMap);
+
+axiom (forall t: Ty, u: Ty :: { TIMap(t, u) } Tag(TIMap(t, u)) == TagIMap);
 
 function {:identity} LitInt(x: int) : int;
 
 axiom (forall x: int :: {:identity} { LitInt(x): int } LitInt(x): int == x);
 
-axiom (forall x: real :: { $Box(LitReal(x)) } $Box(LitReal(x)) == Lit($Box(x)));
+axiom (forall x: int :: { $Box(LitInt(x)) } $Box(LitInt(x)) == Lit($Box(x)));
 
 function {:identity} LitReal(x: real) : real;
 
 axiom (forall x: real :: {:identity} { LitReal(x): real } LitReal(x): real == x);
 
+axiom (forall x: real :: { $Box(LitReal(x)) } $Box(LitReal(x)) == Lit($Box(x)));
+
+function {:identity} Lit<T>(x: T) : T;
+
+axiom (forall<T> x: T :: {:identity} { Lit(x): T } Lit(x): T == x);
+
+axiom (forall<T> x: T :: { $Box(Lit(x)) } $Box(Lit(x)) == Lit($Box(x)));
+
 type char;
 
-axiom (forall n: int :: 
-  { char#FromInt(n) } 
-  0 <= n && n < 65536 ==> char#ToInt(char#FromInt(n)) == n);
-
 function char#FromInt(int) : char;
+
+function char#ToInt(char) : int;
 
 axiom (forall ch: char :: 
   { char#ToInt(ch) } 
@@ -155,37 +149,39 @@ axiom (forall ch: char ::
      && 0 <= char#ToInt(ch)
      && char#ToInt(ch) < 65536);
 
-function char#ToInt(char) : int;
+axiom (forall n: int :: 
+  { char#FromInt(n) } 
+  0 <= n && n < 65536 ==> char#ToInt(char#FromInt(n)) == n);
+
+function char#Plus(char, char) : char;
+
+function char#Minus(char, char) : char;
 
 axiom (forall a: char, b: char :: 
   { char#Plus(a, b) } 
   char#Plus(a, b) == char#FromInt(char#ToInt(a) + char#ToInt(b)));
 
-function char#Plus(char, char) : char;
-
 axiom (forall a: char, b: char :: 
   { char#Minus(a, b) } 
   char#Minus(a, b) == char#FromInt(char#ToInt(a) - char#ToInt(b)));
-
-function char#Minus(char, char) : char;
 
 type ref;
 
 const null: ref;
 
+const unique NoTraitAtAll: ClassName;
+
+function TraitParent(ClassName) : ClassName;
+
 type Box;
 
 const $ArbitraryBoxValue: Box;
-
-axiom (forall<T> x: T :: { $Box(x) } $Unbox($Box(x)) == x);
 
 function $Box<T>(T) : Box;
 
 function $Unbox<T>(Box) : T;
 
-function $IsBox<T>(T, Ty) : bool;
-
-function $IsAllocBox<T>(T, Ty, Heap) : bool;
+axiom (forall<T> x: T :: { $Box(x) } $Unbox($Box(x)) == x);
 
 axiom (forall bx: Box :: 
   { $IsBox(bx, TInt) } 
@@ -205,11 +201,6 @@ axiom (forall bx: Box ::
   { $IsBox(bx, TChar) } 
   $IsBox(bx, TChar)
      ==> $Box($Unbox(bx): char) == bx && $Is($Unbox(bx): char, TChar));
-
-axiom (forall bx: Box :: 
-  { $IsBox(bx, TBitvector(0)) } 
-  $IsBox(bx, TBitvector(0))
-     ==> $Box($Unbox(bx): Bv0) == bx && $Is($Unbox(bx): Set Box, TBitvector(0)));
 
 axiom (forall bx: Box, t: Ty :: 
   { $IsBox(bx, TSet(t)) } 
@@ -251,6 +242,14 @@ axiom (forall<T> v: T, t: Ty, h: Heap ::
   { $IsAllocBox($Box(v), t, h) } 
   $IsAllocBox($Box(v), t, h) <==> $IsAlloc(v, t, h));
 
+function $Is<T>(T, Ty) : bool;
+
+function $IsAlloc<T>(T, Ty, Heap) : bool;
+
+function $IsBox<T>(T, Ty) : bool;
+
+function $IsAllocBox<T>(T, Ty, Heap) : bool;
+
 axiom (forall v: int :: { $Is(v, TInt) } $Is(v, TInt));
 
 axiom (forall v: real :: { $Is(v, TReal) } $Is(v, TReal));
@@ -261,7 +260,17 @@ axiom (forall v: char :: { $Is(v, TChar) } $Is(v, TChar));
 
 axiom (forall v: ORDINAL :: { $Is(v, TORDINAL) } $Is(v, TORDINAL));
 
-axiom (forall v: Bv0 :: { $Is(v, TBitvector(0)) } $Is(v, TBitvector(0)));
+axiom (forall h: Heap, v: int :: { $IsAlloc(v, TInt, h) } $IsAlloc(v, TInt, h));
+
+axiom (forall h: Heap, v: real :: { $IsAlloc(v, TReal, h) } $IsAlloc(v, TReal, h));
+
+axiom (forall h: Heap, v: bool :: { $IsAlloc(v, TBool, h) } $IsAlloc(v, TBool, h));
+
+axiom (forall h: Heap, v: char :: { $IsAlloc(v, TChar, h) } $IsAlloc(v, TChar, h));
+
+axiom (forall h: Heap, v: ORDINAL :: 
+  { $IsAlloc(v, TORDINAL, h) } 
+  $IsAlloc(v, TORDINAL, h));
 
 axiom (forall v: Set Box, t0: Ty :: 
   { $Is(v, TSet(t0)) } 
@@ -287,52 +296,6 @@ axiom (forall v: Seq Box, t0: Ty ::
       { Seq#Index(v, i) } 
       0 <= i && i < Seq#Length(v) ==> $IsBox(Seq#Index(v, i), t0)));
 
-axiom (forall v: Map Box Box, t0: Ty, t1: Ty :: 
-  { $Is(v, TMap(t0, t1)) } 
-  $Is(v, TMap(t0, t1))
-     <==> (forall bx: Box :: 
-      { Map#Elements(v)[bx] } { Map#Domain(v)[bx] } 
-      Map#Domain(v)[bx] ==> $IsBox(Map#Elements(v)[bx], t1) && $IsBox(bx, t0)));
-
-axiom (forall v: Map Box Box, t0: Ty, t1: Ty :: 
-  { $Is(v, TMap(t0, t1)) } 
-  $Is(v, TMap(t0, t1))
-     ==> $Is(Map#Domain(v), TSet(t0))
-       && $Is(Map#Values(v), TSet(t1))
-       && $Is(Map#Items(v), TSet(Tclass._System.Tuple2(t0, t1))));
-
-axiom (forall v: IMap Box Box, t0: Ty, t1: Ty :: 
-  { $Is(v, TIMap(t0, t1)) } 
-  $Is(v, TIMap(t0, t1))
-     <==> (forall bx: Box :: 
-      { IMap#Elements(v)[bx] } { IMap#Domain(v)[bx] } 
-      IMap#Domain(v)[bx] ==> $IsBox(IMap#Elements(v)[bx], t1) && $IsBox(bx, t0)));
-
-axiom (forall v: IMap Box Box, t0: Ty, t1: Ty :: 
-  { $Is(v, TIMap(t0, t1)) } 
-  $Is(v, TIMap(t0, t1))
-     ==> $Is(IMap#Domain(v), TISet(t0))
-       && $Is(IMap#Values(v), TISet(t1))
-       && $Is(IMap#Items(v), TISet(Tclass._System.Tuple2(t0, t1))));
-
-function $Is<T>(T, Ty) : bool;
-
-axiom (forall h: Heap, v: int :: { $IsAlloc(v, TInt, h) } $IsAlloc(v, TInt, h));
-
-axiom (forall h: Heap, v: real :: { $IsAlloc(v, TReal, h) } $IsAlloc(v, TReal, h));
-
-axiom (forall h: Heap, v: bool :: { $IsAlloc(v, TBool, h) } $IsAlloc(v, TBool, h));
-
-axiom (forall h: Heap, v: char :: { $IsAlloc(v, TChar, h) } $IsAlloc(v, TChar, h));
-
-axiom (forall h: Heap, v: ORDINAL :: 
-  { $IsAlloc(v, TORDINAL, h) } 
-  $IsAlloc(v, TORDINAL, h));
-
-axiom (forall v: Bv0, h: Heap :: 
-  { $IsAlloc(v, TBitvector(0), h) } 
-  $IsAlloc(v, TBitvector(0), h));
-
 axiom (forall v: Set Box, t0: Ty, h: Heap :: 
   { $IsAlloc(v, TSet(t0), h) } 
   $IsAlloc(v, TSet(t0), h)
@@ -355,6 +318,13 @@ axiom (forall v: Seq Box, t0: Ty, h: Heap ::
       { Seq#Index(v, i) } 
       0 <= i && i < Seq#Length(v) ==> $IsAllocBox(Seq#Index(v, i), t0, h)));
 
+axiom (forall v: Map Box Box, t0: Ty, t1: Ty :: 
+  { $Is(v, TMap(t0, t1)) } 
+  $Is(v, TMap(t0, t1))
+     <==> (forall bx: Box :: 
+      { Map#Elements(v)[bx] } { Map#Domain(v)[bx] } 
+      Map#Domain(v)[bx] ==> $IsBox(Map#Elements(v)[bx], t1) && $IsBox(bx, t0)));
+
 axiom (forall v: Map Box Box, t0: Ty, t1: Ty, h: Heap :: 
   { $IsAlloc(v, TMap(t0, t1), h) } 
   $IsAlloc(v, TMap(t0, t1), h)
@@ -363,6 +333,13 @@ axiom (forall v: Map Box Box, t0: Ty, t1: Ty, h: Heap ::
       Map#Domain(v)[bx]
          ==> $IsAllocBox(Map#Elements(v)[bx], t1, h) && $IsAllocBox(bx, t0, h)));
 
+axiom (forall v: IMap Box Box, t0: Ty, t1: Ty :: 
+  { $Is(v, TIMap(t0, t1)) } 
+  $Is(v, TIMap(t0, t1))
+     <==> (forall bx: Box :: 
+      { IMap#Elements(v)[bx] } { IMap#Domain(v)[bx] } 
+      IMap#Domain(v)[bx] ==> $IsBox(IMap#Elements(v)[bx], t1) && $IsBox(bx, t0)));
+
 axiom (forall v: IMap Box Box, t0: Ty, t1: Ty, h: Heap :: 
   { $IsAlloc(v, TIMap(t0, t1), h) } 
   $IsAlloc(v, TIMap(t0, t1), h)
@@ -370,19 +347,6 @@ axiom (forall v: IMap Box Box, t0: Ty, t1: Ty, h: Heap ::
       { IMap#Elements(v)[bx] } { IMap#Domain(v)[bx] } 
       IMap#Domain(v)[bx]
          ==> $IsAllocBox(IMap#Elements(v)[bx], t1, h) && $IsAllocBox(bx, t0, h)));
-
-function $IsAlloc<T>(T, Ty, Heap) : bool;
-
-axiom (forall ty: Ty :: 
-  { $AlwaysAllocated(ty) } 
-  $AlwaysAllocated(ty)
-     ==> (forall h: Heap, v: Box :: 
-      { $IsAllocBox(v, ty, h) } 
-      $IsBox(v, ty) ==> $IsAllocBox(v, ty, h)));
-
-function $AlwaysAllocated(Ty) : bool;
-
-function $OlderTag(Heap) : bool;
 
 type ClassName;
 
@@ -397,8 +361,6 @@ const unique class._System.seq: ClassName;
 const unique class._System.multiset: ClassName;
 
 function Tclass._System.object?() : Ty;
-
-function Tclass._System.Tuple2(Ty, Ty) : Ty;
 
 function dtype(ref) : Ty;
 
@@ -423,8 +385,6 @@ axiom (forall s: [ref]bool, bx: Box ::
 axiom (forall s: [ref]bool :: 
   { SetRef_to_SetBox(s) } 
   $Is(SetRef_to_SetBox(s), TSet(Tclass._System.object?())));
-
-function Apply1(Ty, Ty, Heap, HandleType, Box) : Box;
 
 type DatatypeType;
 
@@ -473,8 +433,9 @@ axiom (forall o: ORDINAL, p: ORDINAL ::
   (ORD#Less(o, p) ==> o != p)
      && (ORD#IsNat(o) && !ORD#IsNat(p) ==> ORD#Less(o, p))
      && (ORD#IsNat(o) && ORD#IsNat(p)
-       ==> ORD#Less(o, p) == (ORD#Offset(o) < ORD#Offset(p)))
-     && (ORD#Less(o, p) && ORD#IsNat(p) ==> ORD#IsNat(o)));
+       ==> ORD#Less(o, p) == (ORD#Offset(o) < ORD#Offset(p))));
+
+axiom (forall o: ORDINAL, p: ORDINAL :: { ORD#Less(o, p) } ORD#Less(o, p) ==> o != p);
 
 axiom (forall o: ORDINAL, p: ORDINAL :: 
   { ORD#Less(o, p), ORD#Less(p, o) } 
@@ -579,8 +540,6 @@ axiom (forall<A> f: [LayerType]A, ly: LayerType ::
 
 type Field _;
 
-axiom FDim(alloc) == 0;
-
 function FDim<T>(Field T) : int;
 
 function IndexField(int) : Field Box;
@@ -610,8 +569,6 @@ function DeclType<T>(Field T) : ClassName;
 
 type NameFamily;
 
-axiom DeclName(alloc) == allocName;
-
 function DeclName<T>(Field T) : NameFamily;
 
 function FieldOfDecl<alpha>(ClassName, NameFamily) : Field alpha;
@@ -620,16 +577,6 @@ axiom (forall<T> cl: ClassName, nm: NameFamily ::
   { FieldOfDecl(cl, nm): Field T } 
   DeclType(FieldOfDecl(cl, nm): Field T) == cl
      && DeclName(FieldOfDecl(cl, nm): Field T) == nm);
-
-axiom $IsGhostField(alloc);
-
-axiom (forall h: Heap, k: Heap :: 
-  { $HeapSuccGhost(h, k) } 
-  $HeapSuccGhost(h, k)
-     ==> $HeapSucc(h, k)
-       && (forall<alpha> o: ref, f: Field alpha :: 
-        { read(k, o, f) } 
-        !$IsGhostField(f) ==> read(h, o, f) == read(k, o, f)));
 
 function $IsGhostField<T>(Field T) : bool;
 
@@ -645,9 +592,11 @@ const unique alloc: Field bool;
 
 const unique allocName: NameFamily;
 
-axiom (forall o: ref :: 0 <= _System.array.Length(o));
+axiom FDim(alloc) == 0 && DeclName(alloc) == allocName && !$IsGhostField(alloc);
 
 function _System.array.Length(a: ref) : int;
+
+axiom (forall o: ref :: 0 <= _System.array.Length(o));
 
 function Int(x: real) : int;
 
@@ -664,16 +613,16 @@ function {:inline} _System.real.Floor(x: real) : int
   Int(x)
 }
 
-type Heap = [ref]<alpha>[Field alpha]alpha;
+type Heap = <alpha>[ref,Field alpha]alpha;
 
 function {:inline} read<alpha>(H: Heap, r: ref, f: Field alpha) : alpha
 {
-  H[r][f]
+  H[r, f]
 }
 
 function {:inline} update<alpha>(H: Heap, r: ref, f: Field alpha, v: alpha) : Heap
 {
-  H[r := H[r][f := v]]
+  H[r, f := v]
 }
 
 function $IsGoodHeap(Heap) : bool;
@@ -694,7 +643,7 @@ axiom (forall<alpha> h: Heap, r: ref, f: Field alpha, x: alpha ::
 
 axiom (forall a: Heap, b: Heap, c: Heap :: 
   { $HeapSucc(a, b), $HeapSucc(b, c) } 
-  a != c ==> $HeapSucc(a, b) && $HeapSucc(b, c) ==> $HeapSucc(a, c));
+  $HeapSucc(a, b) && $HeapSucc(b, c) ==> $HeapSucc(a, c));
 
 axiom (forall h: Heap, k: Heap :: 
   { $HeapSucc(h, k) } 
@@ -702,6 +651,14 @@ axiom (forall h: Heap, k: Heap ::
      ==> (forall o: ref :: { read(k, o, alloc) } read(h, o, alloc) ==> read(k, o, alloc)));
 
 function $HeapSuccGhost(Heap, Heap) : bool;
+
+axiom (forall h: Heap, k: Heap :: 
+  { $HeapSuccGhost(h, k) } 
+  $HeapSuccGhost(h, k)
+     ==> $HeapSucc(h, k)
+       && (forall<alpha> o: ref, f: Field alpha :: 
+        { read(k, o, f) } 
+        !$IsGhostField(f) ==> read(h, o, f) == read(k, o, f)));
 
 type TickType;
 
@@ -1135,9 +1092,6 @@ axiom (forall<T> s: Set T ::
   { MultiSet#Card(MultiSet#FromSet(s)) } 
   MultiSet#Card(MultiSet#FromSet(s)) == Set#Card(s));
 
-axiom (forall<T>  :: 
-  MultiSet#FromSeq(Seq#Empty(): Seq T) == MultiSet#Empty(): MultiSet T);
-
 function MultiSet#FromSeq<T>(Seq T) : MultiSet T;
 
 axiom (forall<T> s: Seq T :: 
@@ -1151,6 +1105,9 @@ axiom (forall<T> s: Seq T ::
 axiom (forall<T> s: Seq T, v: T :: 
   { MultiSet#FromSeq(Seq#Build(s, v)) } 
   MultiSet#FromSeq(Seq#Build(s, v)) == MultiSet#UnionOne(MultiSet#FromSeq(s), v));
+
+axiom (forall<T>  :: 
+  MultiSet#FromSeq(Seq#Empty(): Seq T) == MultiSet#Empty(): MultiSet T);
 
 axiom (forall<T> a: Seq T, b: Seq T :: 
   { MultiSet#FromSeq(Seq#Append(a, b)) } 
@@ -1171,19 +1128,21 @@ axiom (forall<T> s: Seq T, x: T ::
       0 <= i && i < Seq#Length(s) && x == Seq#Index(s, i))
      <==> 0 < MultiSet#FromSeq(s)[x]);
 
-type Seq _;
+type {:builtin "Seq"} Seq _;
 
 function Seq#Length<T>(Seq T) : int;
 
 axiom (forall<T> s: Seq T :: { Seq#Length(s) } 0 <= Seq#Length(s));
 
-function Seq#Empty<T>() : Seq T;
+function {:builtin "seq.empty"}  Seq#Empty<T>() : Seq T;
 
 axiom (forall<T>  :: { Seq#Empty(): Seq T } Seq#Length(Seq#Empty(): Seq T) == 0);
 
 axiom (forall<T> s: Seq T :: 
   { Seq#Length(s) } 
   Seq#Length(s) == 0 ==> s == Seq#Empty());
+
+axiom (forall<T> t: Ty :: { $Is(Seq#Empty(): Seq T, t) } $Is(Seq#Empty(): Seq T, t));
 
 function Seq#Singleton<T>(T) : Seq T;
 
@@ -1215,24 +1174,15 @@ axiom (forall s: Seq Box, bx: Box, t: Ty ::
   { $Is(Seq#Build(s, bx), TSeq(t)) } 
   $Is(s, TSeq(t)) && $IsBox(bx, t) ==> $Is(Seq#Build(s, bx), TSeq(t)));
 
-function Seq#Create(ty: Ty, heap: Heap, len: int, init: HandleType) : Seq Box;
-
-axiom (forall ty: Ty, heap: Heap, len: int, init: HandleType :: 
-  { Seq#Length(Seq#Create(ty, heap, len, init): Seq Box) } 
-  $IsGoodHeap(heap) && 0 <= len
-     ==> Seq#Length(Seq#Create(ty, heap, len, init): Seq Box) == len);
-
-axiom (forall ty: Ty, heap: Heap, len: int, init: HandleType, i: int :: 
-  { Seq#Index(Seq#Create(ty, heap, len, init), i) } 
-  $IsGoodHeap(heap) && 0 <= i && i < len
-     ==> Seq#Index(Seq#Create(ty, heap, len, init), i)
-       == Apply1(TInt, TSeq(ty), heap, init, $Box(i)));
-
 function Seq#Append<T>(Seq T, Seq T) : Seq T;
 
 axiom (forall<T> s0: Seq T, s1: Seq T :: 
   { Seq#Length(Seq#Append(s0, s1)) } 
   Seq#Length(Seq#Append(s0, s1)) == Seq#Length(s0) + Seq#Length(s1));
+
+axiom (forall s0: Seq Box, s1: Seq Box, t: Ty :: 
+  { $Is(Seq#Append(s0, s1), t) } 
+  $Is(s0, t) && $Is(s1, t) ==> $Is(Seq#Append(s0, s1), t));
 
 function Seq#Index<T>(Seq T, int) : T;
 
@@ -1362,7 +1312,12 @@ axiom (forall h: Heap, a: ref ::
 
 axiom (forall h0: Heap, h1: Heap, a: ref :: 
   { Seq#FromArray(h1, a), $HeapSucc(h0, h1) } 
-  $IsGoodHeap(h0) && $IsGoodHeap(h1) && $HeapSucc(h0, h1) && h0[a] == h1[a]
+  $IsGoodHeap(h0)
+       && $IsGoodHeap(h1)
+       && $HeapSucc(h0, h1)
+       && (forall i: int :: 
+        0 <= i && i < _System.array.Length(a)
+           ==> read(h0, a, IndexField(i)) == read(h1, a, IndexField(i)))
      ==> Seq#FromArray(h0, a) == Seq#FromArray(h1, a));
 
 axiom (forall h: Heap, i: int, v: Box, a: ref :: 
@@ -1388,7 +1343,7 @@ axiom (forall<T> s: Seq T, i: int, v: T, n: int ::
 
 axiom (forall<T> s: Seq T, i: int, v: T, n: int :: 
   { Seq#Drop(Seq#Update(s, i, v), n) } 
-  0 <= i && i < n && n <= Seq#Length(s)
+  0 <= i && i < n && n < Seq#Length(s)
      ==> Seq#Drop(Seq#Update(s, i, v), n) == Seq#Drop(s, n));
 
 axiom (forall h: Heap, a: ref, n0: int, n1: int :: 
@@ -1446,33 +1401,8 @@ function Map#Card<U,V>(Map U V) : int;
 axiom (forall<U,V> m: Map U V :: { Map#Card(m) } 0 <= Map#Card(m));
 
 axiom (forall<U,V> m: Map U V :: 
-  { Map#Card(m) } 
-  Map#Card(m) == 0 <==> m == Map#Empty());
-
-axiom (forall<U,V> m: Map U V :: 
-  { Map#Domain(m) } 
-  m == Map#Empty() || (exists k: U :: Map#Domain(m)[k]));
-
-axiom (forall<U,V> m: Map U V :: 
-  { Map#Values(m) } 
-  m == Map#Empty() || (exists v: V :: Map#Values(m)[v]));
-
-axiom (forall<U,V> m: Map U V :: 
-  { Map#Items(m) } 
-  m == Map#Empty()
-     || (exists k: Box, v: Box :: Map#Items(m)[$Box(#_System._tuple#2._#Make2(k, v))]));
-
-axiom (forall<U,V> m: Map U V :: 
   { Set#Card(Map#Domain(m)) } 
   Set#Card(Map#Domain(m)) == Map#Card(m));
-
-axiom (forall<U,V> m: Map U V :: 
-  { Set#Card(Map#Values(m)) } 
-  Set#Card(Map#Values(m)) <= Map#Card(m));
-
-axiom (forall<U,V> m: Map U V :: 
-  { Set#Card(Map#Items(m)) } 
-  Set#Card(Map#Items(m)) == Map#Card(m));
 
 function Map#Values<U,V>(Map U V) : Set V;
 
@@ -1485,11 +1415,13 @@ axiom (forall<U,V> m: Map U V, v: V ::
 
 function Map#Items<U,V>(Map U V) : Set Box;
 
-function #_System._tuple#2._#Make2(Box, Box) : DatatypeType;
-
 function _System.Tuple2._0(DatatypeType) : Box;
 
 function _System.Tuple2._1(DatatypeType) : Box;
+
+axiom (forall<U,V> m: Map U V :: 
+  { Set#Card(Map#Items(m)) } 
+  Set#Card(Map#Items(m)) == Map#Card(m));
 
 axiom (forall m: Map Box Box, item: Box :: 
   { Map#Items(m)[item] } 
@@ -1504,6 +1436,11 @@ axiom (forall<U,V> u: U ::
   { Map#Domain(Map#Empty(): Map U V)[u] } 
   !Map#Domain(Map#Empty(): Map U V)[u]);
 
+axiom (forall<U,V> m: Map U V :: 
+  { Map#Card(m) } 
+  (Map#Card(m) == 0 <==> m == Map#Empty())
+     && (Map#Card(m) != 0 ==> (exists x: U :: Map#Domain(m)[x])));
+
 function Map#Glue<U,V>([U]bool, [U]V, Ty) : Map U V;
 
 axiom (forall<U,V> a: [U]bool, b: [U]V, t: Ty :: 
@@ -1514,10 +1451,9 @@ axiom (forall<U,V> a: [U]bool, b: [U]V, t: Ty ::
   { Map#Elements(Map#Glue(a, b, t)) } 
   Map#Elements(Map#Glue(a, b, t)) == b);
 
-axiom (forall a: [Box]bool, b: [Box]Box, t0: Ty, t1: Ty :: 
-  { Map#Glue(a, b, TMap(t0, t1)) } 
-  (forall bx: Box :: a[bx] ==> $IsBox(bx, t0) && $IsBox(b[bx], t1))
-     ==> $Is(Map#Glue(a, b, TMap(t0, t1)), TMap(t0, t1)));
+axiom (forall<U,V> a: [U]bool, b: [U]V, t: Ty :: 
+  { $Is(Map#Glue(a, b, t), t) } 
+  $Is(Map#Glue(a, b, t), t));
 
 function Map#Build<U,V>(Map U V, U, V) : Map U V;
 
@@ -1536,29 +1472,6 @@ axiom (forall<U,V> m: Map U V, u: U, v: V ::
 axiom (forall<U,V> m: Map U V, u: U, v: V :: 
   { Map#Card(Map#Build(m, u, v)) } 
   !Map#Domain(m)[u] ==> Map#Card(Map#Build(m, u, v)) == Map#Card(m) + 1);
-
-function Map#Merge<U,V>(Map U V, Map U V) : Map U V;
-
-axiom (forall<U,V> m: Map U V, n: Map U V :: 
-  { Map#Domain(Map#Merge(m, n)) } 
-  Map#Domain(Map#Merge(m, n)) == Set#Union(Map#Domain(m), Map#Domain(n)));
-
-axiom (forall<U,V> m: Map U V, n: Map U V, u: U :: 
-  { Map#Elements(Map#Merge(m, n))[u] } 
-  Map#Domain(Map#Merge(m, n))[u]
-     ==> (!Map#Domain(n)[u] ==> Map#Elements(Map#Merge(m, n))[u] == Map#Elements(m)[u])
-       && (Map#Domain(n)[u] ==> Map#Elements(Map#Merge(m, n))[u] == Map#Elements(n)[u]));
-
-function Map#Subtract<U,V>(Map U V, Set U) : Map U V;
-
-axiom (forall<U,V> m: Map U V, s: Set U :: 
-  { Map#Domain(Map#Subtract(m, s)) } 
-  Map#Domain(Map#Subtract(m, s)) == Set#Difference(Map#Domain(m), s));
-
-axiom (forall<U,V> m: Map U V, s: Set U, u: U :: 
-  { Map#Elements(Map#Subtract(m, s))[u] } 
-  Map#Domain(Map#Subtract(m, s))[u]
-     ==> Map#Elements(Map#Subtract(m, s))[u] == Map#Elements(m)[u]);
 
 function Map#Equal<U,V>(Map U V, Map U V) : bool;
 
@@ -1586,31 +1499,6 @@ type IMap _ _;
 function IMap#Domain<U,V>(IMap U V) : Set U;
 
 function IMap#Elements<U,V>(IMap U V) : [U]V;
-
-axiom (forall<U,V> m: IMap U V :: 
-  { IMap#Domain(m) } 
-  m == IMap#Empty() || (exists k: U :: IMap#Domain(m)[k]));
-
-axiom (forall<U,V> m: IMap U V :: 
-  { IMap#Values(m) } 
-  m == IMap#Empty() || (exists v: V :: IMap#Values(m)[v]));
-
-axiom (forall<U,V> m: IMap U V :: 
-  { IMap#Items(m) } 
-  m == IMap#Empty()
-     || (exists k: Box, v: Box :: IMap#Items(m)[$Box(#_System._tuple#2._#Make2(k, v))]));
-
-axiom (forall<U,V> m: IMap U V :: 
-  { IMap#Domain(m) } 
-  m == IMap#Empty() <==> IMap#Domain(m) == ISet#Empty());
-
-axiom (forall<U,V> m: IMap U V :: 
-  { IMap#Values(m) } 
-  m == IMap#Empty() <==> IMap#Values(m) == ISet#Empty());
-
-axiom (forall<U,V> m: IMap U V :: 
-  { IMap#Items(m) } 
-  m == IMap#Empty() <==> IMap#Items(m) == ISet#Empty());
 
 function IMap#Values<U,V>(IMap U V) : Set V;
 
@@ -1646,10 +1534,9 @@ axiom (forall<U,V> a: [U]bool, b: [U]V, t: Ty ::
   { IMap#Elements(IMap#Glue(a, b, t)) } 
   IMap#Elements(IMap#Glue(a, b, t)) == b);
 
-axiom (forall a: [Box]bool, b: [Box]Box, t0: Ty, t1: Ty :: 
-  { IMap#Glue(a, b, TIMap(t0, t1)) } 
-  (forall bx: Box :: a[bx] ==> $IsBox(bx, t0) && $IsBox(b[bx], t1))
-     ==> $Is(Map#Glue(a, b, TIMap(t0, t1)), TIMap(t0, t1)));
+axiom (forall<U,V> a: [U]bool, b: [U]V, t: Ty :: 
+  { $Is(IMap#Glue(a, b, t), t) } 
+  $Is(IMap#Glue(a, b, t), t));
 
 function IMap#Build<U,V>(IMap U V, U, V) : IMap U V;
 
@@ -1675,31 +1562,6 @@ axiom (forall<U,V> m: IMap U V, m': IMap U V ::
 axiom (forall<U,V> m: IMap U V, m': IMap U V :: 
   { IMap#Equal(m, m') } 
   IMap#Equal(m, m') ==> m == m');
-
-function IMap#Merge<U,V>(IMap U V, IMap U V) : IMap U V;
-
-axiom (forall<U,V> m: IMap U V, n: IMap U V :: 
-  { IMap#Domain(IMap#Merge(m, n)) } 
-  IMap#Domain(IMap#Merge(m, n)) == Set#Union(IMap#Domain(m), IMap#Domain(n)));
-
-axiom (forall<U,V> m: IMap U V, n: IMap U V, u: U :: 
-  { IMap#Elements(IMap#Merge(m, n))[u] } 
-  IMap#Domain(IMap#Merge(m, n))[u]
-     ==> (!IMap#Domain(n)[u]
-         ==> IMap#Elements(IMap#Merge(m, n))[u] == IMap#Elements(m)[u])
-       && (IMap#Domain(n)[u]
-         ==> IMap#Elements(IMap#Merge(m, n))[u] == IMap#Elements(n)[u]));
-
-function IMap#Subtract<U,V>(IMap U V, Set U) : IMap U V;
-
-axiom (forall<U,V> m: IMap U V, s: Set U :: 
-  { IMap#Domain(IMap#Subtract(m, s)) } 
-  IMap#Domain(IMap#Subtract(m, s)) == Set#Difference(IMap#Domain(m), s));
-
-axiom (forall<U,V> m: IMap U V, s: Set U, u: U :: 
-  { IMap#Elements(IMap#Subtract(m, s))[u] } 
-  IMap#Domain(IMap#Subtract(m, s))[u]
-     ==> IMap#Elements(IMap#Subtract(m, s))[u] == IMap#Elements(m)[u]);
 
 function INTERNAL_add_boogie(x: int, y: int) : int;
 
@@ -1777,11 +1639,10 @@ axiom (forall x: int, y: int :: { Sub(x, y): int } Sub(x, y): int == x - y);
 
 function Tclass._System.nat() : Ty;
 
-const unique Tagclass._System.nat: TyTag;
-
 // Tclass._System.nat Tag
-axiom Tag(Tclass._System.nat()) == Tagclass._System.nat
-   && TagFamily(Tclass._System.nat()) == tytagFamily$nat;
+axiom Tag(Tclass._System.nat()) == Tagclass._System.nat;
+
+const unique Tagclass._System.nat: TyTag;
 
 // Box/unbox axiom for Tclass._System.nat
 axiom (forall bx: Box :: 
@@ -1801,11 +1662,10 @@ axiom (forall x#0: int, $h: Heap ::
 
 const unique class._System.object?: ClassName;
 
-const unique Tagclass._System.object?: TyTag;
-
 // Tclass._System.object? Tag
-axiom Tag(Tclass._System.object?()) == Tagclass._System.object?
-   && TagFamily(Tclass._System.object?()) == tytagFamily$object;
+axiom Tag(Tclass._System.object?()) == Tagclass._System.object?;
+
+const unique Tagclass._System.object?: TyTag;
 
 // Box/unbox axiom for Tclass._System.object?
 axiom (forall bx: Box :: 
@@ -1824,15 +1684,14 @@ axiom (forall $o: ref, $h: Heap ::
   $IsAlloc($o, Tclass._System.object?(), $h)
      <==> $o == null || read($h, $o, alloc));
 
-function implements$_System.object(ty: Ty) : bool;
+function implements$_System.object(Ty) : bool;
 
 function Tclass._System.object() : Ty;
 
-const unique Tagclass._System.object: TyTag;
-
 // Tclass._System.object Tag
-axiom Tag(Tclass._System.object()) == Tagclass._System.object
-   && TagFamily(Tclass._System.object()) == tytagFamily$object;
+axiom Tag(Tclass._System.object()) == Tagclass._System.object;
+
+const unique Tagclass._System.object: TyTag;
 
 // Box/unbox axiom for Tclass._System.object
 axiom (forall bx: Box :: 
@@ -1840,13 +1699,13 @@ axiom (forall bx: Box ::
   $IsBox(bx, Tclass._System.object())
      ==> $Box($Unbox(bx): ref) == bx && $Is($Unbox(bx): ref, Tclass._System.object()));
 
-// _System.object: non-null type $Is
+// _System.object: subset type $Is
 axiom (forall c#0: ref :: 
   { $Is(c#0, Tclass._System.object()) } 
   $Is(c#0, Tclass._System.object())
      <==> $Is(c#0, Tclass._System.object?()) && c#0 != null);
 
-// _System.object: non-null type $IsAlloc
+// _System.object: subset type $IsAlloc
 axiom (forall c#0: ref, $h: Heap :: 
   { $IsAlloc(c#0, Tclass._System.object(), $h) } 
   $IsAlloc(c#0, Tclass._System.object(), $h)
@@ -1856,99 +1715,96 @@ const unique class._System.array?: ClassName;
 
 function Tclass._System.array?(Ty) : Ty;
 
+// Tclass._System.array? Tag
+axiom (forall #$arg: Ty :: 
+  { Tclass._System.array?(#$arg) } 
+  Tag(Tclass._System.array?(#$arg)) == Tagclass._System.array?);
+
 const unique Tagclass._System.array?: TyTag;
 
-// Tclass._System.array? Tag
-axiom (forall _System.array$arg: Ty :: 
-  { Tclass._System.array?(_System.array$arg) } 
-  Tag(Tclass._System.array?(_System.array$arg)) == Tagclass._System.array?
-     && TagFamily(Tclass._System.array?(_System.array$arg)) == tytagFamily$array);
+// Tclass._System.array? injectivity 0
+axiom (forall #$arg: Ty :: 
+  { Tclass._System.array?(#$arg) } 
+  Tclass._System.array?_0(Tclass._System.array?(#$arg)) == #$arg);
 
 function Tclass._System.array?_0(Ty) : Ty;
 
-// Tclass._System.array? injectivity 0
-axiom (forall _System.array$arg: Ty :: 
-  { Tclass._System.array?(_System.array$arg) } 
-  Tclass._System.array?_0(Tclass._System.array?(_System.array$arg))
-     == _System.array$arg);
-
 // Box/unbox axiom for Tclass._System.array?
-axiom (forall _System.array$arg: Ty, bx: Box :: 
-  { $IsBox(bx, Tclass._System.array?(_System.array$arg)) } 
-  $IsBox(bx, Tclass._System.array?(_System.array$arg))
+axiom (forall #$arg: Ty, bx: Box :: 
+  { $IsBox(bx, Tclass._System.array?(#$arg)) } 
+  $IsBox(bx, Tclass._System.array?(#$arg))
      ==> $Box($Unbox(bx): ref) == bx
-       && $Is($Unbox(bx): ref, Tclass._System.array?(_System.array$arg)));
+       && $Is($Unbox(bx): ref, Tclass._System.array?(#$arg)));
 
 // array.: Type axiom
-axiom (forall _System.array$arg: Ty, $h: Heap, $o: ref, $i0: int :: 
-  { read($h, $o, IndexField($i0)), Tclass._System.array?(_System.array$arg) } 
+axiom (forall #$arg: Ty, $h: Heap, $o: ref, $i0: int :: 
+  { read($h, $o, IndexField($i0)), Tclass._System.array?(#$arg) } 
   $IsGoodHeap($h)
        && 
       $o != null
-       && dtype($o) == Tclass._System.array?(_System.array$arg)
+       && dtype($o) == Tclass._System.array?(#$arg)
        && 
       0 <= $i0
        && $i0 < _System.array.Length($o)
-     ==> $IsBox(read($h, $o, IndexField($i0)), _System.array$arg));
+     ==> $IsBox(read($h, $o, IndexField($i0)), #$arg));
 
 // array.: Allocation axiom
-axiom (forall _System.array$arg: Ty, $h: Heap, $o: ref, $i0: int :: 
-  { read($h, $o, IndexField($i0)), Tclass._System.array?(_System.array$arg) } 
+axiom (forall #$arg: Ty, $h: Heap, $o: ref, $i0: int :: 
+  { read($h, $o, IndexField($i0)), Tclass._System.array?(#$arg) } 
   $IsGoodHeap($h)
        && 
       $o != null
-       && dtype($o) == Tclass._System.array?(_System.array$arg)
+       && dtype($o) == Tclass._System.array?(#$arg)
        && 
       0 <= $i0
        && $i0 < _System.array.Length($o)
        && read($h, $o, alloc)
-     ==> $IsAllocBox(read($h, $o, IndexField($i0)), _System.array$arg, $h));
+     ==> $IsAllocBox(read($h, $o, IndexField($i0)), #$arg, $h));
 
 // array: Class $Is
-axiom (forall _System.array$arg: Ty, $o: ref :: 
-  { $Is($o, Tclass._System.array?(_System.array$arg)) } 
-  $Is($o, Tclass._System.array?(_System.array$arg))
-     <==> $o == null || dtype($o) == Tclass._System.array?(_System.array$arg));
+axiom (forall #$arg: Ty, $o: ref :: 
+  { $Is($o, Tclass._System.array?(#$arg)) } 
+  $Is($o, Tclass._System.array?(#$arg))
+     <==> $o == null || dtype($o) == Tclass._System.array?(#$arg));
 
 // array: Class $IsAlloc
-axiom (forall _System.array$arg: Ty, $o: ref, $h: Heap :: 
-  { $IsAlloc($o, Tclass._System.array?(_System.array$arg), $h) } 
-  $IsAlloc($o, Tclass._System.array?(_System.array$arg), $h)
+axiom (forall #$arg: Ty, $o: ref, $h: Heap :: 
+  { $IsAlloc($o, Tclass._System.array?(#$arg), $h) } 
+  $IsAlloc($o, Tclass._System.array?(#$arg), $h)
      <==> $o == null || read($h, $o, alloc));
 
 // array.Length: Type axiom
-axiom (forall _System.array$arg: Ty, $o: ref :: 
-  { _System.array.Length($o), Tclass._System.array?(_System.array$arg) } 
-  $o != null && dtype($o) == Tclass._System.array?(_System.array$arg)
+axiom (forall #$arg: Ty, $o: ref :: 
+  { _System.array.Length($o), Tclass._System.array?(#$arg) } 
+  $o != null && dtype($o) == Tclass._System.array?(#$arg)
      ==> $Is(_System.array.Length($o), TInt));
 
 // array.Length: Allocation axiom
-axiom (forall _System.array$arg: Ty, $h: Heap, $o: ref :: 
-  { _System.array.Length($o), read($h, $o, alloc), Tclass._System.array?(_System.array$arg) } 
+axiom (forall #$arg: Ty, $h: Heap, $o: ref :: 
+  { _System.array.Length($o), read($h, $o, alloc), Tclass._System.array?(#$arg) } 
   $IsGoodHeap($h)
        && 
       $o != null
-       && dtype($o) == Tclass._System.array?(_System.array$arg)
+       && dtype($o) == Tclass._System.array?(#$arg)
        && read($h, $o, alloc)
      ==> $IsAlloc(_System.array.Length($o), TInt, $h));
 
 function Tclass._System.array(Ty) : Ty;
 
-const unique Tagclass._System.array: TyTag;
-
 // Tclass._System.array Tag
 axiom (forall _System.array$arg: Ty :: 
   { Tclass._System.array(_System.array$arg) } 
-  Tag(Tclass._System.array(_System.array$arg)) == Tagclass._System.array
-     && TagFamily(Tclass._System.array(_System.array$arg)) == tytagFamily$array);
+  Tag(Tclass._System.array(_System.array$arg)) == Tagclass._System.array);
 
-function Tclass._System.array_0(Ty) : Ty;
+const unique Tagclass._System.array: TyTag;
 
 // Tclass._System.array injectivity 0
 axiom (forall _System.array$arg: Ty :: 
   { Tclass._System.array(_System.array$arg) } 
   Tclass._System.array_0(Tclass._System.array(_System.array$arg))
      == _System.array$arg);
+
+function Tclass._System.array_0(Ty) : Ty;
 
 // Box/unbox axiom for Tclass._System.array
 axiom (forall _System.array$arg: Ty, bx: Box :: 
@@ -1957,41 +1813,282 @@ axiom (forall _System.array$arg: Ty, bx: Box ::
      ==> $Box($Unbox(bx): ref) == bx
        && $Is($Unbox(bx): ref, Tclass._System.array(_System.array$arg)));
 
-// _System.array: non-null type $Is
+// _System.array: subset type $Is
 axiom (forall _System.array$arg: Ty, c#0: ref :: 
   { $Is(c#0, Tclass._System.array(_System.array$arg)) } 
   $Is(c#0, Tclass._System.array(_System.array$arg))
      <==> $Is(c#0, Tclass._System.array?(_System.array$arg)) && c#0 != null);
 
-// _System.array: non-null type $IsAlloc
+// _System.array: subset type $IsAlloc
 axiom (forall _System.array$arg: Ty, c#0: ref, $h: Heap :: 
   { $IsAlloc(c#0, Tclass._System.array(_System.array$arg), $h) } 
   $IsAlloc(c#0, Tclass._System.array(_System.array$arg), $h)
      <==> $IsAlloc(c#0, Tclass._System.array?(_System.array$arg), $h));
 
-function Tclass._System.___hFunc1(Ty, Ty) : Ty;
+function Tclass._System.___hFunc0(Ty) : Ty;
 
-const unique Tagclass._System.___hFunc1: TyTag;
+// Tclass._System.___hFunc0 Tag
+axiom (forall #$R: Ty :: 
+  { Tclass._System.___hFunc0(#$R) } 
+  Tag(Tclass._System.___hFunc0(#$R)) == Tagclass._System.___hFunc0);
+
+const unique Tagclass._System.___hFunc0: TyTag;
+
+// Tclass._System.___hFunc0 injectivity 0
+axiom (forall #$R: Ty :: 
+  { Tclass._System.___hFunc0(#$R) } 
+  Tclass._System.___hFunc0_0(Tclass._System.___hFunc0(#$R)) == #$R);
+
+function Tclass._System.___hFunc0_0(Ty) : Ty;
+
+// Box/unbox axiom for Tclass._System.___hFunc0
+axiom (forall #$R: Ty, bx: Box :: 
+  { $IsBox(bx, Tclass._System.___hFunc0(#$R)) } 
+  $IsBox(bx, Tclass._System.___hFunc0(#$R))
+     ==> $Box($Unbox(bx): HandleType) == bx
+       && $Is($Unbox(bx): HandleType, Tclass._System.___hFunc0(#$R)));
+
+function Handle0([Heap]Box, [Heap]bool, [Heap]Set Box) : HandleType;
+
+function Apply0(Ty, Heap, HandleType) : Box;
+
+function Requires0(Ty, Heap, HandleType) : bool;
+
+function Reads0(Ty, Heap, HandleType) : Set Box;
+
+axiom (forall t0: Ty, heap: Heap, h: [Heap]Box, r: [Heap]bool, rd: [Heap]Set Box :: 
+  { Apply0(t0, heap, Handle0(h, r, rd)) } 
+  Apply0(t0, heap, Handle0(h, r, rd)) == h[heap]);
+
+axiom (forall t0: Ty, heap: Heap, h: [Heap]Box, r: [Heap]bool, rd: [Heap]Set Box :: 
+  { Requires0(t0, heap, Handle0(h, r, rd)) } 
+  r[heap] ==> Requires0(t0, heap, Handle0(h, r, rd)));
+
+axiom (forall t0: Ty, heap: Heap, h: [Heap]Box, r: [Heap]bool, rd: [Heap]Set Box, bx: Box :: 
+  { Reads0(t0, heap, Handle0(h, r, rd))[bx] } 
+  Reads0(t0, heap, Handle0(h, r, rd))[bx] == rd[heap][bx]);
+
+function {:inline} Requires0#canCall(t0: Ty, heap: Heap, f: HandleType) : bool
+{
+  true
+}
+
+function {:inline} Reads0#canCall(t0: Ty, heap: Heap, f: HandleType) : bool
+{
+  true
+}
+
+// frame axiom for Reads0
+axiom (forall t0: Ty, h0: Heap, h1: Heap, f: HandleType :: 
+  { $HeapSucc(h0, h1), Reads0(t0, h1, f) } 
+  $HeapSucc(h0, h1)
+       && 
+      $IsGoodHeap(h0)
+       && $IsGoodHeap(h1)
+       && $Is(f, Tclass._System.___hFunc0(t0))
+       && (forall<a> o: ref, fld: Field a :: 
+        o != null && Reads0(t0, h0, f)[$Box(o)] ==> read(h0, o, fld) == read(h1, o, fld))
+     ==> Reads0(t0, h0, f) == Reads0(t0, h1, f));
+
+// frame axiom for Reads0
+axiom (forall t0: Ty, h0: Heap, h1: Heap, f: HandleType :: 
+  { $HeapSucc(h0, h1), Reads0(t0, h1, f) } 
+  $HeapSucc(h0, h1)
+       && 
+      $IsGoodHeap(h0)
+       && $IsGoodHeap(h1)
+       && $Is(f, Tclass._System.___hFunc0(t0))
+       && (forall<a> o: ref, fld: Field a :: 
+        o != null && Reads0(t0, h1, f)[$Box(o)] ==> read(h0, o, fld) == read(h1, o, fld))
+     ==> Reads0(t0, h0, f) == Reads0(t0, h1, f));
+
+// frame axiom for Requires0
+axiom (forall t0: Ty, h0: Heap, h1: Heap, f: HandleType :: 
+  { $HeapSucc(h0, h1), Requires0(t0, h1, f) } 
+  $HeapSucc(h0, h1)
+       && 
+      $IsGoodHeap(h0)
+       && $IsGoodHeap(h1)
+       && $Is(f, Tclass._System.___hFunc0(t0))
+       && (forall<a> o: ref, fld: Field a :: 
+        o != null && Reads0(t0, h0, f)[$Box(o)] ==> read(h0, o, fld) == read(h1, o, fld))
+     ==> Requires0(t0, h0, f) == Requires0(t0, h1, f));
+
+// frame axiom for Requires0
+axiom (forall t0: Ty, h0: Heap, h1: Heap, f: HandleType :: 
+  { $HeapSucc(h0, h1), Requires0(t0, h1, f) } 
+  $HeapSucc(h0, h1)
+       && 
+      $IsGoodHeap(h0)
+       && $IsGoodHeap(h1)
+       && $Is(f, Tclass._System.___hFunc0(t0))
+       && (forall<a> o: ref, fld: Field a :: 
+        o != null && Reads0(t0, h1, f)[$Box(o)] ==> read(h0, o, fld) == read(h1, o, fld))
+     ==> Requires0(t0, h0, f) == Requires0(t0, h1, f));
+
+// frame axiom for Apply0
+axiom (forall t0: Ty, h0: Heap, h1: Heap, f: HandleType :: 
+  { $HeapSucc(h0, h1), Apply0(t0, h1, f) } 
+  $HeapSucc(h0, h1)
+       && 
+      $IsGoodHeap(h0)
+       && $IsGoodHeap(h1)
+       && $Is(f, Tclass._System.___hFunc0(t0))
+       && (forall<a> o: ref, fld: Field a :: 
+        o != null && Reads0(t0, h0, f)[$Box(o)] ==> read(h0, o, fld) == read(h1, o, fld))
+     ==> Apply0(t0, h0, f) == Apply0(t0, h1, f));
+
+// frame axiom for Apply0
+axiom (forall t0: Ty, h0: Heap, h1: Heap, f: HandleType :: 
+  { $HeapSucc(h0, h1), Apply0(t0, h1, f) } 
+  $HeapSucc(h0, h1)
+       && 
+      $IsGoodHeap(h0)
+       && $IsGoodHeap(h1)
+       && $Is(f, Tclass._System.___hFunc0(t0))
+       && (forall<a> o: ref, fld: Field a :: 
+        o != null && Reads0(t0, h1, f)[$Box(o)] ==> read(h0, o, fld) == read(h1, o, fld))
+     ==> Apply0(t0, h0, f) == Apply0(t0, h1, f));
+
+// empty-reads property for Reads0 
+axiom (forall t0: Ty, heap: Heap, f: HandleType :: 
+  { Reads0(t0, $OneHeap, f), $IsGoodHeap(heap) } { Reads0(t0, heap, f) } 
+  $IsGoodHeap(heap) && $Is(f, Tclass._System.___hFunc0(t0))
+     ==> (Set#Equal(Reads0(t0, $OneHeap, f), Set#Empty(): Set Box)
+       <==> Set#Equal(Reads0(t0, heap, f), Set#Empty(): Set Box)));
+
+// empty-reads property for Requires0
+axiom (forall t0: Ty, heap: Heap, f: HandleType :: 
+  { Requires0(t0, $OneHeap, f), $IsGoodHeap(heap) } { Requires0(t0, heap, f) } 
+  $IsGoodHeap(heap)
+       && $Is(f, Tclass._System.___hFunc0(t0))
+       && Set#Equal(Reads0(t0, $OneHeap, f), Set#Empty(): Set Box)
+     ==> Requires0(t0, $OneHeap, f) == Requires0(t0, heap, f));
+
+axiom (forall f: HandleType, t0: Ty :: 
+  { $Is(f, Tclass._System.___hFunc0(t0)) } 
+  $Is(f, Tclass._System.___hFunc0(t0))
+     <==> (forall h: Heap :: 
+      { Apply0(t0, h, f) } 
+      $IsGoodHeap(h) && Requires0(t0, h, f) ==> $IsBox(Apply0(t0, h, f), t0)));
+
+axiom (forall f: HandleType, t0: Ty, u0: Ty :: 
+  { $Is(f, Tclass._System.___hFunc0(t0)), $Is(f, Tclass._System.___hFunc0(u0)) } 
+  $Is(f, Tclass._System.___hFunc0(t0))
+       && (forall bx: Box :: 
+        { $IsBox(bx, t0) } { $IsBox(bx, u0) } 
+        $IsBox(bx, t0) ==> $IsBox(bx, u0))
+     ==> $Is(f, Tclass._System.___hFunc0(u0)));
+
+axiom (forall f: HandleType, t0: Ty, h: Heap :: 
+  { $IsAlloc(f, Tclass._System.___hFunc0(t0), h) } 
+  $IsGoodHeap(h)
+     ==> ($IsAlloc(f, Tclass._System.___hFunc0(t0), h)
+       <==> Requires0(t0, h, f)
+         ==> (forall r: ref :: 
+          { Reads0(t0, h, f)[$Box(r)] } 
+          r != null && Reads0(t0, h, f)[$Box(r)] ==> read(h, r, alloc))));
+
+axiom (forall f: HandleType, t0: Ty, h: Heap :: 
+  { $IsAlloc(f, Tclass._System.___hFunc0(t0), h) } 
+  $IsGoodHeap(h) && $IsAlloc(f, Tclass._System.___hFunc0(t0), h)
+     ==> 
+    Requires0(t0, h, f)
+     ==> $IsAllocBox(Apply0(t0, h, f), t0, h));
+
+function Tclass._System.___hPartialFunc0(Ty) : Ty;
+
+// Tclass._System.___hPartialFunc0 Tag
+axiom (forall #$R: Ty :: 
+  { Tclass._System.___hPartialFunc0(#$R) } 
+  Tag(Tclass._System.___hPartialFunc0(#$R)) == Tagclass._System.___hPartialFunc0);
+
+const unique Tagclass._System.___hPartialFunc0: TyTag;
+
+// Tclass._System.___hPartialFunc0 injectivity 0
+axiom (forall #$R: Ty :: 
+  { Tclass._System.___hPartialFunc0(#$R) } 
+  Tclass._System.___hPartialFunc0_0(Tclass._System.___hPartialFunc0(#$R)) == #$R);
+
+function Tclass._System.___hPartialFunc0_0(Ty) : Ty;
+
+// Box/unbox axiom for Tclass._System.___hPartialFunc0
+axiom (forall #$R: Ty, bx: Box :: 
+  { $IsBox(bx, Tclass._System.___hPartialFunc0(#$R)) } 
+  $IsBox(bx, Tclass._System.___hPartialFunc0(#$R))
+     ==> $Box($Unbox(bx): HandleType) == bx
+       && $Is($Unbox(bx): HandleType, Tclass._System.___hPartialFunc0(#$R)));
+
+// _System._#PartialFunc0: subset type $Is
+axiom (forall #$R: Ty, f#0: HandleType :: 
+  { $Is(f#0, Tclass._System.___hPartialFunc0(#$R)) } 
+  $Is(f#0, Tclass._System.___hPartialFunc0(#$R))
+     <==> $Is(f#0, Tclass._System.___hFunc0(#$R))
+       && Set#Equal(Reads0(#$R, $OneHeap, f#0), Set#Empty(): Set Box));
+
+// _System._#PartialFunc0: subset type $IsAlloc
+axiom (forall #$R: Ty, f#0: HandleType, $h: Heap :: 
+  { $IsAlloc(f#0, Tclass._System.___hPartialFunc0(#$R), $h) } 
+  $IsAlloc(f#0, Tclass._System.___hPartialFunc0(#$R), $h)
+     <==> $IsAlloc(f#0, Tclass._System.___hFunc0(#$R), $h));
+
+function Tclass._System.___hTotalFunc0(Ty) : Ty;
+
+// Tclass._System.___hTotalFunc0 Tag
+axiom (forall #$R: Ty :: 
+  { Tclass._System.___hTotalFunc0(#$R) } 
+  Tag(Tclass._System.___hTotalFunc0(#$R)) == Tagclass._System.___hTotalFunc0);
+
+const unique Tagclass._System.___hTotalFunc0: TyTag;
+
+// Tclass._System.___hTotalFunc0 injectivity 0
+axiom (forall #$R: Ty :: 
+  { Tclass._System.___hTotalFunc0(#$R) } 
+  Tclass._System.___hTotalFunc0_0(Tclass._System.___hTotalFunc0(#$R)) == #$R);
+
+function Tclass._System.___hTotalFunc0_0(Ty) : Ty;
+
+// Box/unbox axiom for Tclass._System.___hTotalFunc0
+axiom (forall #$R: Ty, bx: Box :: 
+  { $IsBox(bx, Tclass._System.___hTotalFunc0(#$R)) } 
+  $IsBox(bx, Tclass._System.___hTotalFunc0(#$R))
+     ==> $Box($Unbox(bx): HandleType) == bx
+       && $Is($Unbox(bx): HandleType, Tclass._System.___hTotalFunc0(#$R)));
+
+// _System._#TotalFunc0: subset type $Is
+axiom (forall #$R: Ty, f#0: HandleType :: 
+  { $Is(f#0, Tclass._System.___hTotalFunc0(#$R)) } 
+  $Is(f#0, Tclass._System.___hTotalFunc0(#$R))
+     <==> $Is(f#0, Tclass._System.___hPartialFunc0(#$R)) && Requires0(#$R, $OneHeap, f#0));
+
+// _System._#TotalFunc0: subset type $IsAlloc
+axiom (forall #$R: Ty, f#0: HandleType, $h: Heap :: 
+  { $IsAlloc(f#0, Tclass._System.___hTotalFunc0(#$R), $h) } 
+  $IsAlloc(f#0, Tclass._System.___hTotalFunc0(#$R), $h)
+     <==> $IsAlloc(f#0, Tclass._System.___hPartialFunc0(#$R), $h));
+
+function Tclass._System.___hFunc1(Ty, Ty) : Ty;
 
 // Tclass._System.___hFunc1 Tag
 axiom (forall #$T0: Ty, #$R: Ty :: 
   { Tclass._System.___hFunc1(#$T0, #$R) } 
-  Tag(Tclass._System.___hFunc1(#$T0, #$R)) == Tagclass._System.___hFunc1
-     && TagFamily(Tclass._System.___hFunc1(#$T0, #$R)) == tytagFamily$_#Func1);
+  Tag(Tclass._System.___hFunc1(#$T0, #$R)) == Tagclass._System.___hFunc1);
 
-function Tclass._System.___hFunc1_0(Ty) : Ty;
+const unique Tagclass._System.___hFunc1: TyTag;
 
 // Tclass._System.___hFunc1 injectivity 0
 axiom (forall #$T0: Ty, #$R: Ty :: 
   { Tclass._System.___hFunc1(#$T0, #$R) } 
   Tclass._System.___hFunc1_0(Tclass._System.___hFunc1(#$T0, #$R)) == #$T0);
 
-function Tclass._System.___hFunc1_1(Ty) : Ty;
+function Tclass._System.___hFunc1_0(Ty) : Ty;
 
 // Tclass._System.___hFunc1 injectivity 1
 axiom (forall #$T0: Ty, #$R: Ty :: 
   { Tclass._System.___hFunc1(#$T0, #$R) } 
   Tclass._System.___hFunc1_1(Tclass._System.___hFunc1(#$T0, #$R)) == #$R);
+
+function Tclass._System.___hFunc1_1(Ty) : Ty;
 
 // Box/unbox axiom for Tclass._System.___hFunc1
 axiom (forall #$T0: Ty, #$R: Ty, bx: Box :: 
@@ -2001,6 +2098,8 @@ axiom (forall #$T0: Ty, #$R: Ty, bx: Box ::
        && $Is($Unbox(bx): HandleType, Tclass._System.___hFunc1(#$T0, #$R)));
 
 function Handle1([Heap,Box]Box, [Heap,Box]bool, [Heap,Box]Set Box) : HandleType;
+
+function Apply1(Ty, Ty, Heap, HandleType, Box) : Box;
 
 function Requires1(Ty, Ty, Heap, HandleType, Box) : bool;
 
@@ -2196,17 +2295,13 @@ axiom (forall f: HandleType, t0: Ty, t1: Ty, h: Heap ::
 
 function Tclass._System.___hPartialFunc1(Ty, Ty) : Ty;
 
-const unique Tagclass._System.___hPartialFunc1: TyTag;
-
 // Tclass._System.___hPartialFunc1 Tag
 axiom (forall #$T0: Ty, #$R: Ty :: 
   { Tclass._System.___hPartialFunc1(#$T0, #$R) } 
   Tag(Tclass._System.___hPartialFunc1(#$T0, #$R))
-       == Tagclass._System.___hPartialFunc1
-     && TagFamily(Tclass._System.___hPartialFunc1(#$T0, #$R))
-       == tytagFamily$_#PartialFunc1);
+     == Tagclass._System.___hPartialFunc1);
 
-function Tclass._System.___hPartialFunc1_0(Ty) : Ty;
+const unique Tagclass._System.___hPartialFunc1: TyTag;
 
 // Tclass._System.___hPartialFunc1 injectivity 0
 axiom (forall #$T0: Ty, #$R: Ty :: 
@@ -2214,13 +2309,15 @@ axiom (forall #$T0: Ty, #$R: Ty ::
   Tclass._System.___hPartialFunc1_0(Tclass._System.___hPartialFunc1(#$T0, #$R))
      == #$T0);
 
-function Tclass._System.___hPartialFunc1_1(Ty) : Ty;
+function Tclass._System.___hPartialFunc1_0(Ty) : Ty;
 
 // Tclass._System.___hPartialFunc1 injectivity 1
 axiom (forall #$T0: Ty, #$R: Ty :: 
   { Tclass._System.___hPartialFunc1(#$T0, #$R) } 
   Tclass._System.___hPartialFunc1_1(Tclass._System.___hPartialFunc1(#$T0, #$R))
      == #$R);
+
+function Tclass._System.___hPartialFunc1_1(Ty) : Ty;
 
 // Box/unbox axiom for Tclass._System.___hPartialFunc1
 axiom (forall #$T0: Ty, #$R: Ty, bx: Box :: 
@@ -2246,15 +2343,12 @@ axiom (forall #$T0: Ty, #$R: Ty, f#0: HandleType, $h: Heap ::
 
 function Tclass._System.___hTotalFunc1(Ty, Ty) : Ty;
 
-const unique Tagclass._System.___hTotalFunc1: TyTag;
-
 // Tclass._System.___hTotalFunc1 Tag
 axiom (forall #$T0: Ty, #$R: Ty :: 
   { Tclass._System.___hTotalFunc1(#$T0, #$R) } 
-  Tag(Tclass._System.___hTotalFunc1(#$T0, #$R)) == Tagclass._System.___hTotalFunc1
-     && TagFamily(Tclass._System.___hTotalFunc1(#$T0, #$R)) == tytagFamily$_#TotalFunc1);
+  Tag(Tclass._System.___hTotalFunc1(#$T0, #$R)) == Tagclass._System.___hTotalFunc1);
 
-function Tclass._System.___hTotalFunc1_0(Ty) : Ty;
+const unique Tagclass._System.___hTotalFunc1: TyTag;
 
 // Tclass._System.___hTotalFunc1 injectivity 0
 axiom (forall #$T0: Ty, #$R: Ty :: 
@@ -2262,12 +2356,14 @@ axiom (forall #$T0: Ty, #$R: Ty ::
   Tclass._System.___hTotalFunc1_0(Tclass._System.___hTotalFunc1(#$T0, #$R))
      == #$T0);
 
-function Tclass._System.___hTotalFunc1_1(Ty) : Ty;
+function Tclass._System.___hTotalFunc1_0(Ty) : Ty;
 
 // Tclass._System.___hTotalFunc1 injectivity 1
 axiom (forall #$T0: Ty, #$R: Ty :: 
   { Tclass._System.___hTotalFunc1(#$T0, #$R) } 
   Tclass._System.___hTotalFunc1_1(Tclass._System.___hTotalFunc1(#$T0, #$R)) == #$R);
+
+function Tclass._System.___hTotalFunc1_1(Ty) : Ty;
 
 // Box/unbox axiom for Tclass._System.___hTotalFunc1
 axiom (forall #$T0: Ty, #$R: Ty, bx: Box :: 
@@ -2290,258 +2386,18 @@ axiom (forall #$T0: Ty, #$R: Ty, f#0: HandleType, $h: Heap ::
   $IsAlloc(f#0, Tclass._System.___hTotalFunc1(#$T0, #$R), $h)
      <==> $IsAlloc(f#0, Tclass._System.___hPartialFunc1(#$T0, #$R), $h));
 
-function Tclass._System.___hFunc0(Ty) : Ty;
+const unique class._System.Tuple2: ClassName;
 
-const unique Tagclass._System.___hFunc0: TyTag;
+// Constructor function declaration
+function #_System._tuple#2._#Make2(Box, Box) : DatatypeType;
 
-// Tclass._System.___hFunc0 Tag
-axiom (forall #$R: Ty :: 
-  { Tclass._System.___hFunc0(#$R) } 
-  Tag(Tclass._System.___hFunc0(#$R)) == Tagclass._System.___hFunc0
-     && TagFamily(Tclass._System.___hFunc0(#$R)) == tytagFamily$_#Func0);
-
-function Tclass._System.___hFunc0_0(Ty) : Ty;
-
-// Tclass._System.___hFunc0 injectivity 0
-axiom (forall #$R: Ty :: 
-  { Tclass._System.___hFunc0(#$R) } 
-  Tclass._System.___hFunc0_0(Tclass._System.___hFunc0(#$R)) == #$R);
-
-// Box/unbox axiom for Tclass._System.___hFunc0
-axiom (forall #$R: Ty, bx: Box :: 
-  { $IsBox(bx, Tclass._System.___hFunc0(#$R)) } 
-  $IsBox(bx, Tclass._System.___hFunc0(#$R))
-     ==> $Box($Unbox(bx): HandleType) == bx
-       && $Is($Unbox(bx): HandleType, Tclass._System.___hFunc0(#$R)));
-
-function Handle0([Heap]Box, [Heap]bool, [Heap]Set Box) : HandleType;
-
-function Apply0(Ty, Heap, HandleType) : Box;
-
-function Requires0(Ty, Heap, HandleType) : bool;
-
-function Reads0(Ty, Heap, HandleType) : Set Box;
-
-axiom (forall t0: Ty, heap: Heap, h: [Heap]Box, r: [Heap]bool, rd: [Heap]Set Box :: 
-  { Apply0(t0, heap, Handle0(h, r, rd)) } 
-  Apply0(t0, heap, Handle0(h, r, rd)) == h[heap]);
-
-axiom (forall t0: Ty, heap: Heap, h: [Heap]Box, r: [Heap]bool, rd: [Heap]Set Box :: 
-  { Requires0(t0, heap, Handle0(h, r, rd)) } 
-  r[heap] ==> Requires0(t0, heap, Handle0(h, r, rd)));
-
-axiom (forall t0: Ty, heap: Heap, h: [Heap]Box, r: [Heap]bool, rd: [Heap]Set Box, bx: Box :: 
-  { Reads0(t0, heap, Handle0(h, r, rd))[bx] } 
-  Reads0(t0, heap, Handle0(h, r, rd))[bx] == rd[heap][bx]);
-
-function {:inline} Requires0#canCall(t0: Ty, heap: Heap, f: HandleType) : bool
-{
-  true
-}
-
-function {:inline} Reads0#canCall(t0: Ty, heap: Heap, f: HandleType) : bool
-{
-  true
-}
-
-// frame axiom for Reads0
-axiom (forall t0: Ty, h0: Heap, h1: Heap, f: HandleType :: 
-  { $HeapSucc(h0, h1), Reads0(t0, h1, f) } 
-  $HeapSucc(h0, h1)
-       && 
-      $IsGoodHeap(h0)
-       && $IsGoodHeap(h1)
-       && $Is(f, Tclass._System.___hFunc0(t0))
-       && (forall<a> o: ref, fld: Field a :: 
-        o != null && Reads0(t0, h0, f)[$Box(o)] ==> read(h0, o, fld) == read(h1, o, fld))
-     ==> Reads0(t0, h0, f) == Reads0(t0, h1, f));
-
-// frame axiom for Reads0
-axiom (forall t0: Ty, h0: Heap, h1: Heap, f: HandleType :: 
-  { $HeapSucc(h0, h1), Reads0(t0, h1, f) } 
-  $HeapSucc(h0, h1)
-       && 
-      $IsGoodHeap(h0)
-       && $IsGoodHeap(h1)
-       && $Is(f, Tclass._System.___hFunc0(t0))
-       && (forall<a> o: ref, fld: Field a :: 
-        o != null && Reads0(t0, h1, f)[$Box(o)] ==> read(h0, o, fld) == read(h1, o, fld))
-     ==> Reads0(t0, h0, f) == Reads0(t0, h1, f));
-
-// frame axiom for Requires0
-axiom (forall t0: Ty, h0: Heap, h1: Heap, f: HandleType :: 
-  { $HeapSucc(h0, h1), Requires0(t0, h1, f) } 
-  $HeapSucc(h0, h1)
-       && 
-      $IsGoodHeap(h0)
-       && $IsGoodHeap(h1)
-       && $Is(f, Tclass._System.___hFunc0(t0))
-       && (forall<a> o: ref, fld: Field a :: 
-        o != null && Reads0(t0, h0, f)[$Box(o)] ==> read(h0, o, fld) == read(h1, o, fld))
-     ==> Requires0(t0, h0, f) == Requires0(t0, h1, f));
-
-// frame axiom for Requires0
-axiom (forall t0: Ty, h0: Heap, h1: Heap, f: HandleType :: 
-  { $HeapSucc(h0, h1), Requires0(t0, h1, f) } 
-  $HeapSucc(h0, h1)
-       && 
-      $IsGoodHeap(h0)
-       && $IsGoodHeap(h1)
-       && $Is(f, Tclass._System.___hFunc0(t0))
-       && (forall<a> o: ref, fld: Field a :: 
-        o != null && Reads0(t0, h1, f)[$Box(o)] ==> read(h0, o, fld) == read(h1, o, fld))
-     ==> Requires0(t0, h0, f) == Requires0(t0, h1, f));
-
-// frame axiom for Apply0
-axiom (forall t0: Ty, h0: Heap, h1: Heap, f: HandleType :: 
-  { $HeapSucc(h0, h1), Apply0(t0, h1, f) } 
-  $HeapSucc(h0, h1)
-       && 
-      $IsGoodHeap(h0)
-       && $IsGoodHeap(h1)
-       && $Is(f, Tclass._System.___hFunc0(t0))
-       && (forall<a> o: ref, fld: Field a :: 
-        o != null && Reads0(t0, h0, f)[$Box(o)] ==> read(h0, o, fld) == read(h1, o, fld))
-     ==> Apply0(t0, h0, f) == Apply0(t0, h1, f));
-
-// frame axiom for Apply0
-axiom (forall t0: Ty, h0: Heap, h1: Heap, f: HandleType :: 
-  { $HeapSucc(h0, h1), Apply0(t0, h1, f) } 
-  $HeapSucc(h0, h1)
-       && 
-      $IsGoodHeap(h0)
-       && $IsGoodHeap(h1)
-       && $Is(f, Tclass._System.___hFunc0(t0))
-       && (forall<a> o: ref, fld: Field a :: 
-        o != null && Reads0(t0, h1, f)[$Box(o)] ==> read(h0, o, fld) == read(h1, o, fld))
-     ==> Apply0(t0, h0, f) == Apply0(t0, h1, f));
-
-// empty-reads property for Reads0 
-axiom (forall t0: Ty, heap: Heap, f: HandleType :: 
-  { Reads0(t0, $OneHeap, f), $IsGoodHeap(heap) } { Reads0(t0, heap, f) } 
-  $IsGoodHeap(heap) && $Is(f, Tclass._System.___hFunc0(t0))
-     ==> (Set#Equal(Reads0(t0, $OneHeap, f), Set#Empty(): Set Box)
-       <==> Set#Equal(Reads0(t0, heap, f), Set#Empty(): Set Box)));
-
-// empty-reads property for Requires0
-axiom (forall t0: Ty, heap: Heap, f: HandleType :: 
-  { Requires0(t0, $OneHeap, f), $IsGoodHeap(heap) } { Requires0(t0, heap, f) } 
-  $IsGoodHeap(heap)
-       && $Is(f, Tclass._System.___hFunc0(t0))
-       && Set#Equal(Reads0(t0, $OneHeap, f), Set#Empty(): Set Box)
-     ==> Requires0(t0, $OneHeap, f) == Requires0(t0, heap, f));
-
-axiom (forall f: HandleType, t0: Ty :: 
-  { $Is(f, Tclass._System.___hFunc0(t0)) } 
-  $Is(f, Tclass._System.___hFunc0(t0))
-     <==> (forall h: Heap :: 
-      { Apply0(t0, h, f) } 
-      $IsGoodHeap(h) && Requires0(t0, h, f) ==> $IsBox(Apply0(t0, h, f), t0)));
-
-axiom (forall f: HandleType, t0: Ty, u0: Ty :: 
-  { $Is(f, Tclass._System.___hFunc0(t0)), $Is(f, Tclass._System.___hFunc0(u0)) } 
-  $Is(f, Tclass._System.___hFunc0(t0))
-       && (forall bx: Box :: 
-        { $IsBox(bx, t0) } { $IsBox(bx, u0) } 
-        $IsBox(bx, t0) ==> $IsBox(bx, u0))
-     ==> $Is(f, Tclass._System.___hFunc0(u0)));
-
-axiom (forall f: HandleType, t0: Ty, h: Heap :: 
-  { $IsAlloc(f, Tclass._System.___hFunc0(t0), h) } 
-  $IsGoodHeap(h)
-     ==> ($IsAlloc(f, Tclass._System.___hFunc0(t0), h)
-       <==> Requires0(t0, h, f)
-         ==> (forall r: ref :: 
-          { Reads0(t0, h, f)[$Box(r)] } 
-          r != null && Reads0(t0, h, f)[$Box(r)] ==> read(h, r, alloc))));
-
-axiom (forall f: HandleType, t0: Ty, h: Heap :: 
-  { $IsAlloc(f, Tclass._System.___hFunc0(t0), h) } 
-  $IsGoodHeap(h) && $IsAlloc(f, Tclass._System.___hFunc0(t0), h)
-     ==> 
-    Requires0(t0, h, f)
-     ==> $IsAllocBox(Apply0(t0, h, f), t0, h));
-
-function Tclass._System.___hPartialFunc0(Ty) : Ty;
-
-const unique Tagclass._System.___hPartialFunc0: TyTag;
-
-// Tclass._System.___hPartialFunc0 Tag
-axiom (forall #$R: Ty :: 
-  { Tclass._System.___hPartialFunc0(#$R) } 
-  Tag(Tclass._System.___hPartialFunc0(#$R)) == Tagclass._System.___hPartialFunc0
-     && TagFamily(Tclass._System.___hPartialFunc0(#$R)) == tytagFamily$_#PartialFunc0);
-
-function Tclass._System.___hPartialFunc0_0(Ty) : Ty;
-
-// Tclass._System.___hPartialFunc0 injectivity 0
-axiom (forall #$R: Ty :: 
-  { Tclass._System.___hPartialFunc0(#$R) } 
-  Tclass._System.___hPartialFunc0_0(Tclass._System.___hPartialFunc0(#$R)) == #$R);
-
-// Box/unbox axiom for Tclass._System.___hPartialFunc0
-axiom (forall #$R: Ty, bx: Box :: 
-  { $IsBox(bx, Tclass._System.___hPartialFunc0(#$R)) } 
-  $IsBox(bx, Tclass._System.___hPartialFunc0(#$R))
-     ==> $Box($Unbox(bx): HandleType) == bx
-       && $Is($Unbox(bx): HandleType, Tclass._System.___hPartialFunc0(#$R)));
-
-// _System._#PartialFunc0: subset type $Is
-axiom (forall #$R: Ty, f#0: HandleType :: 
-  { $Is(f#0, Tclass._System.___hPartialFunc0(#$R)) } 
-  $Is(f#0, Tclass._System.___hPartialFunc0(#$R))
-     <==> $Is(f#0, Tclass._System.___hFunc0(#$R))
-       && Set#Equal(Reads0(#$R, $OneHeap, f#0), Set#Empty(): Set Box));
-
-// _System._#PartialFunc0: subset type $IsAlloc
-axiom (forall #$R: Ty, f#0: HandleType, $h: Heap :: 
-  { $IsAlloc(f#0, Tclass._System.___hPartialFunc0(#$R), $h) } 
-  $IsAlloc(f#0, Tclass._System.___hPartialFunc0(#$R), $h)
-     <==> $IsAlloc(f#0, Tclass._System.___hFunc0(#$R), $h));
-
-function Tclass._System.___hTotalFunc0(Ty) : Ty;
-
-const unique Tagclass._System.___hTotalFunc0: TyTag;
-
-// Tclass._System.___hTotalFunc0 Tag
-axiom (forall #$R: Ty :: 
-  { Tclass._System.___hTotalFunc0(#$R) } 
-  Tag(Tclass._System.___hTotalFunc0(#$R)) == Tagclass._System.___hTotalFunc0
-     && TagFamily(Tclass._System.___hTotalFunc0(#$R)) == tytagFamily$_#TotalFunc0);
-
-function Tclass._System.___hTotalFunc0_0(Ty) : Ty;
-
-// Tclass._System.___hTotalFunc0 injectivity 0
-axiom (forall #$R: Ty :: 
-  { Tclass._System.___hTotalFunc0(#$R) } 
-  Tclass._System.___hTotalFunc0_0(Tclass._System.___hTotalFunc0(#$R)) == #$R);
-
-// Box/unbox axiom for Tclass._System.___hTotalFunc0
-axiom (forall #$R: Ty, bx: Box :: 
-  { $IsBox(bx, Tclass._System.___hTotalFunc0(#$R)) } 
-  $IsBox(bx, Tclass._System.___hTotalFunc0(#$R))
-     ==> $Box($Unbox(bx): HandleType) == bx
-       && $Is($Unbox(bx): HandleType, Tclass._System.___hTotalFunc0(#$R)));
-
-// _System._#TotalFunc0: subset type $Is
-axiom (forall #$R: Ty, f#0: HandleType :: 
-  { $Is(f#0, Tclass._System.___hTotalFunc0(#$R)) } 
-  $Is(f#0, Tclass._System.___hTotalFunc0(#$R))
-     <==> $Is(f#0, Tclass._System.___hPartialFunc0(#$R)) && Requires0(#$R, $OneHeap, f#0));
-
-// _System._#TotalFunc0: subset type $IsAlloc
-axiom (forall #$R: Ty, f#0: HandleType, $h: Heap :: 
-  { $IsAlloc(f#0, Tclass._System.___hTotalFunc0(#$R), $h) } 
-  $IsAlloc(f#0, Tclass._System.___hTotalFunc0(#$R), $h)
-     <==> $IsAlloc(f#0, Tclass._System.___hPartialFunc0(#$R), $h));
+const unique ##_System._tuple#2._#Make2: DtCtorId;
 
 // Constructor identifier
 axiom (forall a#0#0#0: Box, a#0#1#0: Box :: 
   { #_System._tuple#2._#Make2(a#0#0#0, a#0#1#0) } 
   DatatypeCtorId(#_System._tuple#2._#Make2(a#0#0#0, a#0#1#0))
      == ##_System._tuple#2._#Make2);
-
-const unique ##_System._tuple#2._#Make2: DtCtorId;
 
 function _System.Tuple2.___hMake2_q(DatatypeType) : bool;
 
@@ -2558,111 +2414,100 @@ axiom (forall d: DatatypeType ::
      ==> (exists a#1#0#0: Box, a#1#1#0: Box :: 
       d == #_System._tuple#2._#Make2(a#1#0#0, a#1#1#0)));
 
-const unique Tagclass._System.Tuple2: TyTag;
+function Tclass._System.Tuple2(Ty, Ty) : Ty;
 
 // Tclass._System.Tuple2 Tag
-axiom (forall _System._tuple#2$T0: Ty, _System._tuple#2$T1: Ty :: 
-  { Tclass._System.Tuple2(_System._tuple#2$T0, _System._tuple#2$T1) } 
-  Tag(Tclass._System.Tuple2(_System._tuple#2$T0, _System._tuple#2$T1))
-       == Tagclass._System.Tuple2
-     && TagFamily(Tclass._System.Tuple2(_System._tuple#2$T0, _System._tuple#2$T1))
-       == tytagFamily$_tuple#2);
+axiom (forall #$T0: Ty, #$T1: Ty :: 
+  { Tclass._System.Tuple2(#$T0, #$T1) } 
+  Tag(Tclass._System.Tuple2(#$T0, #$T1)) == Tagclass._System.Tuple2);
+
+const unique Tagclass._System.Tuple2: TyTag;
+
+// Tclass._System.Tuple2 injectivity 0
+axiom (forall #$T0: Ty, #$T1: Ty :: 
+  { Tclass._System.Tuple2(#$T0, #$T1) } 
+  Tclass._System.Tuple2_0(Tclass._System.Tuple2(#$T0, #$T1)) == #$T0);
 
 function Tclass._System.Tuple2_0(Ty) : Ty;
 
-// Tclass._System.Tuple2 injectivity 0
-axiom (forall _System._tuple#2$T0: Ty, _System._tuple#2$T1: Ty :: 
-  { Tclass._System.Tuple2(_System._tuple#2$T0, _System._tuple#2$T1) } 
-  Tclass._System.Tuple2_0(Tclass._System.Tuple2(_System._tuple#2$T0, _System._tuple#2$T1))
-     == _System._tuple#2$T0);
+// Tclass._System.Tuple2 injectivity 1
+axiom (forall #$T0: Ty, #$T1: Ty :: 
+  { Tclass._System.Tuple2(#$T0, #$T1) } 
+  Tclass._System.Tuple2_1(Tclass._System.Tuple2(#$T0, #$T1)) == #$T1);
 
 function Tclass._System.Tuple2_1(Ty) : Ty;
 
-// Tclass._System.Tuple2 injectivity 1
-axiom (forall _System._tuple#2$T0: Ty, _System._tuple#2$T1: Ty :: 
-  { Tclass._System.Tuple2(_System._tuple#2$T0, _System._tuple#2$T1) } 
-  Tclass._System.Tuple2_1(Tclass._System.Tuple2(_System._tuple#2$T0, _System._tuple#2$T1))
-     == _System._tuple#2$T1);
-
 // Box/unbox axiom for Tclass._System.Tuple2
-axiom (forall _System._tuple#2$T0: Ty, _System._tuple#2$T1: Ty, bx: Box :: 
-  { $IsBox(bx, Tclass._System.Tuple2(_System._tuple#2$T0, _System._tuple#2$T1)) } 
-  $IsBox(bx, Tclass._System.Tuple2(_System._tuple#2$T0, _System._tuple#2$T1))
+axiom (forall #$T0: Ty, #$T1: Ty, bx: Box :: 
+  { $IsBox(bx, Tclass._System.Tuple2(#$T0, #$T1)) } 
+  $IsBox(bx, Tclass._System.Tuple2(#$T0, #$T1))
      ==> $Box($Unbox(bx): DatatypeType) == bx
-       && $Is($Unbox(bx): DatatypeType, 
-        Tclass._System.Tuple2(_System._tuple#2$T0, _System._tuple#2$T1)));
+       && $Is($Unbox(bx): DatatypeType, Tclass._System.Tuple2(#$T0, #$T1)));
 
 // Constructor $Is
-axiom (forall _System._tuple#2$T0: Ty, _System._tuple#2$T1: Ty, a#2#0#0: Box, a#2#1#0: Box :: 
-  { $Is(#_System._tuple#2._#Make2(a#2#0#0, a#2#1#0), 
-      Tclass._System.Tuple2(_System._tuple#2$T0, _System._tuple#2$T1)) } 
-  $Is(#_System._tuple#2._#Make2(a#2#0#0, a#2#1#0), 
-      Tclass._System.Tuple2(_System._tuple#2$T0, _System._tuple#2$T1))
-     <==> $IsBox(a#2#0#0, _System._tuple#2$T0) && $IsBox(a#2#1#0, _System._tuple#2$T1));
+axiom (forall #$T0: Ty, #$T1: Ty, a#2#0#0: Box, a#2#1#0: Box :: 
+  { $Is(#_System._tuple#2._#Make2(a#2#0#0, a#2#1#0), Tclass._System.Tuple2(#$T0, #$T1)) } 
+  $Is(#_System._tuple#2._#Make2(a#2#0#0, a#2#1#0), Tclass._System.Tuple2(#$T0, #$T1))
+     <==> $IsBox(a#2#0#0, #$T0) && $IsBox(a#2#1#0, #$T1));
 
 // Constructor $IsAlloc
-axiom (forall _System._tuple#2$T0: Ty, 
-    _System._tuple#2$T1: Ty, 
-    a#2#0#0: Box, 
-    a#2#1#0: Box, 
-    $h: Heap :: 
-  { $IsAlloc(#_System._tuple#2._#Make2(a#2#0#0, a#2#1#0), 
-      Tclass._System.Tuple2(_System._tuple#2$T0, _System._tuple#2$T1), 
+axiom (forall #$T0: Ty, #$T1: Ty, a#3#0#0: Box, a#3#1#0: Box, $h: Heap :: 
+  { $IsAlloc(#_System._tuple#2._#Make2(a#3#0#0, a#3#1#0), 
+      Tclass._System.Tuple2(#$T0, #$T1), 
       $h) } 
   $IsGoodHeap($h)
-     ==> ($IsAlloc(#_System._tuple#2._#Make2(a#2#0#0, a#2#1#0), 
-        Tclass._System.Tuple2(_System._tuple#2$T0, _System._tuple#2$T1), 
+     ==> ($IsAlloc(#_System._tuple#2._#Make2(a#3#0#0, a#3#1#0), 
+        Tclass._System.Tuple2(#$T0, #$T1), 
         $h)
-       <==> $IsAllocBox(a#2#0#0, _System._tuple#2$T0, $h)
-         && $IsAllocBox(a#2#1#0, _System._tuple#2$T1, $h)));
+       <==> $IsAllocBox(a#3#0#0, #$T0, $h) && $IsAllocBox(a#3#1#0, #$T1, $h)));
 
 // Destructor $IsAlloc
-axiom (forall d: DatatypeType, _System._tuple#2$T0: Ty, $h: Heap :: 
-  { $IsAllocBox(_System.Tuple2._0(d), _System._tuple#2$T0, $h) } 
+axiom (forall d: DatatypeType, #$T0: Ty, $h: Heap :: 
+  { $IsAllocBox(_System.Tuple2._0(d), #$T0, $h) } 
   $IsGoodHeap($h)
        && 
       _System.Tuple2.___hMake2_q(d)
-       && (exists _System._tuple#2$T1: Ty :: 
-        { $IsAlloc(d, Tclass._System.Tuple2(_System._tuple#2$T0, _System._tuple#2$T1), $h) } 
-        $IsAlloc(d, Tclass._System.Tuple2(_System._tuple#2$T0, _System._tuple#2$T1), $h))
-     ==> $IsAllocBox(_System.Tuple2._0(d), _System._tuple#2$T0, $h));
+       && (exists #$T1: Ty :: 
+        { $IsAlloc(d, Tclass._System.Tuple2(#$T0, #$T1), $h) } 
+        $IsAlloc(d, Tclass._System.Tuple2(#$T0, #$T1), $h))
+     ==> $IsAllocBox(_System.Tuple2._0(d), #$T0, $h));
 
 // Destructor $IsAlloc
-axiom (forall d: DatatypeType, _System._tuple#2$T1: Ty, $h: Heap :: 
-  { $IsAllocBox(_System.Tuple2._1(d), _System._tuple#2$T1, $h) } 
+axiom (forall d: DatatypeType, #$T1: Ty, $h: Heap :: 
+  { $IsAllocBox(_System.Tuple2._1(d), #$T1, $h) } 
   $IsGoodHeap($h)
        && 
       _System.Tuple2.___hMake2_q(d)
-       && (exists _System._tuple#2$T0: Ty :: 
-        { $IsAlloc(d, Tclass._System.Tuple2(_System._tuple#2$T0, _System._tuple#2$T1), $h) } 
-        $IsAlloc(d, Tclass._System.Tuple2(_System._tuple#2$T0, _System._tuple#2$T1), $h))
-     ==> $IsAllocBox(_System.Tuple2._1(d), _System._tuple#2$T1, $h));
+       && (exists #$T0: Ty :: 
+        { $IsAlloc(d, Tclass._System.Tuple2(#$T0, #$T1), $h) } 
+        $IsAlloc(d, Tclass._System.Tuple2(#$T0, #$T1), $h))
+     ==> $IsAllocBox(_System.Tuple2._1(d), #$T1, $h));
 
 // Constructor literal
-axiom (forall a#3#0#0: Box, a#3#1#0: Box :: 
-  { #_System._tuple#2._#Make2(Lit(a#3#0#0), Lit(a#3#1#0)) } 
-  #_System._tuple#2._#Make2(Lit(a#3#0#0), Lit(a#3#1#0))
-     == Lit(#_System._tuple#2._#Make2(a#3#0#0, a#3#1#0)));
+axiom (forall a#4#0#0: Box, a#4#1#0: Box :: 
+  { #_System._tuple#2._#Make2(Lit(a#4#0#0), Lit(a#4#1#0)) } 
+  #_System._tuple#2._#Make2(Lit(a#4#0#0), Lit(a#4#1#0))
+     == Lit(#_System._tuple#2._#Make2(a#4#0#0, a#4#1#0)));
 
 // Constructor injectivity
-axiom (forall a#4#0#0: Box, a#4#1#0: Box :: 
-  { #_System._tuple#2._#Make2(a#4#0#0, a#4#1#0) } 
-  _System.Tuple2._0(#_System._tuple#2._#Make2(a#4#0#0, a#4#1#0)) == a#4#0#0);
-
-// Inductive rank
 axiom (forall a#5#0#0: Box, a#5#1#0: Box :: 
   { #_System._tuple#2._#Make2(a#5#0#0, a#5#1#0) } 
-  BoxRank(a#5#0#0) < DtRank(#_System._tuple#2._#Make2(a#5#0#0, a#5#1#0)));
-
-// Constructor injectivity
-axiom (forall a#6#0#0: Box, a#6#1#0: Box :: 
-  { #_System._tuple#2._#Make2(a#6#0#0, a#6#1#0) } 
-  _System.Tuple2._1(#_System._tuple#2._#Make2(a#6#0#0, a#6#1#0)) == a#6#1#0);
+  _System.Tuple2._0(#_System._tuple#2._#Make2(a#5#0#0, a#5#1#0)) == a#5#0#0);
 
 // Inductive rank
+axiom (forall a#6#0#0: Box, a#6#1#0: Box :: 
+  { #_System._tuple#2._#Make2(a#6#0#0, a#6#1#0) } 
+  BoxRank(a#6#0#0) < DtRank(#_System._tuple#2._#Make2(a#6#0#0, a#6#1#0)));
+
+// Constructor injectivity
 axiom (forall a#7#0#0: Box, a#7#1#0: Box :: 
   { #_System._tuple#2._#Make2(a#7#0#0, a#7#1#0) } 
-  BoxRank(a#7#1#0) < DtRank(#_System._tuple#2._#Make2(a#7#0#0, a#7#1#0)));
+  _System.Tuple2._1(#_System._tuple#2._#Make2(a#7#0#0, a#7#1#0)) == a#7#1#0);
+
+// Inductive rank
+axiom (forall a#8#0#0: Box, a#8#1#0: Box :: 
+  { #_System._tuple#2._#Make2(a#8#0#0, a#8#1#0) } 
+  BoxRank(a#8#1#0) < DtRank(#_System._tuple#2._#Make2(a#8#0#0, a#8#1#0)));
 
 // Depth-one case-split function
 function $IsA#_System.Tuple2(DatatypeType) : bool;
@@ -2673,10 +2518,9 @@ axiom (forall d: DatatypeType ::
   $IsA#_System.Tuple2(d) ==> _System.Tuple2.___hMake2_q(d));
 
 // Questionmark data type disjunctivity
-axiom (forall _System._tuple#2$T0: Ty, _System._tuple#2$T1: Ty, d: DatatypeType :: 
-  { _System.Tuple2.___hMake2_q(d), $Is(d, Tclass._System.Tuple2(_System._tuple#2$T0, _System._tuple#2$T1)) } 
-  $Is(d, Tclass._System.Tuple2(_System._tuple#2$T0, _System._tuple#2$T1))
-     ==> _System.Tuple2.___hMake2_q(d));
+axiom (forall #$T0: Ty, #$T1: Ty, d: DatatypeType :: 
+  { _System.Tuple2.___hMake2_q(d), $Is(d, Tclass._System.Tuple2(#$T0, #$T1)) } 
+  $Is(d, Tclass._System.Tuple2(#$T0, #$T1)) ==> _System.Tuple2.___hMake2_q(d));
 
 // Datatype extensional equality declaration
 function _System.Tuple2#Equal(DatatypeType, DatatypeType) : bool;
@@ -2694,15 +2538,15 @@ axiom (forall a: DatatypeType, b: DatatypeType ::
   { _System.Tuple2#Equal(a, b) } 
   _System.Tuple2#Equal(a, b) <==> a == b);
 
-const unique class._System.Tuple2: ClassName;
+const unique class._System.Tuple0: ClassName;
 
 // Constructor function declaration
 function #_System._tuple#0._#Make0() : DatatypeType;
 
+const unique ##_System._tuple#0._#Make0: DtCtorId;
+
 // Constructor identifier
 axiom DatatypeCtorId(#_System._tuple#0._#Make0()) == ##_System._tuple#0._#Make0;
-
-const unique ##_System._tuple#0._#Make0: DtCtorId;
 
 function _System.Tuple0.___hMake0_q(DatatypeType) : bool;
 
@@ -2719,11 +2563,10 @@ axiom (forall d: DatatypeType ::
 
 function Tclass._System.Tuple0() : Ty;
 
-const unique Tagclass._System.Tuple0: TyTag;
-
 // Tclass._System.Tuple0 Tag
-axiom Tag(Tclass._System.Tuple0()) == Tagclass._System.Tuple0
-   && TagFamily(Tclass._System.Tuple0()) == tytagFamily$_tuple#0;
+axiom Tag(Tclass._System.Tuple0()) == Tagclass._System.Tuple0;
+
+const unique Tagclass._System.Tuple0: TyTag;
 
 // Box/unbox axiom for Tclass._System.Tuple0
 axiom (forall bx: Box :: 
@@ -2770,17 +2613,14 @@ axiom (forall a: DatatypeType, b: DatatypeType ::
   { _System.Tuple0#Equal(a, b) } 
   _System.Tuple0#Equal(a, b) <==> a == b);
 
-const unique class._System.Tuple0: ClassName;
-
 const unique class._module.__default: ClassName;
 
 function Tclass._module.__default() : Ty;
 
-const unique Tagclass._module.__default: TyTag;
-
 // Tclass._module.__default Tag
-axiom Tag(Tclass._module.__default()) == Tagclass._module.__default
-   && TagFamily(Tclass._module.__default()) == tytagFamily$_default;
+axiom Tag(Tclass._module.__default()) == Tagclass._module.__default;
+
+const unique Tagclass._module.__default: TyTag;
 
 // Box/unbox axiom for Tclass._module.__default
 axiom (forall bx: Box :: 
@@ -2800,16 +2640,8 @@ axiom (forall $o: ref, $h: Heap ::
   $IsAlloc($o, Tclass._module.__default(), $h)
      <==> $o == null || read($h, $o, alloc));
 
-// livia function declaration for _module._default.sorted
-function {:define} _module.__default.sorted(s#0: Seq Box) : bool
-{
-  (forall i#0: int, j#0: int :: 
-    { $Unbox(Seq#Index(s#0, j#0)): int, $Unbox(Seq#Index(s#0, i#0)): int } 
-    true
-       ==> 
-      LitInt(0) <= i#0 && i#0 < j#0 && j#0 < Seq#Length(s#0)
-       ==> $Unbox(Seq#Index(s#0, i#0)): int <= $Unbox(Seq#Index(s#0, j#0)): int)
-}
+// function declaration for _module._default.sorted
+function _module.__default.sorted(s#0: Seq Box) : bool;
 
 function _module.__default.sorted#canCall(s#0: Seq Box) : bool;
 
@@ -2823,53 +2655,54 @@ axiom 0 <= $FunctionContextHeight
 
 function _module.__default.sorted#requires(Seq Box) : bool;
 
-// livia #requires axiom for _module.__default.sorted
+// #requires axiom for _module.__default.sorted
 axiom (forall s#0: Seq Box :: 
   { _module.__default.sorted#requires(s#0) } 
   $Is(s#0, TSeq(TInt)) ==> _module.__default.sorted#requires(s#0) == true);
 
-// livia function definition axiom for _module.__default.sorted (revealed)
+// definition axiom for _module.__default.sorted(revealed)
 axiom 0 <= $FunctionContextHeight
    ==> (forall s#0: Seq Box :: 
     { _module.__default.sorted(s#0) } 
     _module.__default.sorted#canCall(s#0)
          || (0 != $FunctionContextHeight && $Is(s#0, TSeq(TInt)))
        ==> _module.__default.sorted(s#0)
-         == (forall i#1: int, j#1: int :: 
-          { $Unbox(Seq#Index(s#0, j#1)): int, $Unbox(Seq#Index(s#0, i#1)): int } 
+         == (forall i#0: int, j#0: int :: 
+          { $Unbox(Seq#Index(s#0, j#0)): int, $Unbox(Seq#Index(s#0, i#0)): int } 
           true
              ==> 
-            LitInt(0) <= i#1 && i#1 < j#1 && j#1 < Seq#Length(s#0)
-             ==> $Unbox(Seq#Index(s#0, i#1)): int <= $Unbox(Seq#Index(s#0, j#1)): int));
+            LitInt(0) <= i#0 && i#0 < j#0 && j#0 < Seq#Length(s#0)
+             ==> $Unbox(Seq#Index(s#0, i#0)): int <= $Unbox(Seq#Index(s#0, j#0)): int));
 
-// livia function definition axiom for _module.__default.sorted for all literals (revealed)
+// definition axiom for _module.__default.sorted for all literals(revealed)
 axiom 0 <= $FunctionContextHeight
    ==> (forall s#0: Seq Box :: 
     {:weight 3} { _module.__default.sorted(Lit(s#0)) } 
     _module.__default.sorted#canCall(Lit(s#0))
          || (0 != $FunctionContextHeight && $Is(s#0, TSeq(TInt)))
        ==> _module.__default.sorted(Lit(s#0))
-         == (forall i#2: int, j#2: int :: 
-          { $Unbox(Seq#Index(s#0, j#2)): int, $Unbox(Seq#Index(s#0, i#2)): int } 
+         == (forall i#1: int, j#1: int :: 
+          { $Unbox(Seq#Index(s#0, j#1)): int, $Unbox(Seq#Index(s#0, i#1)): int } 
           true
              ==> 
-            LitInt(0) <= i#2 && i#2 < j#2 && j#2 < Seq#Length(Lit(s#0))
-             ==> $Unbox(Seq#Index(Lit(s#0), i#2)): int <= $Unbox(Seq#Index(Lit(s#0), j#2)): int));
+            LitInt(0) <= i#1 && i#1 < j#1 && j#1 < Seq#Length(Lit(s#0))
+             ==> $Unbox(Seq#Index(Lit(s#0), i#1)): int <= $Unbox(Seq#Index(Lit(s#0), j#1)): int));
 
-procedure {:verboseName "sorted (well-formedness)"} CheckWellformed$$_module.__default.sorted(s#0: Seq Box where $Is(s#0, TSeq(TInt)));
+procedure CheckWellformed$$_module.__default.sorted(s#0: Seq Box where $Is(s#0, TSeq(TInt)));
   free requires 0 == $FunctionContextHeight;
   modifies $Heap, $Tick;
 
 
 
-implementation {:verboseName "sorted (well-formedness)"} CheckWellformed$$_module.__default.sorted(s#0: Seq Box)
+implementation CheckWellformed$$_module.__default.sorted(s#0: Seq Box)
 {
   var $_Frame: <beta>[ref,Field beta]bool;
-  var i#3: int;
-  var j#3: int;
+  var i#2: int;
+  var j#2: int;
 
 
     // AddWellformednessCheck for function sorted
+    assume {:captureState "Test/mytest/seq.dfy(1,9): initial state"} true;
     $_Frame := (lambda<alpha> $o: ref, $f: Field alpha :: 
       $o != null && read($Heap, $o, alloc) ==> false);
     if (*)
@@ -2880,34 +2713,31 @@ implementation {:verboseName "sorted (well-formedness)"} CheckWellformed$$_modul
     {
         $_Frame := (lambda<alpha> $o: ref, $f: Field alpha :: 
           $o != null && read($Heap, $o, alloc) ==> false);
+        havoc i#2;
+        havoc j#2;
         // Begin Comprehension WF check
-        havoc i#3;
-        havoc j#3;
-        if (true)
+        if (LitInt(0) <= i#2)
         {
-            if (LitInt(0) <= i#3)
-            {
-            }
+        }
 
-            if (LitInt(0) <= i#3 && i#3 < j#3)
-            {
-            }
+        if (LitInt(0) <= i#2 && i#2 < j#2)
+        {
+        }
 
-            if (LitInt(0) <= i#3 && i#3 < j#3 && j#3 < Seq#Length(s#0))
-            {
-                assert 0 <= i#3 && i#3 < Seq#Length(s#0);
-                assert 0 <= j#3 && j#3 < Seq#Length(s#0);
-            }
+        if (LitInt(0) <= i#2 && i#2 < j#2 && j#2 < Seq#Length(s#0))
+        {
+            assert 0 <= i#2 && i#2 < Seq#Length(s#0);
+            assert 0 <= j#2 && j#2 < Seq#Length(s#0);
         }
 
         // End Comprehension WF check
         assume _module.__default.sorted(s#0)
-           == (forall i#4: int, j#4: int :: 
-            { $Unbox(Seq#Index(s#0, j#4)): int, $Unbox(Seq#Index(s#0, i#4)): int } 
+           == (forall i#3: int, j#3: int :: 
+            { $Unbox(Seq#Index(s#0, j#3)): int, $Unbox(Seq#Index(s#0, i#3)): int } 
             true
                ==> 
-              LitInt(0) <= i#4 && i#4 < j#4 && j#4 < Seq#Length(s#0)
-               ==> $Unbox(Seq#Index(s#0, i#4)): int <= $Unbox(Seq#Index(s#0, j#4)): int);
+              LitInt(0) <= i#3 && i#3 < j#3 && j#3 < Seq#Length(s#0)
+               ==> $Unbox(Seq#Index(s#0, i#3)): int <= $Unbox(Seq#Index(s#0, j#3)): int);
         assume true;
         // CheckWellformedWithResult: any expression
         assume $Is(_module.__default.sorted(s#0), TBool);
@@ -2916,36 +2746,38 @@ implementation {:verboseName "sorted (well-formedness)"} CheckWellformed$$_modul
 
 
 
-procedure {:verboseName "m (well-formedness)"} CheckWellFormed$$_module.__default.m();
+procedure CheckWellformed$$_module.__default.m();
   free requires 1 == $FunctionContextHeight;
   modifies $Heap, $Tick;
 
 
 
-procedure {:verboseName "m (call)"} Call$$_module.__default.m();
+procedure Call$$_module.__default.m();
   modifies $Heap, $Tick;
-  // frame condition: object granularity
-  free ensures (forall $o: ref :: 
-    { $Heap[$o] } 
-    $o != null && read(old($Heap), $o, alloc) ==> $Heap[$o] == old($Heap)[$o]);
+  // frame condition
+  free ensures (forall<alpha> $o: ref, $f: Field alpha :: 
+    { read($Heap, $o, $f) } 
+    $o != null && read(old($Heap), $o, alloc)
+       ==> read($Heap, $o, $f) == read(old($Heap), $o, $f));
   // boilerplate
   free ensures $HeapSucc(old($Heap), $Heap);
 
 
 
-procedure {:verboseName "m (correctness)"} Impl$$_module.__default.m() returns ($_reverifyPost: bool);
+procedure Impl$$_module.__default.m() returns ($_reverifyPost: bool);
   free requires 1 == $FunctionContextHeight;
   modifies $Heap, $Tick;
-  // frame condition: object granularity
-  free ensures (forall $o: ref :: 
-    { $Heap[$o] } 
-    $o != null && read(old($Heap), $o, alloc) ==> $Heap[$o] == old($Heap)[$o]);
+  // frame condition
+  free ensures (forall<alpha> $o: ref, $f: Field alpha :: 
+    { read($Heap, $o, $f) } 
+    $o != null && read(old($Heap), $o, alloc)
+       ==> read($Heap, $o, $f) == read(old($Heap), $o, $f));
   // boilerplate
   free ensures $HeapSucc(old($Heap), $Heap);
 
 
 
-implementation {:verboseName "m (correctness)"} Impl$$_module.__default.m() returns ($_reverifyPost: bool)
+implementation Impl$$_module.__default.m() returns ($_reverifyPost: bool)
 {
   var $_Frame: <beta>[ref,Field beta]bool;
   var ##s#0: Seq Box;
@@ -2953,8 +2785,9 @@ implementation {:verboseName "m (correctness)"} Impl$$_module.__default.m() retu
     // AddMethodImpl: m, Impl$$_module.__default.m
     $_Frame := (lambda<alpha> $o: ref, $f: Field alpha :: 
       $o != null && read($Heap, $o, alloc) ==> false);
+    assume {:captureState "Test/mytest/seq.dfy(8,0): initial state"} true;
     $_reverifyPost := false;
-    // ----- assert statement ----- /home/livia/dafny/Test/mytest/seq.dfy(9,3)
+    // ----- assert statement ----- Test/mytest/seq.dfy(9,3)
     ##s#0 := Lit(Seq#Build(Seq#Build(Seq#Empty(): Seq Box, $Box(LitInt(1))), $Box(LitInt(2))));
     // assume allocatedness for argument to function
     assume $IsAlloc(##s#0, TSeq(TInt), $Heap);
@@ -2974,31 +2807,7 @@ implementation {:verboseName "m (correctness)"} Impl$$_module.__default.m() retu
                   i#0)): int
                <= $Unbox(Seq#Index(Lit(Seq#Build(Seq#Build(Seq#Empty(): Seq Box, $Box(LitInt(1))), $Box(LitInt(2)))), 
                   j#0)): int);
-    assume Lit(_module.__default.sorted(Lit(Seq#Build(Seq#Build(Seq#Empty(): Seq Box, $Box(LitInt(1))), $Box(LitInt(2))))));
+    assume _module.__default.sorted(Lit(Seq#Build(Seq#Build(Seq#Empty(): Seq Box, $Box(LitInt(1))), $Box(LitInt(2)))));
 }
 
 
-
-const unique tytagFamily$nat: TyTagFamily;
-
-const unique tytagFamily$object: TyTagFamily;
-
-const unique tytagFamily$array: TyTagFamily;
-
-const unique tytagFamily$_#Func1: TyTagFamily;
-
-const unique tytagFamily$_#PartialFunc1: TyTagFamily;
-
-const unique tytagFamily$_#TotalFunc1: TyTagFamily;
-
-const unique tytagFamily$_#Func0: TyTagFamily;
-
-const unique tytagFamily$_#PartialFunc0: TyTagFamily;
-
-const unique tytagFamily$_#TotalFunc0: TyTagFamily;
-
-const unique tytagFamily$_tuple#2: TyTagFamily;
-
-const unique tytagFamily$_tuple#0: TyTagFamily;
-
-const unique tytagFamily$_default: TyTagFamily;

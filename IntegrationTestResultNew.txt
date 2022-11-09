@@ -1,0 +1,2783 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Compiling DafnyRuntimeJava to DafnyRuntimeJava/build/libs/DafnyRuntime.jar...
+  DafnyCore -> /home/livia/dafny/Binaries/net6.0/DafnyCore.dll
+  XUnitExtensions -> /home/livia/dafny/Source/XUnitExtensions/bin/Debug/net6.0/XUnitExtensions.dll
+  DafnyLanguageServer -> /home/livia/dafny/Binaries/DafnyLanguageServer.dll
+  DafnyRuntime -> /home/livia/dafny/Binaries/net6.0/DafnyRuntime.dll
+  Compiling DafnyRuntimeJava to DafnyRuntimeJava/build/libs/DafnyRuntime.jar...
+  DafnyPipeline -> /home/livia/dafny/Binaries/DafnyPipeline.dll
+  DafnyServer -> /home/livia/dafny/Binaries/DafnyServer.dll
+  DafnyTestGeneration -> /home/livia/dafny/Source/DafnyTestGeneration/bin/Debug/net6.0/DafnyTestGeneration.dll
+  DafnyDriver -> /home/livia/dafny/Binaries/DafnyDriver.dll
+  Dafny -> /home/livia/dafny/Binaries/Dafny.dll
+  TestDafny -> /home/livia/dafny/Source/TestDafny/bin/Debug/net6.0/TestDafny.dll
+  IntegrationTests -> /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/IntegrationTests.dll
+Test run for /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/IntegrationTests.dll (.NETCoreApp,Version=v6.0)
+Microsoft (R) Test Execution Command Line Tool Version 17.3.1 (x64)
+Copyright (c) Microsoft Corporation.  All rights reserved.
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:10.10]     allocated1/dafny0/BitvectorsMore.dfy [FAIL]
+  Failed allocated1/dafny0/BitvectorsMore.dfy [5 s]
+  Error Message:
+   System.Exception : Command returned non-zero exit code (1): DiffCommand TestFiles/LitTests/LitTest/allocated1/dafny0/BitvectorsMore.dfy.expect /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/allocated1/dafny0/Output/BitvectorsMore.dfy.tmp
+Output:
+AssertEqualWithDiff() Failure
+Diff (changing expected into actual):
+ BitvectorsMore.dfy(13,9): Error: possible division by zero
+ BitvectorsMore.dfy(17,13): Error: possible division by zero
+ BitvectorsMore.dfy(21,13): Error: possible division by zero
+ BitvectorsMore.dfy(25,13): Error: possible division by zero
+ BitvectorsMore.dfy(30,15): Error: possible division by zero
+ BitvectorsMore.dfy(32,15): Error: possible division by zero
+ BitvectorsMore.dfy(104,37): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv7
+ BitvectorsMore.dfy(105,35): Error: shift amount must not exceed the width of the result (67)
+ BitvectorsMore.dfy(105,38): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv7
+ BitvectorsMore.dfy(107,34): Error: shift amount must not exceed the width of the result (67)
+ BitvectorsMore.dfy(107,37): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv7
+ BitvectorsMore.dfy(115,42): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv7
+ BitvectorsMore.dfy(116,39): Error: shift amount must not exceed the width of the result (67)
+ BitvectorsMore.dfy(116,42): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv7
+ BitvectorsMore.dfy(124,28): Error: shift amount must not exceed the width of the result (67)
+ BitvectorsMore.dfy(124,31): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv7
+ BitvectorsMore.dfy(125,28): Error: shift amount must not exceed the width of the result (67)
+ BitvectorsMore.dfy(125,31): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv7
+-BitvectorsMore.dfy(135,24): Error: shift amount must not exceed the width of the result (32)
+ BitvectorsMore.dfy(135,27): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv6
+ BitvectorsMore.dfy(136,24): Error: shift amount must not exceed the width of the result (32)
+ BitvectorsMore.dfy(136,27): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv6
++BitvectorsMore.dfy(137,24): Error: shift amount must not exceed the width of the result (32)
+ BitvectorsMore.dfy(137,27): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv6
+ BitvectorsMore.dfy(146,35): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv3
+ BitvectorsMore.dfy(147,35): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv3
+ BitvectorsMore.dfy(148,35): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv3
+ BitvectorsMore.dfy(157,26): Error: shift amount must not exceed the width of the result (2)
+ BitvectorsMore.dfy(157,29): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv2
+ BitvectorsMore.dfy(158,26): Error: shift amount must not exceed the width of the result (2)
+ BitvectorsMore.dfy(158,29): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv2
+ BitvectorsMore.dfy(159,29): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv2
+ BitvectorsMore.dfy(168,33): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv0
+ BitvectorsMore.dfy(169,33): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv0
+ BitvectorsMore.dfy(170,33): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv0
+ BitvectorsMore.dfy(171,33): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv0
+ BitvectorsMore.dfy(193,26): Error: shift amount must not exceed the width of the result (5)
+ BitvectorsMore.dfy(194,26): Error: shift amount must not exceed the width of the result (5)
+ 
+ Dafny program verifier finished with 9 verified, 37 errors
+ 
+
+Error:
+
+  Stack Trace:
+     at XUnitExtensions.Lit.LitTestCase.Execute(ITestOutputHelper outputHelper) in /home/livia/dafny/Source/XUnitExtensions/Lit/LitTestCase.cs:line 94
+   at XUnitExtensions.Lit.LitTestCase.Run(String filePath, LitTestConfiguration config, ITestOutputHelper outputHelper) in /home/livia/dafny/Source/XUnitExtensions/Lit/LitTestCase.cs:line 55
+   at IntegrationTests.LitTests.LitTest(String path) in /home/livia/dafny/Source/IntegrationTests/LitTests.cs:line 140
+  Standard Output Messages:
+ Executing command: dotnet /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/Dafny.dll /countVerificationErrors:0 /vcsCores:2 /useBaseNameForFileName /compileVerbose:0 /timeLimit:300 /verifyAllModules /allocated:1 /print:/home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/allocated1/dafny0/Output/BitvectorsMore.dfy.tmp.print /env:0 TestFiles/LitTests/LitTest/allocated1/dafny0/BitvectorsMore.dfy > /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/allocated1/dafny0/Output/BitvectorsMore.dfy.tmp
+ Executing command: DiffCommand TestFiles/LitTests/LitTest/allocated1/dafny0/BitvectorsMore.dfy.expect /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/allocated1/dafny0/Output/BitvectorsMore.dfy.tmp
+ Previous command results:
+ Output:
+ BitvectorsMore.dfy(13,9): Error: possible division by zero
+ BitvectorsMore.dfy(17,13): Error: possible division by zero
+ BitvectorsMore.dfy(21,13): Error: possible division by zero
+ BitvectorsMore.dfy(25,13): Error: possible division by zero
+ BitvectorsMore.dfy(30,15): Error: possible division by zero
+ BitvectorsMore.dfy(32,15): Error: possible division by zero
+ BitvectorsMore.dfy(104,37): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv7
+ BitvectorsMore.dfy(105,35): Error: shift amount must not exceed the width of the result (67)
+ BitvectorsMore.dfy(105,38): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv7
+ BitvectorsMore.dfy(107,34): Error: shift amount must not exceed the width of the result (67)
+ BitvectorsMore.dfy(107,37): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv7
+ BitvectorsMore.dfy(115,42): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv7
+ BitvectorsMore.dfy(116,39): Error: shift amount must not exceed the width of the result (67)
+ BitvectorsMore.dfy(116,42): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv7
+ BitvectorsMore.dfy(124,28): Error: shift amount must not exceed the width of the result (67)
+ BitvectorsMore.dfy(124,31): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv7
+ BitvectorsMore.dfy(125,28): Error: shift amount must not exceed the width of the result (67)
+ BitvectorsMore.dfy(125,31): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv7
+ BitvectorsMore.dfy(135,27): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv6
+ BitvectorsMore.dfy(136,24): Error: shift amount must not exceed the width of the result (32)
+ BitvectorsMore.dfy(136,27): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv6
+ BitvectorsMore.dfy(137,24): Error: shift amount must not exceed the width of the result (32)
+ BitvectorsMore.dfy(137,27): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv6
+ BitvectorsMore.dfy(146,35): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv3
+ BitvectorsMore.dfy(147,35): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv3
+ BitvectorsMore.dfy(148,35): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv3
+ BitvectorsMore.dfy(157,26): Error: shift amount must not exceed the width of the result (2)
+ BitvectorsMore.dfy(157,29): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv2
+ BitvectorsMore.dfy(158,26): Error: shift amount must not exceed the width of the result (2)
+ BitvectorsMore.dfy(158,29): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv2
+ BitvectorsMore.dfy(159,29): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv2
+ BitvectorsMore.dfy(168,33): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv0
+ BitvectorsMore.dfy(169,33): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv0
+ BitvectorsMore.dfy(170,33): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv0
+ BitvectorsMore.dfy(171,33): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv0
+ BitvectorsMore.dfy(193,26): Error: shift amount must not exceed the width of the result (5)
+ BitvectorsMore.dfy(194,26): Error: shift amount must not exceed the width of the result (5)
+ 
+ Dafny program verifier finished with 9 verified, 37 errors
+ 
+ Error:
+ 
+
+
+[xUnit.net 00:00:36.35]     allocated1/dafny0/Fuel.dfy [FAIL]
+  Failed allocated1/dafny0/Fuel.dfy [9 s]
+  Error Message:
+   System.Exception : Command returned non-zero exit code (1): DiffCommand TestFiles/LitTests/LitTest/allocated1/dafny0/Fuel.dfy.expect /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/allocated1/dafny0/Output/Fuel.dfy.tmp
+Output:
+AssertEqualWithDiff() Failure
+Diff (changing expected into actual):
+ Fuel.dfy(3,8): Error: the included file Fuel.dfy contains error(s)
+ Fuel.dfy(129,8): Error: Fuel can only increase within a given scope.
+ Fuel.dfy(407,8): Error: Fuel can only increase within a given scope.
+ Fuel.dfy(17,22): Error: assertion might not hold
+ Fuel.dfy(65,27): Error: assertion might not hold
+ Fuel.dfy(69,27): Error: assertion might not hold
+ Fuel.dfy(92,22): Error: assertion might not hold
+ Fuel.dfy(93,23): Error: assertion might not hold
+ Fuel.dfy(94,22): Error: assertion might not hold
+ Fuel.dfy(120,22): Error: assertion might not hold
+ Fuel.dfy(121,23): Error: assertion might not hold
+ Fuel.dfy(122,22): Error: assertion might not hold
+ Fuel.dfy(132,26): Error: assertion might not hold
+ Fuel.dfy(133,26): Error: assertion might not hold
+ Fuel.dfy(157,22): Error: assertion might not hold
+ Fuel.dfy(200,55): Error: assertion might not hold
+ Fuel.dfy(245,22): Error: assertion might not hold
+ Fuel.dfy(247,22): Error: assertion might not hold
+ Fuel.dfy(280,26): Error: assertion might not hold
+ Fuel.dfy(335,26): Error: function precondition might not hold
+ Fuel.dfy(324,21): Related location
+-Fuel.dfy(312,43): Related location
+-Fuel.dfy(335,26): Error: function precondition might not hold
+-Fuel.dfy(324,21): Related location
+ Fuel.dfy(312,58): Related location
+-Fuel.dfy(335,26): Error: function precondition might not hold
+-Fuel.dfy(324,21): Related location
+-Fuel.dfy(313,41): Related location
+-Fuel.dfy(335,26): Error: function precondition might not hold
+-Fuel.dfy(324,21): Related location
+-Fuel.dfy(314,46): Related location
+-Fuel.dfy(335,26): Error: function precondition might not hold
+-Fuel.dfy(324,21): Related location
+-Fuel.dfy(314,72): Related location
+-Fuel.dfy(335,26): Error: function precondition might not hold
+-Fuel.dfy(324,21): Related location
+-Fuel.dfy(314,93): Related location
+ Fuel.dfy(335,49): Error: destructor 't' can only be applied to datatype values constructed by 'VTuple'
+ Fuel.dfy(335,50): Error: index out of range
+ Fuel.dfy(336,38): Error: index out of range
+ Fuel.dfy(336,42): Error: destructor 'u' can only be applied to datatype values constructed by 'VUint64'
++Fuel.dfy(336,45): Error: function precondition might not hold
++Fuel.dfy(329,21): Related location
++Fuel.dfy(312,58): Related location
++Fuel.dfy(336,45): Error: function precondition might not hold
++Fuel.dfy(329,21): Related location
++Fuel.dfy(311,43): Related location
++Fuel.dfy(336,45): Error: function precondition might not hold
++Fuel.dfy(329,21): Related location
++Fuel.dfy(313,41): Related location
++Fuel.dfy(336,45): Error: function precondition might not hold
++Fuel.dfy(329,21): Related location
++Fuel.dfy(314,93): Related location
++Fuel.dfy(336,71): Error: index out of range
+ Fuel.dfy(397,22): Error: assertion might not hold
+ Fuel.dfy(398,22): Error: assertion might not hold
+ Fuel.dfy(399,23): Error: assertion might not hold
+ Fuel.dfy(435,22): Error: assertion might not hold
+ Fuel.dfy(436,22): Error: assertion might not hold
+ Fuel.dfy(437,23): Error: assertion might not hold
+ 
+ Dafny program verifier finished with 30 verified, 32 errors
+ 
+
+Error:
+
+  Stack Trace:
+     at XUnitExtensions.Lit.LitTestCase.Execute(ITestOutputHelper outputHelper) in /home/livia/dafny/Source/XUnitExtensions/Lit/LitTestCase.cs:line 94
+   at XUnitExtensions.Lit.LitTestCase.Run(String filePath, LitTestConfiguration config, ITestOutputHelper outputHelper) in /home/livia/dafny/Source/XUnitExtensions/Lit/LitTestCase.cs:line 55
+   at IntegrationTests.LitTests.LitTest(String path) in /home/livia/dafny/Source/IntegrationTests/LitTests.cs:line 140
+  Standard Output Messages:
+ Executing command: dotnet /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/Dafny.dll /countVerificationErrors:0 /vcsCores:2 /useBaseNameForFileName /compileVerbose:0 /timeLimit:300 /verifyAllModules /allocated:1 /compile:0 /print:/home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/allocated1/dafny0/Output/Fuel.dfy.tmp.print /dprint:/home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/allocated1/dafny0/Output/Fuel.dfy.tmp.dprint /autoTriggers:0 /optimizeResolution:0 /errorLimit:10 TestFiles/LitTests/LitTest/allocated1/dafny0/Fuel.dfy > /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/allocated1/dafny0/Output/Fuel.dfy.tmp
+ Executing command: DiffCommand TestFiles/LitTests/LitTest/allocated1/dafny0/Fuel.dfy.expect /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/allocated1/dafny0/Output/Fuel.dfy.tmp
+ Previous command results:
+ Output:
+ Fuel.dfy(3,8): Error: the included file Fuel.dfy contains error(s)
+ Fuel.dfy(129,8): Error: Fuel can only increase within a given scope.
+ Fuel.dfy(407,8): Error: Fuel can only increase within a given scope.
+ Fuel.dfy(17,22): Error: assertion might not hold
+ Fuel.dfy(65,27): Error: assertion might not hold
+ Fuel.dfy(69,27): Error: assertion might not hold
+ Fuel.dfy(92,22): Error: assertion might not hold
+ Fuel.dfy(93,23): Error: assertion might not hold
+ Fuel.dfy(94,22): Error: assertion might not hold
+ Fuel.dfy(120,22): Error: assertion might not hold
+ Fuel.dfy(121,23): Error: assertion might not hold
+ Fuel.dfy(122,22): Error: assertion might not hold
+ Fuel.dfy(132,26): Error: assertion might not hold
+ Fuel.dfy(133,26): Error: assertion might not hold
+ Fuel.dfy(157,22): Error: assertion might not hold
+ Fuel.dfy(200,55): Error: assertion might not hold
+ Fuel.dfy(245,22): Error: assertion might not hold
+ Fuel.dfy(247,22): Error: assertion might not hold
+ Fuel.dfy(280,26): Error: assertion might not hold
+ Fuel.dfy(335,26): Error: function precondition might not hold
+ Fuel.dfy(324,21): Related location
+ Fuel.dfy(312,58): Related location
+ Fuel.dfy(335,49): Error: destructor 't' can only be applied to datatype values constructed by 'VTuple'
+ Fuel.dfy(335,50): Error: index out of range
+ Fuel.dfy(336,38): Error: index out of range
+ Fuel.dfy(336,42): Error: destructor 'u' can only be applied to datatype values constructed by 'VUint64'
+ Fuel.dfy(336,45): Error: function precondition might not hold
+ Fuel.dfy(329,21): Related location
+ Fuel.dfy(312,58): Related location
+ Fuel.dfy(336,45): Error: function precondition might not hold
+ Fuel.dfy(329,21): Related location
+ Fuel.dfy(311,43): Related location
+ Fuel.dfy(336,45): Error: function precondition might not hold
+ Fuel.dfy(329,21): Related location
+ Fuel.dfy(313,41): Related location
+ Fuel.dfy(336,45): Error: function precondition might not hold
+ Fuel.dfy(329,21): Related location
+ Fuel.dfy(314,93): Related location
+ Fuel.dfy(336,71): Error: index out of range
+ Fuel.dfy(397,22): Error: assertion might not hold
+ Fuel.dfy(398,22): Error: assertion might not hold
+ Fuel.dfy(399,23): Error: assertion might not hold
+ Fuel.dfy(435,22): Error: assertion might not hold
+ Fuel.dfy(436,22): Error: assertion might not hold
+ Fuel.dfy(437,23): Error: assertion might not hold
+ 
+ Dafny program verifier finished with 30 verified, 32 errors
+ 
+ Error:
+ 
+
+
+[xUnit.net 00:00:41.88]     allocated1/dafny0/Inverses.dfy [FAIL]
+  Failed allocated1/dafny0/Inverses.dfy [7 s]
+  Error Message:
+   System.Exception : Command returned non-zero exit code (1): DiffCommand TestFiles/LitTests/LitTest/allocated1/dafny0/Inverses.dfy.expect /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/allocated1/dafny0/Output/Inverses.dfy.tmp
+Output:
+AssertEqualWithDiff() Failure
+Diff (changing expected into actual):
+ Inverses.dfy(70,2): Error: A postcondition might not hold on this return path.
+ Inverses.dfy(67,10): Related location: This is the postcondition that might not hold.
+ Inverses.dfy(67,66): Related location
+ Inverses.dfy(82,2): Error: A postcondition might not hold on this return path.
+ Inverses.dfy(79,10): Related location: This is the postcondition that might not hold.
+ Inverses.dfy(79,66): Related location
++Inverses.dfy(94,2): Error: A postcondition might not hold on this return path.
++Inverses.dfy(91,10): Related location: This is the postcondition that might not hold.
++Inverses.dfy(91,66): Related location
++Inverses.dfy(104,2): Error: A postcondition might not hold on this return path.
++Inverses.dfy(101,10): Related location: This is the postcondition that might not hold.
++Inverses.dfy(101,66): Related location
+ Inverses.dfy(193,2): Error: A postcondition might not hold on this return path.
+ Inverses.dfy(191,15): Related location: This is the postcondition that might not hold.
+ 
+-Dafny program verifier finished with 31 verified, 3 errors
++Dafny program verifier finished with 29 verified, 5 errors
+ 
+
+Error:
+
+  Stack Trace:
+     at XUnitExtensions.Lit.LitTestCase.Execute(ITestOutputHelper outputHelper) in /home/livia/dafny/Source/XUnitExtensions/Lit/LitTestCase.cs:line 94
+   at XUnitExtensions.Lit.LitTestCase.Run(String filePath, LitTestConfiguration config, ITestOutputHelper outputHelper) in /home/livia/dafny/Source/XUnitExtensions/Lit/LitTestCase.cs:line 55
+   at IntegrationTests.LitTests.LitTest(String path) in /home/livia/dafny/Source/IntegrationTests/LitTests.cs:line 140
+  Standard Output Messages:
+ Executing command: dotnet /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/Dafny.dll /countVerificationErrors:0 /vcsCores:2 /useBaseNameForFileName /compileVerbose:0 /timeLimit:300 /verifyAllModules /allocated:1 /compile:0 /print:/home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/allocated1/dafny0/Output/Inverses.dfy.tmp.print /dprint:/home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/allocated1/dafny0/Output/Inverses.dfy.tmp.dprint TestFiles/LitTests/LitTest/allocated1/dafny0/Inverses.dfy > /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/allocated1/dafny0/Output/Inverses.dfy.tmp
+ Executing command: DiffCommand TestFiles/LitTests/LitTest/allocated1/dafny0/Inverses.dfy.expect /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/allocated1/dafny0/Output/Inverses.dfy.tmp
+ Previous command results:
+ Output:
+ Inverses.dfy(70,2): Error: A postcondition might not hold on this return path.
+ Inverses.dfy(67,10): Related location: This is the postcondition that might not hold.
+ Inverses.dfy(67,66): Related location
+ Inverses.dfy(82,2): Error: A postcondition might not hold on this return path.
+ Inverses.dfy(79,10): Related location: This is the postcondition that might not hold.
+ Inverses.dfy(79,66): Related location
+ Inverses.dfy(94,2): Error: A postcondition might not hold on this return path.
+ Inverses.dfy(91,10): Related location: This is the postcondition that might not hold.
+ Inverses.dfy(91,66): Related location
+ Inverses.dfy(104,2): Error: A postcondition might not hold on this return path.
+ Inverses.dfy(101,10): Related location: This is the postcondition that might not hold.
+ Inverses.dfy(101,66): Related location
+ Inverses.dfy(193,2): Error: A postcondition might not hold on this return path.
+ Inverses.dfy(191,15): Related location: This is the postcondition that might not hold.
+ 
+ Dafny program verifier finished with 29 verified, 5 errors
+ 
+ Error:
+ 
+
+
+[xUnit.net 00:01:49.35]     dafny0/AutoContracts.dfy [FAIL]
+  Failed dafny0/AutoContracts.dfy [8 s]
+  Error Message:
+   System.Exception : Command returned non-zero exit code (1): DiffCommand TestFiles/LitTests/LitTest/dafny0/AutoContracts.dfy.expect /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/dafny0/Output/AutoContracts.dfy.tmp
+Output:
+AssertEqualWithDiff() Failure
+Diff (changing expected into actual):
+ // AutoContracts.dfy
+ 
+ /*
+ module _System {
+   /* CALL GRAPH for module _System:
+    * SCC at height 1:
+    *   RotateRight
+    * SCC at height 1:
+    *   RotateLeft
+    * SCC at height 0:
+    *   nat
+    */
+   type string(==,0) = seq<char>
+ 
+   type {:axiom} nat(==,0) = x: int
+     | 0 <= x
+ 
+   trait {:compile false} object { }
+   /*-- non-null type
+   type {:axiom} object(==) = c: object? | c != null /*special witness*/
+   */
+ 
+   class {:compile false} array<arg> {
+     var Length: int  // immutable
+   }
+   /*-- non-null type
+   type {:axiom} array(==)<arg> = c: array?<arg> | c != null /*special witness*/
+   */
+ 
+   class {:compile false} /*_#Func1*/ -T0 ~> +R {
+     function requires(x0: T0): bool
+       reads reads(x0)
+ 
+     function reads(x0: T0): set<object?>
+       reads reads(x0)
+   }
+ 
+   type {:compile false} /*_#PartialFunc1*/ -T0 --> +R = f: T0 ~> R
+     | forall x0: T0 :: f.reads(x0) == {}
+     /*special witness*/
+ 
+   type {:compile false} /*_#TotalFunc1*/ -T0 -> +R = f: T0 --> R
+     | forall x0: T0 :: f.requires(x0)
+     /*special witness*/
+ 
+   class {:compile false} /*_#Func0*/ () ~> +R {
+     function requires(): bool
+       reads reads()
+ 
+     function reads(): set<object?>
+       reads reads()
+   }
+ 
+   type {:compile false} /*_#PartialFunc0*/ () --> +R = f: () ~> R
+     | f.reads() == {}
+     /*special witness*/
+ 
+   type {:compile false} /*_#TotalFunc0*/ () -> +R = f: () --> R
+     | f.requires()
+     /*special witness*/
+ 
+   datatype {:compile false} /*_tuple#2*/ (+T0, +T1) = _#Make2(0: T0, 1: T1)
+ 
+   type bool { }
+ 
+   type int { }
+ 
+   type real {
+     var Floor: int  // immutable
+   }
+ 
+   type ORDINAL {
+     var IsLimit: bool  // immutable
+     var IsSucc: bool  // immutable
+     var Offset: int  // immutable
+     var IsNat: bool  // immutable
+   }
+ 
+   type _bv {
+     function method RotateLeft(w: nat): selftype
+ 
+     function method RotateRight(w: nat): selftype
+   }
+ 
+   type map<T, U> {
+     var Keys: set<T>  // immutable
+     var Values: set<U>  // immutable
+     var Items: set<(T, U)>  // immutable
+   }
+ 
+   type imap<T, U> {
+     var Keys: iset<T>  // immutable
+     var Values: iset<U>  // immutable
+     var Items: iset<(T, U)>  // immutable
+   }
+ 
+   datatype {:compile false} /*_tuple#0*/ () = _#Make0
+ }
+ // bitvector types in use:
+ */
+ 
+ /* CALL GRAPH for module _module:
+  */
+ 
+ module OneModule {
+   /* CALL GRAPH for module OneModule:
+    * SCC at height 2:
+    *   C.NoBody
+    * SCC at height 2:
+    *   C.TL
+    * SCC at height 2:
+    *   C.L
+    * SCC at height 2:
+    *   C.Query
+    * SCC at height 2:
+    *   C.Mutating
+    * SCC at height 2:
+    *   C.P
+    * SCC at height 2:
+    *   C._ctor
+    * SCC at height 2:
+    *   C.F
+    * SCC at height 1:
+    *   C.Valid
+    * SCC at height 0:
+    *   D.Valid
+    * SCC at height 0:
+    *   nat
+    */
+   class {:autocontracts} D {
+     ghost var Repr: set<object?>
+ 
+     predicate Valid()
+       reads this, Repr
+       ensures Valid() ==> this in Repr
+       decreases Repr + {this}
+     {
+       this in Repr &&
+       null !in Repr &&
+       true
+     }
+   }
+   /*-- non-null type
+   type {:axiom} D(==) = c: D? | c != null /*special witness*/
+   */
+ 
+   class {:autocontracts} C {
+     var data: int
+     var anotherC: C?
+     var dd: D?
+     var {:autocontracts false} ee: D?
+     var arr: array?<C?>
+ 
+     predicate Valid()
+       reads this, Repr
+       ensures Valid() ==> this in Repr
+       decreases Repr + {this}
+     {
+       this in Repr &&
+       null !in Repr &&
+       (anotherC != null ==>
+         anotherC in Repr &&
+         anotherC.Repr <= Repr &&
+         this !in anotherC.Repr &&
+         anotherC.Valid()) &&
+       (dd != null ==>
+         dd in Repr &&
+         dd.Repr <= Repr &&
+         this !in dd.Repr &&
+         dd.Valid()) &&
+       (arr != null ==>
+         arr in Repr) &&
+       0 <= data < 100
+     }
+ 
+     constructor ()
+       ensures Valid()
+       ensures fresh(Repr)
+     {
+       data := 0;
+       new;
+       Repr := {this};
+       if anotherC != null && !(anotherC in Repr && anotherC.Repr <= Repr) {
+         Repr := Repr + {anotherC} + anotherC.Repr;
+       }
+       if dd != null && !(dd in Repr && dd.Repr <= Repr) {
+         Repr := Repr + {dd} + dd.Repr;
+       }
+       if arr != null && !(arr in Repr) {
+         Repr := Repr + {arr};
+       }
+     }
+ 
+     method Mutating()
+       requires Valid()
+       modifies Repr
+       ensures Valid()
+       ensures fresh(Repr - old(Repr))
+       ensures old(data) <= data
+     {
+       if anotherC != null && !(anotherC in Repr && anotherC.Repr <= Repr) {
+         Repr := Repr + {anotherC} + anotherC.Repr;
+       }
+       if dd != null && !(dd in Repr && dd.Repr <= Repr) {
+         Repr := Repr + {dd} + dd.Repr;
+       }
+       if arr != null && !(arr in Repr) {
+         Repr := Repr + {arr};
+       }
+     }
+ 
+     method Query() returns (d: int)
+       requires Valid()
+       ensures d == data
+     {
+       d := data;
+     }
+ 
+     function F(): nat
+       requires Valid()
+       reads Repr
+       decreases Repr
+     {
+       data
+     }
+ 
+     predicate P()
+       requires Valid()
+       reads Repr
+       decreases Repr
+     {
+       data < 20
+     }
+ 
+     lemma /*{:_induction this}*/ L()
+       requires Valid()
+       ensures data < 100
+     {
+     }
+ 
+     twostate lemma /*{:_induction this}*/ TL()
+       requires old(Valid())
+       ensures old(data) <= data
+     {
+     }
+ 
+     method NoBody()
+       requires Valid()
+       modifies Repr
+       ensures Valid()
+       ensures fresh(Repr - old(Repr))
+ 
+     ghost var Repr: set<object?>
+   }
+   /*-- non-null type
+   type {:axiom} C(==) = c: C? | c != null /*special witness*/
+   */
+ }
+ 
+ module N0 {
+   /* CALL GRAPH for module N0:
+    * SCC at height 1:
+    *   C.B
+    * SCC at height 1:
+    *   C.A
+    * SCC at height 1:
+    *   C.C
+    * SCC at height 1:
+    *   C.M
+    * SCC at height 1:
+    *   C.L
+    * SCC at height 1:
+    *   C.K
+    * SCC at height 1:
+    *   C.Z
+    * SCC at height 1:
+    *   C.Y
+    * SCC at height 1:
+    *   C.X
+    * SCC at height 0:
+    *   C.Valid
+    */
+   class {:autocontracts} C {
+     constructor X()
+       ensures Valid()
+       ensures fresh(Repr)
+ 
+     constructor Y()
+       ensures Valid()
+       ensures fresh(Repr)
+ 
+     constructor Z()
+       ensures Valid()
+       ensures fresh(Repr)
+     {
+       new;
+       Repr := {this};
+     }
+ 
+     method A()
+       requires Valid()
+       modifies Repr
+       ensures Valid()
+       ensures fresh(Repr - old(Repr))
+ 
+     method B()
+       requires Valid()
+       modifies Repr
+       ensures Valid()
+       ensures fresh(Repr - old(Repr))
+ 
+     method C()
+       requires Valid()
+       modifies Repr
+       ensures Valid()
+       ensures fresh(Repr - old(Repr))
+     {
+     }
+ 
+     predicate Valid()
+       reads this, Repr
+       ensures Valid() ==> this in Repr
+       decreases Repr + {this}
+     {
+       this in Repr &&
+       null !in Repr &&
+       true
+     }
+ 
+     ghost var Repr: set<object?>
+ 
+     method {:autocontracts false} K()
+       requires Valid()
+       modifies Repr
+       ensures Valid() && fresh(Repr - old(Repr))
+ 
+     method {:autocontracts false} L()
+       requires Valid()
+       modifies Repr
+       ensures Valid() && fresh(Repr - old(Repr))
+ 
+     method {:autocontracts false} M()
+       requires Valid()
+       modifies Repr
+       ensures Valid() && fresh(Repr - old(Repr))
+     {
+     }
+   }
+   /*-- non-null type
+   type {:axiom} C(==) = c: C? | c != null /*special witness*/
+   */
+ }
+ 
+ module N1 refines N0 {
+   /* CALL GRAPH for module N1:
+    * SCC at height 1:
+    *   C.M
+    * SCC at height 1:
+    *   C.L
+    * SCC at height 1:
+    *   C.K
+    * SCC at height 1:
+    *   C.C
+    * SCC at height 1:
+    *   C.B
+    * SCC at height 1:
+    *   C.A
+    * SCC at height 1:
+    *   C.Z
+    * SCC at height 1:
+    *   C.Y
+    * SCC at height 1:
+    *   C.X
+    * SCC at height 0:
+    *   C.Valid
+    */
+   class {:autocontracts} C ...  {
+     constructor X()
+       ensures Valid()
+       ensures fresh(Repr)
+ 
+     constructor Y()
+       ensures Valid()
+       ensures fresh(Repr)
+     {
+     }
+ 
+     constructor Z()
+       ensures Valid()
+       ensures fresh(Repr)
+     {
+       new;
+       Repr := {this};
+     }
+ 
+     method A()
+       requires Valid()
+       modifies Repr
+       ensures Valid()
+       ensures fresh(Repr - old(Repr))
+ 
+     method B()
+       requires Valid()
+       modifies Repr
+       ensures Valid()
+       ensures fresh(Repr - old(Repr))
+     {
+     }
+ 
+     method C()
+       requires Valid()
+       modifies Repr
+       ensures Valid()
+       ensures fresh(Repr - old(Repr))
+     {
+     }
+ 
+     method {:autocontracts false} K()
+       requires Valid()
+       modifies Repr
+       ensures Valid() && fresh(Repr - old(Repr))
+ 
+     method {:autocontracts false} L()
+       requires Valid()
+       modifies Repr
+       ensures Valid() && fresh(Repr - old(Repr))
+     {
+     }
+ 
+     method {:autocontracts false} M()
+       requires Valid()
+       modifies Repr
+       ensures Valid() && fresh(Repr - old(Repr))
+     {
+     }
+ 
+     predicate Valid()
+       reads this, Repr
+       ensures Valid() ==> this in Repr
+       decreases Repr + {this}
+     {
+       this in Repr &&
+       null !in Repr &&
+       true
+     }
+ 
+     ghost var Repr: set<object?>
+   }
+   /*-- non-null type
+   type {:axiom} C(==) = c: C? | c != null /*special witness*/
+   */
+ }
+ 
+ module N2 refines N1 {
+   /* CALL GRAPH for module N2:
+    * SCC at height 1:
+    *   C.M
+    * SCC at height 1:
+    *   C.L
+    * SCC at height 1:
+    *   C.K
+    * SCC at height 1:
+    *   C.C
+    * SCC at height 1:
+    *   C.B
+    * SCC at height 1:
+    *   C.A
+    * SCC at height 1:
+    *   C.Z
+    * SCC at height 1:
+    *   C.Y
+    * SCC at height 1:
+    *   C.X
+    * SCC at height 0:
+    *   C.Valid
+    */
+   class {:autocontracts} C ...  {
+     constructor X()
+       ensures Valid()
+       ensures fresh(Repr)
+ 
+     constructor Y()
+       ensures Valid()
+       ensures fresh(Repr)
+     {
+     }
+ 
+     constructor Z()
+       ensures Valid()
+       ensures fresh(Repr)
+     {
+       new;
+       Repr := {this};
+     }
+ 
+     method A()
+       requires Valid()
+       modifies Repr
+       ensures Valid()
+       ensures fresh(Repr - old(Repr))
+ 
+     method B()
+       requires Valid()
+       modifies Repr
+       ensures Valid()
+       ensures fresh(Repr - old(Repr))
+     {
+     }
+ 
+     method C()
+       requires Valid()
+       modifies Repr
+       ensures Valid()
+       ensures fresh(Repr - old(Repr))
+     {
+     }
+ 
+     method {:autocontracts false} K()
+       requires Valid()
+       modifies Repr
+       ensures Valid() && fresh(Repr - old(Repr))
+ 
+     method {:autocontracts false} L()
+       requires Valid()
+       modifies Repr
+       ensures Valid() && fresh(Repr - old(Repr))
+     {
+     }
+ 
+     method {:autocontracts false} M()
+       requires Valid()
+       modifies Repr
+       ensures Valid() && fresh(Repr - old(Repr))
+     {
+     }
+ 
+     predicate Valid()
+       reads this, Repr
+       ensures Valid() ==> this in Repr
+       decreases Repr + {this}
+     {
+       this in Repr &&
+       null !in Repr &&
+       true
+     }
+ 
+     ghost var Repr: set<object?>
+   }
+   /*-- non-null type
+   type {:axiom} C(==) = c: C? | c != null /*special witness*/
+   */
+ }
+ AutoContracts.dfy(17,4): Error: A postcondition might not hold on this return path.
+ AutoContracts.dfy(17,4): Related location: This is the postcondition that might not hold.
+ AutoContracts.dfy(12,14): Related location
+ AutoContracts.dfy(17,4): Error: A postcondition might not hold on this return path.
+ AutoContracts.dfy(17,4): Related location: This is the postcondition that might not hold.
++AutoContracts.dfy(12,14): Related location
+ AutoContracts.dfy(17,4): Error: A postcondition might not hold on this return path.
+ AutoContracts.dfy(17,4): Related location: This is the postcondition that might not hold.
+ AutoContracts.dfy(12,14): Related location
+ AutoContracts.dfy(17,4): Error: A postcondition might not hold on this return path.
+ AutoContracts.dfy(17,4): Related location: This is the postcondition that might not hold.
+ AutoContracts.dfy(12,14): Related location
++AutoContracts.dfy(5,25): Related location
+ AutoContracts.dfy(17,4): Error: A postcondition might not hold on this return path.
+ AutoContracts.dfy(17,4): Related location: This is the postcondition that might not hold.
+-AutoContracts.dfy(12,14): Related location
+-AutoContracts.dfy(5,25): Related location
+ AutoContracts.dfy(50,4): Error: A postcondition might not hold on this return path.
+ AutoContracts.dfy(49,24): Related location: This is the postcondition that might not hold.
+ AutoContracts.dfy(79,21): Error: A postcondition might not hold on this return path.
+ AutoContracts.dfy(60,16): Related location: This is the postcondition that might not hold.
+ AutoContracts.dfy[N1](65,14): Related location
+ AutoContracts.dfy(79,21): Error: A postcondition might not hold on this return path.
+ AutoContracts.dfy(60,16): Related location: This is the postcondition that might not hold.
+ AutoContracts.dfy[N1](65,14): Related location
+ AutoContracts.dfy(79,21): Error: A postcondition might not hold on this return path.
+ AutoContracts.dfy(60,16): Related location: This is the postcondition that might not hold.
+ 
+ Dafny program verifier finished with 37 verified, 9 errors
+ 
+
+Error:
+
+  Stack Trace:
+     at XUnitExtensions.Lit.LitTestCase.Execute(ITestOutputHelper outputHelper) in /home/livia/dafny/Source/XUnitExtensions/Lit/LitTestCase.cs:line 94
+   at XUnitExtensions.Lit.LitTestCase.Run(String filePath, LitTestConfiguration config, ITestOutputHelper outputHelper) in /home/livia/dafny/Source/XUnitExtensions/Lit/LitTestCase.cs:line 55
+   at IntegrationTests.LitTests.LitTest(String path) in /home/livia/dafny/Source/IntegrationTests/LitTests.cs:line 140
+  Standard Output Messages:
+ Executing command: dotnet /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/Dafny.dll /countVerificationErrors:0 /vcsCores:2 /useBaseNameForFileName /compileVerbose:0 /timeLimit:300 /env:0 /print:/home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/dafny0/Output/AutoContracts.dfy.tmp.print /rprint:- TestFiles/LitTests/LitTest/dafny0/AutoContracts.dfy > /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/dafny0/Output/AutoContracts.dfy.tmp
+ Executing command: DiffCommand TestFiles/LitTests/LitTest/dafny0/AutoContracts.dfy.expect /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/dafny0/Output/AutoContracts.dfy.tmp
+ Previous command results:
+ Output:
+ // AutoContracts.dfy
+ 
+ /*
+ module _System {
+   /* CALL GRAPH for module _System:
+    * SCC at height 1:
+    *   RotateRight
+    * SCC at height 1:
+    *   RotateLeft
+    * SCC at height 0:
+    *   nat
+    */
+   type string(==,0) = seq<char>
+ 
+   type {:axiom} nat(==,0) = x: int
+     | 0 <= x
+ 
+   trait {:compile false} object { }
+   /*-- non-null type
+   type {:axiom} object(==) = c: object? | c != null /*special witness*/
+   */
+ 
+   class {:compile false} array<arg> {
+     var Length: int  // immutable
+   }
+   /*-- non-null type
+   type {:axiom} array(==)<arg> = c: array?<arg> | c != null /*special witness*/
+   */
+ 
+   class {:compile false} /*_#Func1*/ -T0 ~> +R {
+     function requires(x0: T0): bool
+       reads reads(x0)
+ 
+     function reads(x0: T0): set<object?>
+       reads reads(x0)
+   }
+ 
+   type {:compile false} /*_#PartialFunc1*/ -T0 --> +R = f: T0 ~> R
+     | forall x0: T0 :: f.reads(x0) == {}
+     /*special witness*/
+ 
+   type {:compile false} /*_#TotalFunc1*/ -T0 -> +R = f: T0 --> R
+     | forall x0: T0 :: f.requires(x0)
+     /*special witness*/
+ 
+   class {:compile false} /*_#Func0*/ () ~> +R {
+     function requires(): bool
+       reads reads()
+ 
+     function reads(): set<object?>
+       reads reads()
+   }
+ 
+   type {:compile false} /*_#PartialFunc0*/ () --> +R = f: () ~> R
+     | f.reads() == {}
+     /*special witness*/
+ 
+   type {:compile false} /*_#TotalFunc0*/ () -> +R = f: () --> R
+     | f.requires()
+     /*special witness*/
+ 
+   datatype {:compile false} /*_tuple#2*/ (+T0, +T1) = _#Make2(0: T0, 1: T1)
+ 
+   type bool { }
+ 
+   type int { }
+ 
+   type real {
+     var Floor: int  // immutable
+   }
+ 
+   type ORDINAL {
+     var IsLimit: bool  // immutable
+     var IsSucc: bool  // immutable
+     var Offset: int  // immutable
+     var IsNat: bool  // immutable
+   }
+ 
+   type _bv {
+     function method RotateLeft(w: nat): selftype
+ 
+     function method RotateRight(w: nat): selftype
+   }
+ 
+   type map<T, U> {
+     var Keys: set<T>  // immutable
+     var Values: set<U>  // immutable
+     var Items: set<(T, U)>  // immutable
+   }
+ 
+   type imap<T, U> {
+     var Keys: iset<T>  // immutable
+     var Values: iset<U>  // immutable
+     var Items: iset<(T, U)>  // immutable
+   }
+ 
+   datatype {:compile false} /*_tuple#0*/ () = _#Make0
+ }
+ // bitvector types in use:
+ */
+ 
+ /* CALL GRAPH for module _module:
+  */
+ 
+ module OneModule {
+   /* CALL GRAPH for module OneModule:
+    * SCC at height 2:
+    *   C.NoBody
+    * SCC at height 2:
+    *   C.TL
+    * SCC at height 2:
+    *   C.L
+    * SCC at height 2:
+    *   C.Query
+    * SCC at height 2:
+    *   C.Mutating
+    * SCC at height 2:
+    *   C.P
+    * SCC at height 2:
+    *   C._ctor
+    * SCC at height 2:
+    *   C.F
+    * SCC at height 1:
+    *   C.Valid
+    * SCC at height 0:
+    *   D.Valid
+    * SCC at height 0:
+    *   nat
+    */
+   class {:autocontracts} D {
+     ghost var Repr: set<object?>
+ 
+     predicate Valid()
+       reads this, Repr
+       ensures Valid() ==> this in Repr
+       decreases Repr + {this}
+     {
+       this in Repr &&
+       null !in Repr &&
+       true
+     }
+   }
+   /*-- non-null type
+   type {:axiom} D(==) = c: D? | c != null /*special witness*/
+   */
+ 
+   class {:autocontracts} C {
+     var data: int
+     var anotherC: C?
+     var dd: D?
+     var {:autocontracts false} ee: D?
+     var arr: array?<C?>
+ 
+     predicate Valid()
+       reads this, Repr
+       ensures Valid() ==> this in Repr
+       decreases Repr + {this}
+     {
+       this in Repr &&
+       null !in Repr &&
+       (anotherC != null ==>
+         anotherC in Repr &&
+         anotherC.Repr <= Repr &&
+         this !in anotherC.Repr &&
+         anotherC.Valid()) &&
+       (dd != null ==>
+         dd in Repr &&
+         dd.Repr <= Repr &&
+         this !in dd.Repr &&
+         dd.Valid()) &&
+       (arr != null ==>
+         arr in Repr) &&
+       0 <= data < 100
+     }
+ 
+     constructor ()
+       ensures Valid()
+       ensures fresh(Repr)
+     {
+       data := 0;
+       new;
+       Repr := {this};
+       if anotherC != null && !(anotherC in Repr && anotherC.Repr <= Repr) {
+         Repr := Repr + {anotherC} + anotherC.Repr;
+       }
+       if dd != null && !(dd in Repr && dd.Repr <= Repr) {
+         Repr := Repr + {dd} + dd.Repr;
+       }
+       if arr != null && !(arr in Repr) {
+         Repr := Repr + {arr};
+       }
+     }
+ 
+     method Mutating()
+       requires Valid()
+       modifies Repr
+       ensures Valid()
+       ensures fresh(Repr - old(Repr))
+       ensures old(data) <= data
+     {
+       if anotherC != null && !(anotherC in Repr && anotherC.Repr <= Repr) {
+         Repr := Repr + {anotherC} + anotherC.Repr;
+       }
+       if dd != null && !(dd in Repr && dd.Repr <= Repr) {
+         Repr := Repr + {dd} + dd.Repr;
+       }
+       if arr != null && !(arr in Repr) {
+         Repr := Repr + {arr};
+       }
+     }
+ 
+     method Query() returns (d: int)
+       requires Valid()
+       ensures d == data
+     {
+       d := data;
+     }
+ 
+     function F(): nat
+       requires Valid()
+       reads Repr
+       decreases Repr
+     {
+       data
+     }
+ 
+     predicate P()
+       requires Valid()
+       reads Repr
+       decreases Repr
+     {
+       data < 20
+     }
+ 
+     lemma /*{:_induction this}*/ L()
+       requires Valid()
+       ensures data < 100
+     {
+     }
+ 
+     twostate lemma /*{:_induction this}*/ TL()
+       requires old(Valid())
+       ensures old(data) <= data
+     {
+     }
+ 
+     method NoBody()
+       requires Valid()
+       modifies Repr
+       ensures Valid()
+       ensures fresh(Repr - old(Repr))
+ 
+     ghost var Repr: set<object?>
+   }
+   /*-- non-null type
+   type {:axiom} C(==) = c: C? | c != null /*special witness*/
+   */
+ }
+ 
+ module N0 {
+   /* CALL GRAPH for module N0:
+    * SCC at height 1:
+    *   C.B
+    * SCC at height 1:
+    *   C.A
+    * SCC at height 1:
+    *   C.C
+    * SCC at height 1:
+    *   C.M
+    * SCC at height 1:
+    *   C.L
+    * SCC at height 1:
+    *   C.K
+    * SCC at height 1:
+    *   C.Z
+    * SCC at height 1:
+    *   C.Y
+    * SCC at height 1:
+    *   C.X
+    * SCC at height 0:
+    *   C.Valid
+    */
+   class {:autocontracts} C {
+     constructor X()
+       ensures Valid()
+       ensures fresh(Repr)
+ 
+     constructor Y()
+       ensures Valid()
+       ensures fresh(Repr)
+ 
+     constructor Z()
+       ensures Valid()
+       ensures fresh(Repr)
+     {
+       new;
+       Repr := {this};
+     }
+ 
+     method A()
+       requires Valid()
+       modifies Repr
+       ensures Valid()
+       ensures fresh(Repr - old(Repr))
+ 
+     method B()
+       requires Valid()
+       modifies Repr
+       ensures Valid()
+       ensures fresh(Repr - old(Repr))
+ 
+     method C()
+       requires Valid()
+       modifies Repr
+       ensures Valid()
+       ensures fresh(Repr - old(Repr))
+     {
+     }
+ 
+     predicate Valid()
+       reads this, Repr
+       ensures Valid() ==> this in Repr
+       decreases Repr + {this}
+     {
+       this in Repr &&
+       null !in Repr &&
+       true
+     }
+ 
+     ghost var Repr: set<object?>
+ 
+     method {:autocontracts false} K()
+       requires Valid()
+       modifies Repr
+       ensures Valid() && fresh(Repr - old(Repr))
+ 
+     method {:autocontracts false} L()
+       requires Valid()
+       modifies Repr
+       ensures Valid() && fresh(Repr - old(Repr))
+ 
+     method {:autocontracts false} M()
+       requires Valid()
+       modifies Repr
+       ensures Valid() && fresh(Repr - old(Repr))
+     {
+     }
+   }
+   /*-- non-null type
+   type {:axiom} C(==) = c: C? | c != null /*special witness*/
+   */
+ }
+ 
+ module N1 refines N0 {
+   /* CALL GRAPH for module N1:
+    * SCC at height 1:
+    *   C.M
+    * SCC at height 1:
+    *   C.L
+    * SCC at height 1:
+    *   C.K
+    * SCC at height 1:
+    *   C.C
+    * SCC at height 1:
+    *   C.B
+    * SCC at height 1:
+    *   C.A
+    * SCC at height 1:
+    *   C.Z
+    * SCC at height 1:
+    *   C.Y
+    * SCC at height 1:
+    *   C.X
+    * SCC at height 0:
+    *   C.Valid
+    */
+   class {:autocontracts} C ...  {
+     constructor X()
+       ensures Valid()
+       ensures fresh(Repr)
+ 
+     constructor Y()
+       ensures Valid()
+       ensures fresh(Repr)
+     {
+     }
+ 
+     constructor Z()
+       ensures Valid()
+       ensures fresh(Repr)
+     {
+       new;
+       Repr := {this};
+     }
+ 
+     method A()
+       requires Valid()
+       modifies Repr
+       ensures Valid()
+       ensures fresh(Repr - old(Repr))
+ 
+     method B()
+       requires Valid()
+       modifies Repr
+       ensures Valid()
+       ensures fresh(Repr - old(Repr))
+     {
+     }
+ 
+     method C()
+       requires Valid()
+       modifies Repr
+       ensures Valid()
+       ensures fresh(Repr - old(Repr))
+     {
+     }
+ 
+     method {:autocontracts false} K()
+       requires Valid()
+       modifies Repr
+       ensures Valid() && fresh(Repr - old(Repr))
+ 
+     method {:autocontracts false} L()
+       requires Valid()
+       modifies Repr
+       ensures Valid() && fresh(Repr - old(Repr))
+     {
+     }
+ 
+     method {:autocontracts false} M()
+       requires Valid()
+       modifies Repr
+       ensures Valid() && fresh(Repr - old(Repr))
+     {
+     }
+ 
+     predicate Valid()
+       reads this, Repr
+       ensures Valid() ==> this in Repr
+       decreases Repr + {this}
+     {
+       this in Repr &&
+       null !in Repr &&
+       true
+     }
+ 
+     ghost var Repr: set<object?>
+   }
+   /*-- non-null type
+   type {:axiom} C(==) = c: C? | c != null /*special witness*/
+   */
+ }
+ 
+ module N2 refines N1 {
+   /* CALL GRAPH for module N2:
+    * SCC at height 1:
+    *   C.M
+    * SCC at height 1:
+    *   C.L
+    * SCC at height 1:
+    *   C.K
+    * SCC at height 1:
+    *   C.C
+    * SCC at height 1:
+    *   C.B
+    * SCC at height 1:
+    *   C.A
+    * SCC at height 1:
+    *   C.Z
+    * SCC at height 1:
+    *   C.Y
+    * SCC at height 1:
+    *   C.X
+    * SCC at height 0:
+    *   C.Valid
+    */
+   class {:autocontracts} C ...  {
+     constructor X()
+       ensures Valid()
+       ensures fresh(Repr)
+ 
+     constructor Y()
+       ensures Valid()
+       ensures fresh(Repr)
+     {
+     }
+ 
+     constructor Z()
+       ensures Valid()
+       ensures fresh(Repr)
+     {
+       new;
+       Repr := {this};
+     }
+ 
+     method A()
+       requires Valid()
+       modifies Repr
+       ensures Valid()
+       ensures fresh(Repr - old(Repr))
+ 
+     method B()
+       requires Valid()
+       modifies Repr
+       ensures Valid()
+       ensures fresh(Repr - old(Repr))
+     {
+     }
+ 
+     method C()
+       requires Valid()
+       modifies Repr
+       ensures Valid()
+       ensures fresh(Repr - old(Repr))
+     {
+     }
+ 
+     method {:autocontracts false} K()
+       requires Valid()
+       modifies Repr
+       ensures Valid() && fresh(Repr - old(Repr))
+ 
+     method {:autocontracts false} L()
+       requires Valid()
+       modifies Repr
+       ensures Valid() && fresh(Repr - old(Repr))
+     {
+     }
+ 
+     method {:autocontracts false} M()
+       requires Valid()
+       modifies Repr
+       ensures Valid() && fresh(Repr - old(Repr))
+     {
+     }
+ 
+     predicate Valid()
+       reads this, Repr
+       ensures Valid() ==> this in Repr
+       decreases Repr + {this}
+     {
+       this in Repr &&
+       null !in Repr &&
+       true
+     }
+ 
+     ghost var Repr: set<object?>
+   }
+   /*-- non-null type
+   type {:axiom} C(==) = c: C? | c != null /*special witness*/
+   */
+ }
+ AutoContracts.dfy(17,4): Error: A postcondition might not hold on this return path.
+ AutoContracts.dfy(17,4): Related location: This is the postcondition that might not hold.
+ AutoContracts.dfy(12,14): Related location
+ AutoContracts.dfy(17,4): Error: A postcondition might not hold on this return path.
+ AutoContracts.dfy(17,4): Related location: This is the postcondition that might not hold.
+ AutoContracts.dfy(12,14): Related location
+ AutoContracts.dfy(17,4): Error: A postcondition might not hold on this return path.
+ AutoContracts.dfy(17,4): Related location: This is the postcondition that might not hold.
+ AutoContracts.dfy(12,14): Related location
+ AutoContracts.dfy(17,4): Error: A postcondition might not hold on this return path.
+ AutoContracts.dfy(17,4): Related location: This is the postcondition that might not hold.
+ AutoContracts.dfy(12,14): Related location
+ AutoContracts.dfy(5,25): Related location
+ AutoContracts.dfy(17,4): Error: A postcondition might not hold on this return path.
+ AutoContracts.dfy(17,4): Related location: This is the postcondition that might not hold.
+ AutoContracts.dfy(50,4): Error: A postcondition might not hold on this return path.
+ AutoContracts.dfy(49,24): Related location: This is the postcondition that might not hold.
+ AutoContracts.dfy(79,21): Error: A postcondition might not hold on this return path.
+ AutoContracts.dfy(60,16): Related location: This is the postcondition that might not hold.
+ AutoContracts.dfy[N1](65,14): Related location
+ AutoContracts.dfy(79,21): Error: A postcondition might not hold on this return path.
+ AutoContracts.dfy(60,16): Related location: This is the postcondition that might not hold.
+ AutoContracts.dfy[N1](65,14): Related location
+ AutoContracts.dfy(79,21): Error: A postcondition might not hold on this return path.
+ AutoContracts.dfy(60,16): Related location: This is the postcondition that might not hold.
+ 
+ Dafny program verifier finished with 37 verified, 9 errors
+ 
+ Error:
+ 
+
+
+[xUnit.net 00:01:53.78]     dafny0/BitvectorsMore.dfy [FAIL]
+  Failed dafny0/BitvectorsMore.dfy [5 s]
+  Error Message:
+   System.Exception : Command returned non-zero exit code (1): DiffCommand TestFiles/LitTests/LitTest/dafny0/BitvectorsMore.dfy.expect /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/dafny0/Output/BitvectorsMore.dfy.tmp
+Output:
+AssertEqualWithDiff() Failure
+Diff (changing expected into actual):
+ // BitvectorsMore.dfy
+ 
+ /*
+ module _System {
+   /* CALL GRAPH for module _System:
+    * SCC at height 1:
+    *   RotateRight
+    * SCC at height 1:
+    *   RotateLeft
+    * SCC at height 0:
+    *   nat
+    */
+   type string(==,0) = seq<char>
+ 
+   type {:axiom} nat(==,0) = x: int
+     | 0 <= x
+ 
+   trait {:compile false} object { }
+   /*-- non-null type
+   type {:axiom} object(==) = c: object? | c != null /*special witness*/
+   */
+ 
+   class {:compile false} array<arg> {
+     var Length: int  // immutable
+   }
+   /*-- non-null type
+   type {:axiom} array(==)<arg> = c: array?<arg> | c != null /*special witness*/
+   */
+ 
+   class {:compile false} /*_#Func1*/ -T0 ~> +R {
+     function requires(x0: T0): bool
+       reads reads(x0)
+ 
+     function reads(x0: T0): set<object?>
+       reads reads(x0)
+   }
+ 
+   type {:compile false} /*_#PartialFunc1*/ -T0 --> +R = f: T0 ~> R
+     | forall x0: T0 :: f.reads(x0) == {}
+     /*special witness*/
+ 
+   type {:compile false} /*_#TotalFunc1*/ -T0 -> +R = f: T0 --> R
+     | forall x0: T0 :: f.requires(x0)
+     /*special witness*/
+ 
+   class {:compile false} /*_#Func0*/ () ~> +R {
+     function requires(): bool
+       reads reads()
+ 
+     function reads(): set<object?>
+       reads reads()
+   }
+ 
+   type {:compile false} /*_#PartialFunc0*/ () --> +R = f: () ~> R
+     | f.reads() == {}
+     /*special witness*/
+ 
+   type {:compile false} /*_#TotalFunc0*/ () -> +R = f: () --> R
+     | f.requires()
+     /*special witness*/
+ 
+   class {:compile false} /*_#Func11*/ (-T0, -T1, -T2, -T3, -T4, -T5, -T6, -T7, -T8, -T9, -T10) ~> +R {
+     function requires(x0: T0, x1: T1, x2: T2, x3: T3, x4: T4, x5: T5, x6: T6, x7: T7, x8: T8, x9: T9, x10: T10): bool
+       reads reads(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10)
+ 
+     function reads(x0: T0, x1: T1, x2: T2, x3: T3, x4: T4, x5: T5, x6: T6, x7: T7, x8: T8, x9: T9, x10: T10): set<object?>
+       reads reads(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10)
+   }
+ 
+   type {:compile false} /*_#PartialFunc11*/ (-T0, -T1, -T2, -T3, -T4, -T5, -T6, -T7, -T8, -T9, -T10) --> +R = f: (T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10) ~> R
+     | forall x0: T0, x1: T1, x2: T2, x3: T3, x4: T4, x5: T5, x6: T6, x7: T7, x8: T8, x9: T9, x10: T10 :: f.reads(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10) == {}
+     /*special witness*/
+ 
+   type {:compile false} /*_#TotalFunc11*/ (-T0, -T1, -T2, -T3, -T4, -T5, -T6, -T7, -T8, -T9, -T10) -> +R = f: (T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10) --> R
+     | forall x0: T0, x1: T1, x2: T2, x3: T3, x4: T4, x5: T5, x6: T6, x7: T7, x8: T8, x9: T9, x10: T10 :: f.requires(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10)
+     /*special witness*/
+ 
+   datatype {:compile false} /*_tuple#2*/ (+T0, +T1) = _#Make2(0: T0, 1: T1)
+ 
+   type bool { }
+ 
+   type int { }
+ 
+   type real {
+     var Floor: int  // immutable
+   }
+ 
+   type ORDINAL {
+     var IsLimit: bool  // immutable
+     var IsSucc: bool  // immutable
+     var Offset: int  // immutable
+     var IsNat: bool  // immutable
+   }
+ 
+   type _bv {
+     function method RotateLeft(w: nat): selftype
+ 
+     function method RotateRight(w: nat): selftype
+   }
+ 
+   type map<T, U> {
+     var Keys: set<T>  // immutable
+     var Values: set<U>  // immutable
+     var Items: set<(T, U)>  // immutable
+   }
+ 
+   type imap<T, U> {
+     var Keys: iset<T>  // immutable
+     var Values: iset<U>  // immutable
+     var Items: iset<(T, U)>  // immutable
+   }
+ 
+   datatype {:compile false} /*_tuple#0*/ () = _#Make0
+ }
+ // bitvector types in use: bv7 bv137 bv0 bv10 bv60 bv67 bv32 bv2 bv5 bv8 bv6 bv3
+ */
+ 
+ /* CALL GRAPH for module _module:
+  * SCC at height 0:
+  *   TestActualRotate
+  * SCC at height 0:
+  *   TestActualShifting
+  * SCC at height 0:
+  *   R
+  * SCC at height 0:
+  *   Q
+  * SCC at height 0:
+  *   P
+  * SCC at height 0:
+  *   N4
+  * SCC at height 0:
+  *   N3
+  * SCC at height 0:
+  *   N2
+  * SCC at height 0:
+  *   N1
+  * SCC at height 0:
+  *   N0
+  * SCC at height 0:
+  *   M
+  * SCC at height 1:
+  *   Rotate
+  * SCC at height 2:
+  *   Shifts6
+  * SCC at height 2:
+  *   Shifts5
+  * SCC at height 2:
+  *   Shifts4
+  * SCC at height 2:
+  *   Shifts3
+  * SCC at height 2:
+  *   Shifts2
+  * SCC at height 2:
+  *   Shifts1
+  * SCC at height 2:
+  *   Shifts0
+  * SCC at height 1:
+  *   PQ
+  * SCC at height 0:
+  *   Handful
+  * SCC at height 0:
+  *   SmallReal
+  * SCC at height 0:
+  *   EvenInt
+  * SCC at height 0:
+  *   nat
+  */
+ newtype EvenInt = x: int
+   | x % 2 == 0
+ 
+ newtype SmallReal = r: real
+   | -4.0 <= r < 300.0
+ 
+ newtype Handful = x: int
+   | 0 <= x < 80
+ 
+ method M()
+ {
+   var h: bv8 := 5;
+   var k: bv8 := h * 128 / 128;
+   assert k == 1;
+   h := 3;
+   k := h * 128 / 128;
+   assert k == 1;
+   h := *;
+   k := k / h;
+ }
+ 
+ method N0(x: bv7, y: bv7)
+   decreases x, y
+ {
+   var z: bv7 := x / y;
+ }
+ 
+ method N1(x: bv7, y: bv7)
+   decreases x, y
+ {
+   var z: bv7 := x % y;
+ }
+ 
+ method N2(x: bv137, y: bv137)
+   decreases x, y
+ {
+   var z: bv137 := x / y;
+ }
+ 
+ method N3(x: bv0, y: bv0)
+   decreases x, y
+ {
+   if * {
+     var z: bv0 := x / y;
+   } else {
+     var z: bv0 := x % y;
+   }
+ }
+ 
+ method N4(x: bv0, y: bv0) returns (z: bv0)
+   ensures z == 0
+   decreases x, y
+ {
+   if {
+     case true =>
+       z := x + y;
+     case true =>
+       z := x - y;
+     case true =>
+       z := x * y;
+     case true =>
+       z := x & y;
+     case true =>
+       z := x | y;
+     case true =>
+       z := x ^ y;
+     case true =>
+       z := !x;
+     case true =>
+       z := -x;
+     case true =>
+     case true =>
+       assert !(x < y);
+     case true =>
+       assert x <= y;
+     case true =>
+       assert x >= y;
+     case true =>
+       assert !(x > y);
+   }
+ }
+ 
+ method P(x: bv0, y: bv0)
+   requires x != y
+   decreases x, y
+ {
+   assert false;
+ }
+ 
+ method Q(x: bv10, y: bv10)
+   decreases x, y
+ {
+   if x < 0 {
+     var z: bv10 := x / y;
+   }
+ }
+ 
+ method R(x: bv60, y: bv60)
+   decreases x, y
+ {
+   var a0: bool, a1: bool;
+   a0, a1 := x < y, y > x;
+   assert a0 == a1;
+   a0, a1 := x <= y, y >= x;
+   assert a0 == a1;
+ }
+ 
+ predicate PQ(x: int, n: nat, r: real, even: EvenInt, small: SmallReal, b67: bv67, w: bv32, seven: bv7, bb: bv2, noll: bv0, h: Handful)
+   decreases x, n, r, even, small, b67, w, seven, bb, noll, h
+ {
+   x == x &&
+   n == n &&
+   r == r &&
+   even == even &&
+   small == small &&
+   b67 == b67 &&
+   w == w &&
+   seven == seven &&
+   bb == bb &&
+   noll == noll &&
+   h == h
+ }
+ 
+ method Shifts0()
+     returns (x: int, n: nat, r: real, even: EvenInt, small: SmallReal, b67: bv67, w: bv32, seven: bv7, bb: bv2, noll: bv0, h: Handful)
+   ensures PQ(x, n, r, even, small, b67, w, seven, bb, noll, h)
+ {
+   if {
+     case x < 20 =>
+       b67 := b67 << x as bv7;
+     case 0 <= x =>
+       b67 := b67 << x as bv7;
+     case 0 <= x < 67 =>
+       b67 := b67 << x as bv7;
+     case true =>
+       b67 := b67 << n as bv7;
+     case true =>
+       b67 := b67 << h as bv7;
+   }
+ }
+ 
+ method Shifts1()
+     returns (x: int, n: nat, r: real, even: EvenInt, small: SmallReal, b67: bv67, w: bv32, seven: bv7, bb: bv2, noll: bv0, h: Handful)
+   ensures PQ(x, n, r, even, small, b67, w, seven, bb, noll, h)
+ {
+   if {
+     case even <= 66 =>
+       b67 := b67 << even as bv7;
+     case 0 <= even =>
+       b67 := b67 << even as bv7;
+     case 0 <= even <= 66 =>
+       b67 := b67 << even as bv7;
+   }
+ }
+ 
+ method Shifts2()
+     returns (x: int, n: nat, r: real, even: EvenInt, small: SmallReal, b67: bv67, w: bv32, seven: bv7, bb: bv2, noll: bv0, h: Handful)
+   ensures PQ(x, n, r, even, small, b67, w, seven, bb, noll, h)
+ {
+   if {
+     case true =>
+       b67 := b67 << b67 as bv7;
+     case true =>
+       b67 := b67 << w as bv7;
+     case true =>
+       b67 := b67 << (seven / 2) as bv7;
+     case true =>
+       b67 := b67 << bb as bv7;
+     case true =>
+       b67 := b67 << noll as bv7;
+   }
+ }
+ 
+ method Shifts3()
+     returns (x: int, n: nat, r: real, even: EvenInt, small: SmallReal, b67: bv67, w: bv32, seven: bv7, bb: bv2, noll: bv0, h: Handful)
+   ensures PQ(x, n, r, even, small, b67, w, seven, bb, noll, h)
+ {
+   if {
+     case true =>
+       w := w << b67 as bv6;
+     case true =>
+       w := w << w as bv6;
+     case true =>
+       w := w << seven as bv6;
+     case true =>
+       w := w << bb as bv6;
+     case true =>
+       w := w << noll as bv6;
+   }
+ }
+ 
+ method Shifts4()
+     returns (x: int, n: nat, r: real, even: EvenInt, small: SmallReal, b67: bv67, w: bv32, seven: bv7, bb: bv2, noll: bv0, h: Handful)
+   ensures PQ(x, n, r, even, small, b67, w, seven, bb, noll, h)
+ {
+   if {
+     case true =>
+       seven := seven << b67 as bv3;
+     case true =>
+       seven := seven << w as bv3;
+     case true =>
+       seven := seven << seven as bv3;
+     case true =>
+       seven := seven << bb as bv3;
+     case true =>
+       seven := seven << noll as bv3;
+   }
+ }
+ 
+ method Shifts5()
+     returns (x: int, n: nat, r: real, even: EvenInt, small: SmallReal, b67: bv67, w: bv32, seven: bv7, bb: bv2, noll: bv0, h: Handful)
+   ensures PQ(x, n, r, even, small, b67, w, seven, bb, noll, h)
+ {
+   if {
+     case true =>
+       bb := bb << b67 as bv2;
+     case true =>
+       bb := bb << w as bv2;
+     case true =>
+       bb := bb << seven as bv2;
+     case true =>
+       bb := bb << bb as bv2;
+     case true =>
+       bb := bb << noll as bv2;
+   }
+ }
+ 
+ method Shifts6()
+     returns (x: int, n: nat, r: real, even: EvenInt, small: SmallReal, b67: bv67, w: bv32, seven: bv7, bb: bv2, noll: bv0, h: Handful)
+   ensures PQ(x, n, r, even, small, b67, w, seven, bb, noll, h)
+ {
+   if {
+     case true =>
+       noll := noll << b67 as bv0;
+     case true =>
+       noll := noll << w as bv0;
+     case true =>
+       noll := noll << seven as bv0;
+     case true =>
+       noll := noll << bb as bv0;
+     case true =>
+       noll := noll << noll as bv0;
+   }
+ }
+ 
+ method TestActualShifting()
+ {
+   var a: bv67 := 3;
+   assert a << 2 as bv7 == 12;
+   assert a >> 0 as bv7 == 3;
+   assert a >> 1 as bv7 == 1;
+   assert a >> 2 as bv7 == 0;
+   var b: bv5 := 24;
+   assert b << 1 as bv3 == 16;
+   assert b >> 0 as bv3 == 24;
+   assert b >> 1 as bv3 == 12;
+   assert b >> 2 as bv3 == 6;
+ }
+ 
+ method Rotate() returns (x: nat, bb: bv5)
+ {
+   if {
+     case true =>
+       bb := bb.RotateLeft(x);
+     case true =>
+       bb := bb.RotateRight(x);
+   }
+ }
+ 
+ method TestActualRotate()
+ {
+   var a: bv5 := 12;
+   assert a == a.RotateLeft(3).RotateRight(3);
+ }
+ BitvectorsMore.dfy(13,9): Error: possible division by zero
+ BitvectorsMore.dfy(17,13): Error: possible division by zero
+ BitvectorsMore.dfy(21,13): Error: possible division by zero
+ BitvectorsMore.dfy(25,13): Error: possible division by zero
+ BitvectorsMore.dfy(30,15): Error: possible division by zero
+ BitvectorsMore.dfy(32,15): Error: possible division by zero
+ BitvectorsMore.dfy(104,37): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv7
+ BitvectorsMore.dfy(105,35): Error: shift amount must not exceed the width of the result (67)
+ BitvectorsMore.dfy(105,38): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv7
+ BitvectorsMore.dfy(107,34): Error: shift amount must not exceed the width of the result (67)
+ BitvectorsMore.dfy(107,37): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv7
+ BitvectorsMore.dfy(115,42): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv7
+ BitvectorsMore.dfy(116,39): Error: shift amount must not exceed the width of the result (67)
+ BitvectorsMore.dfy(116,42): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv7
+ BitvectorsMore.dfy(124,28): Error: shift amount must not exceed the width of the result (67)
+ BitvectorsMore.dfy(124,31): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv7
+ BitvectorsMore.dfy(125,28): Error: shift amount must not exceed the width of the result (67)
+ BitvectorsMore.dfy(125,31): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv7
+-BitvectorsMore.dfy(135,24): Error: shift amount must not exceed the width of the result (32)
+ BitvectorsMore.dfy(135,27): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv6
+ BitvectorsMore.dfy(136,24): Error: shift amount must not exceed the width of the result (32)
+ BitvectorsMore.dfy(136,27): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv6
++BitvectorsMore.dfy(137,24): Error: shift amount must not exceed the width of the result (32)
+ BitvectorsMore.dfy(137,27): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv6
+ BitvectorsMore.dfy(146,35): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv3
+ BitvectorsMore.dfy(147,35): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv3
+ BitvectorsMore.dfy(148,35): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv3
+ BitvectorsMore.dfy(157,26): Error: shift amount must not exceed the width of the result (2)
+ BitvectorsMore.dfy(157,29): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv2
+ BitvectorsMore.dfy(158,26): Error: shift amount must not exceed the width of the result (2)
+ BitvectorsMore.dfy(158,29): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv2
+ BitvectorsMore.dfy(159,29): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv2
+ BitvectorsMore.dfy(168,33): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv0
+ BitvectorsMore.dfy(169,33): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv0
+ BitvectorsMore.dfy(170,33): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv0
+ BitvectorsMore.dfy(171,33): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv0
+ BitvectorsMore.dfy(193,26): Error: shift amount must not exceed the width of the result (5)
+ BitvectorsMore.dfy(194,26): Error: shift amount must not exceed the width of the result (5)
+ 
+ Dafny program verifier finished with 9 verified, 37 errors
+ 
+
+Error:
+
+  Stack Trace:
+     at XUnitExtensions.Lit.LitTestCase.Execute(ITestOutputHelper outputHelper) in /home/livia/dafny/Source/XUnitExtensions/Lit/LitTestCase.cs:line 94
+   at XUnitExtensions.Lit.LitTestCase.Run(String filePath, LitTestConfiguration config, ITestOutputHelper outputHelper) in /home/livia/dafny/Source/XUnitExtensions/Lit/LitTestCase.cs:line 55
+   at IntegrationTests.LitTests.LitTest(String path) in /home/livia/dafny/Source/IntegrationTests/LitTests.cs:line 140
+  Standard Output Messages:
+ Executing command: dotnet /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/Dafny.dll /countVerificationErrors:0 /vcsCores:2 /useBaseNameForFileName /compileVerbose:0 /timeLimit:300 /print:/home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/dafny0/Output/BitvectorsMore.dfy.tmp.print /rprint:- /env:0 TestFiles/LitTests/LitTest/dafny0/BitvectorsMore.dfy > /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/dafny0/Output/BitvectorsMore.dfy.tmp
+ Executing command: DiffCommand TestFiles/LitTests/LitTest/dafny0/BitvectorsMore.dfy.expect /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/dafny0/Output/BitvectorsMore.dfy.tmp
+ Previous command results:
+ Output:
+ // BitvectorsMore.dfy
+ 
+ /*
+ module _System {
+   /* CALL GRAPH for module _System:
+    * SCC at height 1:
+    *   RotateRight
+    * SCC at height 1:
+    *   RotateLeft
+    * SCC at height 0:
+    *   nat
+    */
+   type string(==,0) = seq<char>
+ 
+   type {:axiom} nat(==,0) = x: int
+     | 0 <= x
+ 
+   trait {:compile false} object { }
+   /*-- non-null type
+   type {:axiom} object(==) = c: object? | c != null /*special witness*/
+   */
+ 
+   class {:compile false} array<arg> {
+     var Length: int  // immutable
+   }
+   /*-- non-null type
+   type {:axiom} array(==)<arg> = c: array?<arg> | c != null /*special witness*/
+   */
+ 
+   class {:compile false} /*_#Func1*/ -T0 ~> +R {
+     function requires(x0: T0): bool
+       reads reads(x0)
+ 
+     function reads(x0: T0): set<object?>
+       reads reads(x0)
+   }
+ 
+   type {:compile false} /*_#PartialFunc1*/ -T0 --> +R = f: T0 ~> R
+     | forall x0: T0 :: f.reads(x0) == {}
+     /*special witness*/
+ 
+   type {:compile false} /*_#TotalFunc1*/ -T0 -> +R = f: T0 --> R
+     | forall x0: T0 :: f.requires(x0)
+     /*special witness*/
+ 
+   class {:compile false} /*_#Func0*/ () ~> +R {
+     function requires(): bool
+       reads reads()
+ 
+     function reads(): set<object?>
+       reads reads()
+   }
+ 
+   type {:compile false} /*_#PartialFunc0*/ () --> +R = f: () ~> R
+     | f.reads() == {}
+     /*special witness*/
+ 
+   type {:compile false} /*_#TotalFunc0*/ () -> +R = f: () --> R
+     | f.requires()
+     /*special witness*/
+ 
+   class {:compile false} /*_#Func11*/ (-T0, -T1, -T2, -T3, -T4, -T5, -T6, -T7, -T8, -T9, -T10) ~> +R {
+     function requires(x0: T0, x1: T1, x2: T2, x3: T3, x4: T4, x5: T5, x6: T6, x7: T7, x8: T8, x9: T9, x10: T10): bool
+       reads reads(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10)
+ 
+     function reads(x0: T0, x1: T1, x2: T2, x3: T3, x4: T4, x5: T5, x6: T6, x7: T7, x8: T8, x9: T9, x10: T10): set<object?>
+       reads reads(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10)
+   }
+ 
+   type {:compile false} /*_#PartialFunc11*/ (-T0, -T1, -T2, -T3, -T4, -T5, -T6, -T7, -T8, -T9, -T10) --> +R = f: (T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10) ~> R
+     | forall x0: T0, x1: T1, x2: T2, x3: T3, x4: T4, x5: T5, x6: T6, x7: T7, x8: T8, x9: T9, x10: T10 :: f.reads(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10) == {}
+     /*special witness*/
+ 
+   type {:compile false} /*_#TotalFunc11*/ (-T0, -T1, -T2, -T3, -T4, -T5, -T6, -T7, -T8, -T9, -T10) -> +R = f: (T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10) --> R
+     | forall x0: T0, x1: T1, x2: T2, x3: T3, x4: T4, x5: T5, x6: T6, x7: T7, x8: T8, x9: T9, x10: T10 :: f.requires(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10)
+     /*special witness*/
+ 
+   datatype {:compile false} /*_tuple#2*/ (+T0, +T1) = _#Make2(0: T0, 1: T1)
+ 
+   type bool { }
+ 
+   type int { }
+ 
+   type real {
+     var Floor: int  // immutable
+   }
+ 
+   type ORDINAL {
+     var IsLimit: bool  // immutable
+     var IsSucc: bool  // immutable
+     var Offset: int  // immutable
+     var IsNat: bool  // immutable
+   }
+ 
+   type _bv {
+     function method RotateLeft(w: nat): selftype
+ 
+     function method RotateRight(w: nat): selftype
+   }
+ 
+   type map<T, U> {
+     var Keys: set<T>  // immutable
+     var Values: set<U>  // immutable
+     var Items: set<(T, U)>  // immutable
+   }
+ 
+   type imap<T, U> {
+     var Keys: iset<T>  // immutable
+     var Values: iset<U>  // immutable
+     var Items: iset<(T, U)>  // immutable
+   }
+ 
+   datatype {:compile false} /*_tuple#0*/ () = _#Make0
+ }
+ // bitvector types in use: bv7 bv137 bv0 bv10 bv60 bv67 bv32 bv2 bv5 bv8 bv6 bv3
+ */
+ 
+ /* CALL GRAPH for module _module:
+  * SCC at height 0:
+  *   TestActualRotate
+  * SCC at height 0:
+  *   TestActualShifting
+  * SCC at height 0:
+  *   R
+  * SCC at height 0:
+  *   Q
+  * SCC at height 0:
+  *   P
+  * SCC at height 0:
+  *   N4
+  * SCC at height 0:
+  *   N3
+  * SCC at height 0:
+  *   N2
+  * SCC at height 0:
+  *   N1
+  * SCC at height 0:
+  *   N0
+  * SCC at height 0:
+  *   M
+  * SCC at height 1:
+  *   Rotate
+  * SCC at height 2:
+  *   Shifts6
+  * SCC at height 2:
+  *   Shifts5
+  * SCC at height 2:
+  *   Shifts4
+  * SCC at height 2:
+  *   Shifts3
+  * SCC at height 2:
+  *   Shifts2
+  * SCC at height 2:
+  *   Shifts1
+  * SCC at height 2:
+  *   Shifts0
+  * SCC at height 1:
+  *   PQ
+  * SCC at height 0:
+  *   Handful
+  * SCC at height 0:
+  *   SmallReal
+  * SCC at height 0:
+  *   EvenInt
+  * SCC at height 0:
+  *   nat
+  */
+ newtype EvenInt = x: int
+   | x % 2 == 0
+ 
+ newtype SmallReal = r: real
+   | -4.0 <= r < 300.0
+ 
+ newtype Handful = x: int
+   | 0 <= x < 80
+ 
+ method M()
+ {
+   var h: bv8 := 5;
+   var k: bv8 := h * 128 / 128;
+   assert k == 1;
+   h := 3;
+   k := h * 128 / 128;
+   assert k == 1;
+   h := *;
+   k := k / h;
+ }
+ 
+ method N0(x: bv7, y: bv7)
+   decreases x, y
+ {
+   var z: bv7 := x / y;
+ }
+ 
+ method N1(x: bv7, y: bv7)
+   decreases x, y
+ {
+   var z: bv7 := x % y;
+ }
+ 
+ method N2(x: bv137, y: bv137)
+   decreases x, y
+ {
+   var z: bv137 := x / y;
+ }
+ 
+ method N3(x: bv0, y: bv0)
+   decreases x, y
+ {
+   if * {
+     var z: bv0 := x / y;
+   } else {
+     var z: bv0 := x % y;
+   }
+ }
+ 
+ method N4(x: bv0, y: bv0) returns (z: bv0)
+   ensures z == 0
+   decreases x, y
+ {
+   if {
+     case true =>
+       z := x + y;
+     case true =>
+       z := x - y;
+     case true =>
+       z := x * y;
+     case true =>
+       z := x & y;
+     case true =>
+       z := x | y;
+     case true =>
+       z := x ^ y;
+     case true =>
+       z := !x;
+     case true =>
+       z := -x;
+     case true =>
+     case true =>
+       assert !(x < y);
+     case true =>
+       assert x <= y;
+     case true =>
+       assert x >= y;
+     case true =>
+       assert !(x > y);
+   }
+ }
+ 
+ method P(x: bv0, y: bv0)
+   requires x != y
+   decreases x, y
+ {
+   assert false;
+ }
+ 
+ method Q(x: bv10, y: bv10)
+   decreases x, y
+ {
+   if x < 0 {
+     var z: bv10 := x / y;
+   }
+ }
+ 
+ method R(x: bv60, y: bv60)
+   decreases x, y
+ {
+   var a0: bool, a1: bool;
+   a0, a1 := x < y, y > x;
+   assert a0 == a1;
+   a0, a1 := x <= y, y >= x;
+   assert a0 == a1;
+ }
+ 
+ predicate PQ(x: int, n: nat, r: real, even: EvenInt, small: SmallReal, b67: bv67, w: bv32, seven: bv7, bb: bv2, noll: bv0, h: Handful)
+   decreases x, n, r, even, small, b67, w, seven, bb, noll, h
+ {
+   x == x &&
+   n == n &&
+   r == r &&
+   even == even &&
+   small == small &&
+   b67 == b67 &&
+   w == w &&
+   seven == seven &&
+   bb == bb &&
+   noll == noll &&
+   h == h
+ }
+ 
+ method Shifts0()
+     returns (x: int, n: nat, r: real, even: EvenInt, small: SmallReal, b67: bv67, w: bv32, seven: bv7, bb: bv2, noll: bv0, h: Handful)
+   ensures PQ(x, n, r, even, small, b67, w, seven, bb, noll, h)
+ {
+   if {
+     case x < 20 =>
+       b67 := b67 << x as bv7;
+     case 0 <= x =>
+       b67 := b67 << x as bv7;
+     case 0 <= x < 67 =>
+       b67 := b67 << x as bv7;
+     case true =>
+       b67 := b67 << n as bv7;
+     case true =>
+       b67 := b67 << h as bv7;
+   }
+ }
+ 
+ method Shifts1()
+     returns (x: int, n: nat, r: real, even: EvenInt, small: SmallReal, b67: bv67, w: bv32, seven: bv7, bb: bv2, noll: bv0, h: Handful)
+   ensures PQ(x, n, r, even, small, b67, w, seven, bb, noll, h)
+ {
+   if {
+     case even <= 66 =>
+       b67 := b67 << even as bv7;
+     case 0 <= even =>
+       b67 := b67 << even as bv7;
+     case 0 <= even <= 66 =>
+       b67 := b67 << even as bv7;
+   }
+ }
+ 
+ method Shifts2()
+     returns (x: int, n: nat, r: real, even: EvenInt, small: SmallReal, b67: bv67, w: bv32, seven: bv7, bb: bv2, noll: bv0, h: Handful)
+   ensures PQ(x, n, r, even, small, b67, w, seven, bb, noll, h)
+ {
+   if {
+     case true =>
+       b67 := b67 << b67 as bv7;
+     case true =>
+       b67 := b67 << w as bv7;
+     case true =>
+       b67 := b67 << (seven / 2) as bv7;
+     case true =>
+       b67 := b67 << bb as bv7;
+     case true =>
+       b67 := b67 << noll as bv7;
+   }
+ }
+ 
+ method Shifts3()
+     returns (x: int, n: nat, r: real, even: EvenInt, small: SmallReal, b67: bv67, w: bv32, seven: bv7, bb: bv2, noll: bv0, h: Handful)
+   ensures PQ(x, n, r, even, small, b67, w, seven, bb, noll, h)
+ {
+   if {
+     case true =>
+       w := w << b67 as bv6;
+     case true =>
+       w := w << w as bv6;
+     case true =>
+       w := w << seven as bv6;
+     case true =>
+       w := w << bb as bv6;
+     case true =>
+       w := w << noll as bv6;
+   }
+ }
+ 
+ method Shifts4()
+     returns (x: int, n: nat, r: real, even: EvenInt, small: SmallReal, b67: bv67, w: bv32, seven: bv7, bb: bv2, noll: bv0, h: Handful)
+   ensures PQ(x, n, r, even, small, b67, w, seven, bb, noll, h)
+ {
+   if {
+     case true =>
+       seven := seven << b67 as bv3;
+     case true =>
+       seven := seven << w as bv3;
+     case true =>
+       seven := seven << seven as bv3;
+     case true =>
+       seven := seven << bb as bv3;
+     case true =>
+       seven := seven << noll as bv3;
+   }
+ }
+ 
+ method Shifts5()
+     returns (x: int, n: nat, r: real, even: EvenInt, small: SmallReal, b67: bv67, w: bv32, seven: bv7, bb: bv2, noll: bv0, h: Handful)
+   ensures PQ(x, n, r, even, small, b67, w, seven, bb, noll, h)
+ {
+   if {
+     case true =>
+       bb := bb << b67 as bv2;
+     case true =>
+       bb := bb << w as bv2;
+     case true =>
+       bb := bb << seven as bv2;
+     case true =>
+       bb := bb << bb as bv2;
+     case true =>
+       bb := bb << noll as bv2;
+   }
+ }
+ 
+ method Shifts6()
+     returns (x: int, n: nat, r: real, even: EvenInt, small: SmallReal, b67: bv67, w: bv32, seven: bv7, bb: bv2, noll: bv0, h: Handful)
+   ensures PQ(x, n, r, even, small, b67, w, seven, bb, noll, h)
+ {
+   if {
+     case true =>
+       noll := noll << b67 as bv0;
+     case true =>
+       noll := noll << w as bv0;
+     case true =>
+       noll := noll << seven as bv0;
+     case true =>
+       noll := noll << bb as bv0;
+     case true =>
+       noll := noll << noll as bv0;
+   }
+ }
+ 
+ method TestActualShifting()
+ {
+   var a: bv67 := 3;
+   assert a << 2 as bv7 == 12;
+   assert a >> 0 as bv7 == 3;
+   assert a >> 1 as bv7 == 1;
+   assert a >> 2 as bv7 == 0;
+   var b: bv5 := 24;
+   assert b << 1 as bv3 == 16;
+   assert b >> 0 as bv3 == 24;
+   assert b >> 1 as bv3 == 12;
+   assert b >> 2 as bv3 == 6;
+ }
+ 
+ method Rotate() returns (x: nat, bb: bv5)
+ {
+   if {
+     case true =>
+       bb := bb.RotateLeft(x);
+     case true =>
+       bb := bb.RotateRight(x);
+   }
+ }
+ 
+ method TestActualRotate()
+ {
+   var a: bv5 := 12;
+   assert a == a.RotateLeft(3).RotateRight(3);
+ }
+ BitvectorsMore.dfy(13,9): Error: possible division by zero
+ BitvectorsMore.dfy(17,13): Error: possible division by zero
+ BitvectorsMore.dfy(21,13): Error: possible division by zero
+ BitvectorsMore.dfy(25,13): Error: possible division by zero
+ BitvectorsMore.dfy(30,15): Error: possible division by zero
+ BitvectorsMore.dfy(32,15): Error: possible division by zero
+ BitvectorsMore.dfy(104,37): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv7
+ BitvectorsMore.dfy(105,35): Error: shift amount must not exceed the width of the result (67)
+ BitvectorsMore.dfy(105,38): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv7
+ BitvectorsMore.dfy(107,34): Error: shift amount must not exceed the width of the result (67)
+ BitvectorsMore.dfy(107,37): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv7
+ BitvectorsMore.dfy(115,42): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv7
+ BitvectorsMore.dfy(116,39): Error: shift amount must not exceed the width of the result (67)
+ BitvectorsMore.dfy(116,42): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv7
+ BitvectorsMore.dfy(124,28): Error: shift amount must not exceed the width of the result (67)
+ BitvectorsMore.dfy(124,31): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv7
+ BitvectorsMore.dfy(125,28): Error: shift amount must not exceed the width of the result (67)
+ BitvectorsMore.dfy(125,31): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv7
+ BitvectorsMore.dfy(135,27): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv6
+ BitvectorsMore.dfy(136,24): Error: shift amount must not exceed the width of the result (32)
+ BitvectorsMore.dfy(136,27): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv6
+ BitvectorsMore.dfy(137,24): Error: shift amount must not exceed the width of the result (32)
+ BitvectorsMore.dfy(137,27): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv6
+ BitvectorsMore.dfy(146,35): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv3
+ BitvectorsMore.dfy(147,35): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv3
+ BitvectorsMore.dfy(148,35): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv3
+ BitvectorsMore.dfy(157,26): Error: shift amount must not exceed the width of the result (2)
+ BitvectorsMore.dfy(157,29): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv2
+ BitvectorsMore.dfy(158,26): Error: shift amount must not exceed the width of the result (2)
+ BitvectorsMore.dfy(158,29): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv2
+ BitvectorsMore.dfy(159,29): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv2
+ BitvectorsMore.dfy(168,33): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv0
+ BitvectorsMore.dfy(169,33): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv0
+ BitvectorsMore.dfy(170,33): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv0
+ BitvectorsMore.dfy(171,33): Error: when converting shift amount to a bit vector, the value to be converted might not fit in bv0
+ BitvectorsMore.dfy(193,26): Error: shift amount must not exceed the width of the result (5)
+ BitvectorsMore.dfy(194,26): Error: shift amount must not exceed the width of the result (5)
+ 
+ Dafny program verifier finished with 9 verified, 37 errors
+ 
+ Error:
+ 
+
+
+[xUnit.net 00:02:33.63]     dafny0/ExtremeReads.dfy [FAIL]
+  Failed dafny0/ExtremeReads.dfy [6 s]
+  Error Message:
+   System.Exception : Command returned non-zero exit code (1): DiffCommand TestFiles/LitTests/LitTest/dafny0/ExtremeReads.dfy.expect /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/dafny0/Output/ExtremeReads.dfy.tmp
+Output:
+AssertEqualWithDiff() Failure
+Diff (changing expected into actual):
+ ExtremeReads.dfy(47,11): Error: assertion might not hold
+ ExtremeReads.dfy(13,20): Related location
+ ExtremeReads.dfy(50,11): Error: assertion might not hold
+ ExtremeReads.dfy(13,20): Related location
+ ExtremeReads.dfy(69,11): Error: assertion might not hold
+ ExtremeReads.dfy(20,20): Related location
+ ExtremeReads.dfy(83,11): Error: assertion might not hold
+ ExtremeReads.dfy(26,2): Related location
+ ExtremeReads.dfy(105,11): Error: assertion might not hold
+ ExtremeReads.dfy(89,2): Related location
+ ExtremeReads.dfy(127,11): Error: assertion might not hold
++ExtremeReads.dfy(13,20): Related location
++ExtremeReads.dfy(127,11): Error: assertion might not hold
+ ExtremeReads.dfy(9,19): Related location
+-ExtremeReads.dfy(127,11): Error: assertion might not hold
+-ExtremeReads.dfy(13,20): Related location
+ ExtremeReads.dfy(130,11): Error: assertion might not hold
+ ExtremeReads.dfy(9,19): Related location
+ ExtremeReads.dfy(130,11): Error: assertion might not hold
+ ExtremeReads.dfy(13,20): Related location
+ ExtremeReads.dfy(149,11): Error: assertion might not hold
++ExtremeReads.dfy(20,20): Related location
++ExtremeReads.dfy(149,11): Error: assertion might not hold
+ ExtremeReads.dfy(16,19): Related location
+-ExtremeReads.dfy(149,11): Error: assertion might not hold
+-ExtremeReads.dfy(20,20): Related location
++ExtremeReads.dfy(168,11): Error: assertion might not hold
++ExtremeReads.dfy(26,2): Related location
+ ExtremeReads.dfy(168,11): Error: assertion might not hold
+ ExtremeReads.dfy(23,19): Related location
+-ExtremeReads.dfy(168,11): Error: assertion might not hold
++ExtremeReads.dfy(171,11): Error: assertion might not hold
+ ExtremeReads.dfy(26,2): Related location
+ ExtremeReads.dfy(171,11): Error: assertion might not hold
+ ExtremeReads.dfy(23,19): Related location
+-ExtremeReads.dfy(171,11): Error: assertion might not hold
+-ExtremeReads.dfy(26,2): Related location
++ExtremeReads.dfy(181,11): Error: assertion might not hold
++ExtremeReads.dfy(89,2): Related location
+ ExtremeReads.dfy(181,11): Error: assertion might not hold
+ ExtremeReads.dfy(86,16): Related location
+-ExtremeReads.dfy(181,11): Error: assertion might not hold
+-ExtremeReads.dfy(89,2): Related location
+ 
+ Dafny program verifier finished with 10 verified, 17 errors
+ 
+
+Error:
+
+  Stack Trace:
+     at XUnitExtensions.Lit.LitTestCase.Execute(ITestOutputHelper outputHelper) in /home/livia/dafny/Source/XUnitExtensions/Lit/LitTestCase.cs:line 94
+   at XUnitExtensions.Lit.LitTestCase.Run(String filePath, LitTestConfiguration config, ITestOutputHelper outputHelper) in /home/livia/dafny/Source/XUnitExtensions/Lit/LitTestCase.cs:line 55
+   at IntegrationTests.LitTests.LitTest(String path) in /home/livia/dafny/Source/IntegrationTests/LitTests.cs:line 140
+  Standard Output Messages:
+ Executing command: dotnet /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/Dafny.dll /countVerificationErrors:0 /vcsCores:2 /useBaseNameForFileName /compileVerbose:0 /timeLimit:300 TestFiles/LitTests/LitTest/dafny0/ExtremeReads.dfy > /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/dafny0/Output/ExtremeReads.dfy.tmp
+ Executing command: DiffCommand TestFiles/LitTests/LitTest/dafny0/ExtremeReads.dfy.expect /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/dafny0/Output/ExtremeReads.dfy.tmp
+ Previous command results:
+ Output:
+ ExtremeReads.dfy(47,11): Error: assertion might not hold
+ ExtremeReads.dfy(13,20): Related location
+ ExtremeReads.dfy(50,11): Error: assertion might not hold
+ ExtremeReads.dfy(13,20): Related location
+ ExtremeReads.dfy(69,11): Error: assertion might not hold
+ ExtremeReads.dfy(20,20): Related location
+ ExtremeReads.dfy(83,11): Error: assertion might not hold
+ ExtremeReads.dfy(26,2): Related location
+ ExtremeReads.dfy(105,11): Error: assertion might not hold
+ ExtremeReads.dfy(89,2): Related location
+ ExtremeReads.dfy(127,11): Error: assertion might not hold
+ ExtremeReads.dfy(13,20): Related location
+ ExtremeReads.dfy(127,11): Error: assertion might not hold
+ ExtremeReads.dfy(9,19): Related location
+ ExtremeReads.dfy(130,11): Error: assertion might not hold
+ ExtremeReads.dfy(9,19): Related location
+ ExtremeReads.dfy(130,11): Error: assertion might not hold
+ ExtremeReads.dfy(13,20): Related location
+ ExtremeReads.dfy(149,11): Error: assertion might not hold
+ ExtremeReads.dfy(20,20): Related location
+ ExtremeReads.dfy(149,11): Error: assertion might not hold
+ ExtremeReads.dfy(16,19): Related location
+ ExtremeReads.dfy(168,11): Error: assertion might not hold
+ ExtremeReads.dfy(26,2): Related location
+ ExtremeReads.dfy(168,11): Error: assertion might not hold
+ ExtremeReads.dfy(23,19): Related location
+ ExtremeReads.dfy(171,11): Error: assertion might not hold
+ ExtremeReads.dfy(26,2): Related location
+ ExtremeReads.dfy(171,11): Error: assertion might not hold
+ ExtremeReads.dfy(23,19): Related location
+ ExtremeReads.dfy(181,11): Error: assertion might not hold
+ ExtremeReads.dfy(89,2): Related location
+ ExtremeReads.dfy(181,11): Error: assertion might not hold
+ ExtremeReads.dfy(86,16): Related location
+ 
+ Dafny program verifier finished with 10 verified, 17 errors
+ 
+ Error:
+ 
+
+
+[xUnit.net 00:02:43.02]     dafny0/Fuel.dfy [FAIL]
+  Failed dafny0/Fuel.dfy [10 s]
+  Error Message:
+   System.Exception : Command returned non-zero exit code (1): DiffCommand TestFiles/LitTests/LitTest/dafny0/Fuel.dfy.expect /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/dafny0/Output/Fuel.dfy.tmp
+Output:
+AssertEqualWithDiff() Failure
+Diff (changing expected into actual):
+ Fuel.dfy(129,8): Error: Fuel can only increase within a given scope.
+ Fuel.dfy(407,8): Error: Fuel can only increase within a given scope.
+ Fuel.dfy(17,22): Error: assertion might not hold
+ Fuel.dfy(65,27): Error: assertion might not hold
+ Fuel.dfy(69,27): Error: assertion might not hold
+ Fuel.dfy(92,22): Error: assertion might not hold
+ Fuel.dfy(93,23): Error: assertion might not hold
+ Fuel.dfy(94,22): Error: assertion might not hold
+ Fuel.dfy(120,22): Error: assertion might not hold
+ Fuel.dfy(121,23): Error: assertion might not hold
+ Fuel.dfy(122,22): Error: assertion might not hold
+ Fuel.dfy(132,26): Error: assertion might not hold
+ Fuel.dfy(133,26): Error: assertion might not hold
+ Fuel.dfy(157,22): Error: assertion might not hold
+ Fuel.dfy(200,55): Error: assertion might not hold
+ Fuel.dfy(245,22): Error: assertion might not hold
+ Fuel.dfy(247,22): Error: assertion might not hold
+ Fuel.dfy(280,26): Error: assertion might not hold
+ Fuel.dfy(335,26): Error: function precondition might not hold
+ Fuel.dfy(324,21): Related location
+-Fuel.dfy(312,43): Related location
++Fuel.dfy(314,46): Related location
+ Fuel.dfy(335,26): Error: function precondition might not hold
+ Fuel.dfy(324,21): Related location
+-Fuel.dfy(312,58): Related location
++Fuel.dfy(314,72): Related location
+ Fuel.dfy(335,26): Error: function precondition might not hold
+ Fuel.dfy(324,21): Related location
+-Fuel.dfy(313,41): Related location
++Fuel.dfy(314,93): Related location
+ Fuel.dfy(335,26): Error: function precondition might not hold
+ Fuel.dfy(324,21): Related location
+-Fuel.dfy(314,46): Related location
++Fuel.dfy(312,43): Related location
+ Fuel.dfy(335,26): Error: function precondition might not hold
+ Fuel.dfy(324,21): Related location
+-Fuel.dfy(314,72): Related location
++Fuel.dfy(312,58): Related location
+-Fuel.dfy(335,26): Error: function precondition might not hold
+-Fuel.dfy(324,21): Related location
+-Fuel.dfy(314,93): Related location
+ Fuel.dfy(335,49): Error: destructor 't' can only be applied to datatype values constructed by 'VTuple'
+ Fuel.dfy(335,50): Error: index out of range
+ Fuel.dfy(336,38): Error: index out of range
+ Fuel.dfy(336,42): Error: destructor 'u' can only be applied to datatype values constructed by 'VUint64'
++Fuel.dfy(336,71): Error: index out of range
+ Fuel.dfy(397,22): Error: assertion might not hold
+ Fuel.dfy(398,22): Error: assertion might not hold
+ Fuel.dfy(399,23): Error: assertion might not hold
+ Fuel.dfy(435,22): Error: assertion might not hold
+ Fuel.dfy(436,22): Error: assertion might not hold
+ Fuel.dfy(437,23): Error: assertion might not hold
+ 
+ Dafny program verifier finished with 30 verified, 32 errors
+ 
+
+Error:
+
+  Stack Trace:
+     at XUnitExtensions.Lit.LitTestCase.Execute(ITestOutputHelper outputHelper) in /home/livia/dafny/Source/XUnitExtensions/Lit/LitTestCase.cs:line 94
+   at XUnitExtensions.Lit.LitTestCase.Run(String filePath, LitTestConfiguration config, ITestOutputHelper outputHelper) in /home/livia/dafny/Source/XUnitExtensions/Lit/LitTestCase.cs:line 55
+   at IntegrationTests.LitTests.LitTest(String path) in /home/livia/dafny/Source/IntegrationTests/LitTests.cs:line 140
+  Standard Output Messages:
+ Executing command: dotnet /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/Dafny.dll /countVerificationErrors:0 /vcsCores:2 /useBaseNameForFileName /compileVerbose:0 /timeLimit:300 /compile:0 /print:/home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/dafny0/Output/Fuel.dfy.tmp.print /dprint:/home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/dafny0/Output/Fuel.dfy.tmp.dprint /autoTriggers:0 /optimizeResolution:0 /errorLimit:10 TestFiles/LitTests/LitTest/dafny0/Fuel.dfy > /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/dafny0/Output/Fuel.dfy.tmp
+ Executing command: DiffCommand TestFiles/LitTests/LitTest/dafny0/Fuel.dfy.expect /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/dafny0/Output/Fuel.dfy.tmp
+ Previous command results:
+ Output:
+ Fuel.dfy(129,8): Error: Fuel can only increase within a given scope.
+ Fuel.dfy(407,8): Error: Fuel can only increase within a given scope.
+ Fuel.dfy(17,22): Error: assertion might not hold
+ Fuel.dfy(65,27): Error: assertion might not hold
+ Fuel.dfy(69,27): Error: assertion might not hold
+ Fuel.dfy(92,22): Error: assertion might not hold
+ Fuel.dfy(93,23): Error: assertion might not hold
+ Fuel.dfy(94,22): Error: assertion might not hold
+ Fuel.dfy(120,22): Error: assertion might not hold
+ Fuel.dfy(121,23): Error: assertion might not hold
+ Fuel.dfy(122,22): Error: assertion might not hold
+ Fuel.dfy(132,26): Error: assertion might not hold
+ Fuel.dfy(133,26): Error: assertion might not hold
+ Fuel.dfy(157,22): Error: assertion might not hold
+ Fuel.dfy(200,55): Error: assertion might not hold
+ Fuel.dfy(245,22): Error: assertion might not hold
+ Fuel.dfy(247,22): Error: assertion might not hold
+ Fuel.dfy(280,26): Error: assertion might not hold
+ Fuel.dfy(335,26): Error: function precondition might not hold
+ Fuel.dfy(324,21): Related location
+ Fuel.dfy(314,46): Related location
+ Fuel.dfy(335,26): Error: function precondition might not hold
+ Fuel.dfy(324,21): Related location
+ Fuel.dfy(314,72): Related location
+ Fuel.dfy(335,26): Error: function precondition might not hold
+ Fuel.dfy(324,21): Related location
+ Fuel.dfy(314,93): Related location
+ Fuel.dfy(335,26): Error: function precondition might not hold
+ Fuel.dfy(324,21): Related location
+ Fuel.dfy(312,43): Related location
+ Fuel.dfy(335,26): Error: function precondition might not hold
+ Fuel.dfy(324,21): Related location
+ Fuel.dfy(312,58): Related location
+ Fuel.dfy(335,49): Error: destructor 't' can only be applied to datatype values constructed by 'VTuple'
+ Fuel.dfy(335,50): Error: index out of range
+ Fuel.dfy(336,38): Error: index out of range
+ Fuel.dfy(336,42): Error: destructor 'u' can only be applied to datatype values constructed by 'VUint64'
+ Fuel.dfy(336,71): Error: index out of range
+ Fuel.dfy(397,22): Error: assertion might not hold
+ Fuel.dfy(398,22): Error: assertion might not hold
+ Fuel.dfy(399,23): Error: assertion might not hold
+ Fuel.dfy(435,22): Error: assertion might not hold
+ Fuel.dfy(436,22): Error: assertion might not hold
+ Fuel.dfy(437,23): Error: assertion might not hold
+ 
+ Dafny program verifier finished with 30 verified, 32 errors
+ 
+ Error:
+ 
+
+
+[xUnit.net 00:02:54.46]     dafny0/Inverses.dfy [FAIL]
+  Failed dafny0/Inverses.dfy [7 s]
+  Error Message:
+   System.Exception : Command returned non-zero exit code (1): DiffCommand TestFiles/LitTests/LitTest/dafny0/Inverses.dfy.expect /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/dafny0/Output/Inverses.dfy.tmp
+Output:
+AssertEqualWithDiff() Failure
+Diff (changing expected into actual):
+ Inverses.dfy(70,2): Error: A postcondition might not hold on this return path.
+ Inverses.dfy(67,10): Related location: This is the postcondition that might not hold.
+ Inverses.dfy(67,66): Related location
+ Inverses.dfy(82,2): Error: A postcondition might not hold on this return path.
+ Inverses.dfy(79,10): Related location: This is the postcondition that might not hold.
+ Inverses.dfy(79,66): Related location
++Inverses.dfy(94,2): Error: A postcondition might not hold on this return path.
++Inverses.dfy(91,10): Related location: This is the postcondition that might not hold.
++Inverses.dfy(91,66): Related location
++Inverses.dfy(104,2): Error: A postcondition might not hold on this return path.
++Inverses.dfy(101,10): Related location: This is the postcondition that might not hold.
++Inverses.dfy(101,66): Related location
+ Inverses.dfy(193,2): Error: A postcondition might not hold on this return path.
+ Inverses.dfy(191,15): Related location: This is the postcondition that might not hold.
+ 
+-Dafny program verifier finished with 31 verified, 3 errors
++Dafny program verifier finished with 29 verified, 5 errors
+ 
+
+Error:
+
+  Stack Trace:
+     at XUnitExtensions.Lit.LitTestCase.Execute(ITestOutputHelper outputHelper) in /home/livia/dafny/Source/XUnitExtensions/Lit/LitTestCase.cs:line 94
+   at XUnitExtensions.Lit.LitTestCase.Run(String filePath, LitTestConfiguration config, ITestOutputHelper outputHelper) in /home/livia/dafny/Source/XUnitExtensions/Lit/LitTestCase.cs:line 55
+   at IntegrationTests.LitTests.LitTest(String path) in /home/livia/dafny/Source/IntegrationTests/LitTests.cs:line 140
+  Standard Output Messages:
+ Executing command: dotnet /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/Dafny.dll /countVerificationErrors:0 /vcsCores:2 /useBaseNameForFileName /compileVerbose:0 /timeLimit:300 /compile:0 /print:/home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/dafny0/Output/Inverses.dfy.tmp.print /dprint:/home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/dafny0/Output/Inverses.dfy.tmp.dprint TestFiles/LitTests/LitTest/dafny0/Inverses.dfy > /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/dafny0/Output/Inverses.dfy.tmp
+ Executing command: DiffCommand TestFiles/LitTests/LitTest/dafny0/Inverses.dfy.expect /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/dafny0/Output/Inverses.dfy.tmp
+ Previous command results:
+ Output:
+ Inverses.dfy(70,2): Error: A postcondition might not hold on this return path.
+ Inverses.dfy(67,10): Related location: This is the postcondition that might not hold.
+ Inverses.dfy(67,66): Related location
+ Inverses.dfy(82,2): Error: A postcondition might not hold on this return path.
+ Inverses.dfy(79,10): Related location: This is the postcondition that might not hold.
+ Inverses.dfy(79,66): Related location
+ Inverses.dfy(94,2): Error: A postcondition might not hold on this return path.
+ Inverses.dfy(91,10): Related location: This is the postcondition that might not hold.
+ Inverses.dfy(91,66): Related location
+ Inverses.dfy(104,2): Error: A postcondition might not hold on this return path.
+ Inverses.dfy(101,10): Related location: This is the postcondition that might not hold.
+ Inverses.dfy(101,66): Related location
+ Inverses.dfy(193,2): Error: A postcondition might not hold on this return path.
+ Inverses.dfy(191,15): Related location: This is the postcondition that might not hold.
+ 
+ Dafny program verifier finished with 29 verified, 5 errors
+ 
+ Error:
+ 
+
+
+[xUnit.net 00:04:23.07]     dafny0/snapshots/Snapshots6.run.dfy [SKIP]
+  Skipped dafny0/snapshots/Snapshots6.run.dfy [1 ms]
+[xUnit.net 00:04:24.14]     dafny0/snapshots/Snapshots7.run.dfy [SKIP]
+  Skipped dafny0/snapshots/Snapshots7.run.dfy [1 ms]
+
+Failed!  - Failed:     8, Passed:   330, Skipped:     2, Total:   340, Duration: 4 m 50 s - /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/IntegrationTests.dll (net6.0)

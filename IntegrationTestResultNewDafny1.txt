@@ -1,0 +1,23 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Compiling DafnyRuntimeJava to DafnyRuntimeJava/build/libs/DafnyRuntime.jar...
+  DafnyCore -> /home/livia/dafny/Binaries/net6.0/DafnyCore.dll
+  XUnitExtensions -> /home/livia/dafny/Source/XUnitExtensions/bin/Debug/net6.0/XUnitExtensions.dll
+  DafnyLanguageServer -> /home/livia/dafny/Binaries/DafnyLanguageServer.dll
+  DafnyRuntime -> /home/livia/dafny/Binaries/net6.0/DafnyRuntime.dll
+  Compiling DafnyRuntimeJava to DafnyRuntimeJava/build/libs/DafnyRuntime.jar...
+  DafnyPipeline -> /home/livia/dafny/Binaries/DafnyPipeline.dll
+  DafnyServer -> /home/livia/dafny/Binaries/DafnyServer.dll
+  DafnyTestGeneration -> /home/livia/dafny/Source/DafnyTestGeneration/bin/Debug/net6.0/DafnyTestGeneration.dll
+  DafnyDriver -> /home/livia/dafny/Binaries/DafnyDriver.dll
+  Dafny -> /home/livia/dafny/Binaries/Dafny.dll
+  TestDafny -> /home/livia/dafny/Source/TestDafny/bin/Debug/net6.0/TestDafny.dll
+  IntegrationTests -> /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/IntegrationTests.dll
+Test run for /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/IntegrationTests.dll (.NETCoreApp,Version=v6.0)
+Microsoft (R) Test Execution Command Line Tool Version 17.3.1 (x64)
+Copyright (c) Microsoft Corporation.  All rights reserved.
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:    31, Skipped:     0, Total:    31, Duration: 1 m 23 s - /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/IntegrationTests.dll (net6.0)

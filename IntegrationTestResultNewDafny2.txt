@@ -1,0 +1,107 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Compiling DafnyRuntimeJava to DafnyRuntimeJava/build/libs/DafnyRuntime.jar...
+  DafnyCore -> /home/livia/dafny/Binaries/net6.0/DafnyCore.dll
+  XUnitExtensions -> /home/livia/dafny/Source/XUnitExtensions/bin/Debug/net6.0/XUnitExtensions.dll
+  DafnyLanguageServer -> /home/livia/dafny/Binaries/DafnyLanguageServer.dll
+  DafnyRuntime -> /home/livia/dafny/Binaries/net6.0/DafnyRuntime.dll
+  Compiling DafnyRuntimeJava to DafnyRuntimeJava/build/libs/DafnyRuntime.jar...
+  DafnyPipeline -> /home/livia/dafny/Binaries/DafnyPipeline.dll
+  DafnyServer -> /home/livia/dafny/Binaries/DafnyServer.dll
+  DafnyTestGeneration -> /home/livia/dafny/Source/DafnyTestGeneration/bin/Debug/net6.0/DafnyTestGeneration.dll
+  DafnyDriver -> /home/livia/dafny/Binaries/DafnyDriver.dll
+  Dafny -> /home/livia/dafny/Binaries/Dafny.dll
+  TestDafny -> /home/livia/dafny/Source/TestDafny/bin/Debug/net6.0/TestDafny.dll
+  IntegrationTests -> /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/IntegrationTests.dll
+Test run for /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/IntegrationTests.dll (.NETCoreApp,Version=v6.0)
+Microsoft (R) Test Execution Command Line Tool Version 17.3.1 (x64)
+Copyright (c) Microsoft Corporation.  All rights reserved.
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:05:21.11]     dafny2/SnapshotableTrees.dfy [FAIL]
+  Failed dafny2/SnapshotableTrees.dfy [5 m 11 s]
+  Error Message:
+   System.Exception : Command returned non-zero exit code (1): DiffCommand TestFiles/LitTests/LitTest/dafny2/SnapshotableTrees.dfy.expect /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/dafny2/Output/SnapshotableTrees.dfy.tmp
+Output:
+AssertEqualWithDiff() Failure
+Diff (changing expected into actual):
++SnapshotableTrees.dfy(12,9): Verification of 'SnapTreeTestHarness.Main (correctness)' timed out after 300 seconds
+ SnapshotableTrees.dfy(71,25): Error: A precondition for this call might not hold.
+ SnapshotableTrees.dfy(595,15): Related location: This is the precondition that might not hold.
+ SnapshotableTrees.dfy(497,18): Related location
+ SnapshotableTrees.dfy(515,10): Related location
+ SnapshotableTrees.dfy(71,25): Error: A precondition for this call might not hold.
+ SnapshotableTrees.dfy(595,15): Related location: This is the precondition that might not hold.
+ SnapshotableTrees.dfy(497,18): Related location
+ SnapshotableTrees.dfy(515,29): Related location
+ SnapshotableTrees.dfy(71,25): Error: A precondition for this call might not hold.
+ SnapshotableTrees.dfy(595,15): Related location: This is the precondition that might not hold.
+ SnapshotableTrees.dfy(497,18): Related location
+ SnapshotableTrees.dfy(515,43): Related location
+ SnapshotableTrees.dfy(71,25): Error: A precondition for this call might not hold.
+ SnapshotableTrees.dfy(595,15): Related location: This is the precondition that might not hold.
+ SnapshotableTrees.dfy(497,18): Related location
+ SnapshotableTrees.dfy(516,31): Related location
+ SnapshotableTrees.dfy(71,25): Error: A precondition for this call might not hold.
+ SnapshotableTrees.dfy(595,15): Related location: This is the precondition that might not hold.
+ SnapshotableTrees.dfy(497,18): Related location
+ SnapshotableTrees.dfy(518,9): Related location
+ 
+-Dafny program verifier finished with 52 verified, 5 errors
++Dafny program verifier finished with 51 verified, 5 errors, 1 time out
+ Main iterates on -15
+ Main iterates on 0
+ Main iterates on 1
+ Main iterates on 2
+ Main iterates on 3
+ Tree: -45 -15 0 1 2 3 6 9
+ 
+
+Error:
+
+  Stack Trace:
+     at XUnitExtensions.Lit.LitTestCase.Execute(ITestOutputHelper outputHelper) in /home/livia/dafny/Source/XUnitExtensions/Lit/LitTestCase.cs:line 94
+   at XUnitExtensions.Lit.LitTestCase.Run(String filePath, LitTestConfiguration config, ITestOutputHelper outputHelper) in /home/livia/dafny/Source/XUnitExtensions/Lit/LitTestCase.cs:line 55
+   at IntegrationTests.LitTests.LitTest(String path) in /home/livia/dafny/Source/IntegrationTests/LitTests.cs:line 140
+  Standard Output Messages:
+ Executing command: dotnet /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/Dafny.dll /countVerificationErrors:0 /vcsCores:2 /useBaseNameForFileName /compileVerbose:0 /timeLimit:300 /compile:4 /dprint:/home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/dafny2/Output/SnapshotableTrees.dfy.tmp.dprint TestFiles/LitTests/LitTest/dafny2/SnapshotableTrees.dfy > /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/dafny2/Output/SnapshotableTrees.dfy.tmp
+ Executing command: DiffCommand TestFiles/LitTests/LitTest/dafny2/SnapshotableTrees.dfy.expect /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/dafny2/Output/SnapshotableTrees.dfy.tmp
+ Previous command results:
+ Output:
+ SnapshotableTrees.dfy(12,9): Verification of 'SnapTreeTestHarness.Main (correctness)' timed out after 300 seconds
+ SnapshotableTrees.dfy(71,25): Error: A precondition for this call might not hold.
+ SnapshotableTrees.dfy(595,15): Related location: This is the precondition that might not hold.
+ SnapshotableTrees.dfy(497,18): Related location
+ SnapshotableTrees.dfy(515,10): Related location
+ SnapshotableTrees.dfy(71,25): Error: A precondition for this call might not hold.
+ SnapshotableTrees.dfy(595,15): Related location: This is the precondition that might not hold.
+ SnapshotableTrees.dfy(497,18): Related location
+ SnapshotableTrees.dfy(515,29): Related location
+ SnapshotableTrees.dfy(71,25): Error: A precondition for this call might not hold.
+ SnapshotableTrees.dfy(595,15): Related location: This is the precondition that might not hold.
+ SnapshotableTrees.dfy(497,18): Related location
+ SnapshotableTrees.dfy(515,43): Related location
+ SnapshotableTrees.dfy(71,25): Error: A precondition for this call might not hold.
+ SnapshotableTrees.dfy(595,15): Related location: This is the precondition that might not hold.
+ SnapshotableTrees.dfy(497,18): Related location
+ SnapshotableTrees.dfy(516,31): Related location
+ SnapshotableTrees.dfy(71,25): Error: A precondition for this call might not hold.
+ SnapshotableTrees.dfy(595,15): Related location: This is the precondition that might not hold.
+ SnapshotableTrees.dfy(497,18): Related location
+ SnapshotableTrees.dfy(518,9): Related location
+ 
+ Dafny program verifier finished with 51 verified, 5 errors, 1 time out
+ Main iterates on -15
+ Main iterates on 0
+ Main iterates on 1
+ Main iterates on 2
+ Main iterates on 3
+ Tree: -45 -15 0 1 2 3 6 9
+ 
+ Error:
+ 
+
+
+
+Failed!  - Failed:     1, Passed:    21, Skipped:     0, Total:    22, Duration: 5 m 16 s - /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/IntegrationTests.dll (net6.0)

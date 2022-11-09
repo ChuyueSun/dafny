@@ -1,0 +1,46 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Compiling DafnyRuntimeJava to DafnyRuntimeJava/build/libs/DafnyRuntime.jar...
+  DafnyCore -> /home/livia/dafny/Binaries/net6.0/DafnyCore.dll
+  XUnitExtensions -> /home/livia/dafny/Source/XUnitExtensions/bin/Debug/net6.0/XUnitExtensions.dll
+  DafnyLanguageServer -> /home/livia/dafny/Binaries/DafnyLanguageServer.dll
+  DafnyRuntime -> /home/livia/dafny/Binaries/net6.0/DafnyRuntime.dll
+  Compiling DafnyRuntimeJava to DafnyRuntimeJava/build/libs/DafnyRuntime.jar...
+  DafnyPipeline -> /home/livia/dafny/Binaries/DafnyPipeline.dll
+  DafnyServer -> /home/livia/dafny/Binaries/DafnyServer.dll
+  DafnyTestGeneration -> /home/livia/dafny/Source/DafnyTestGeneration/bin/Debug/net6.0/DafnyTestGeneration.dll
+  DafnyDriver -> /home/livia/dafny/Binaries/DafnyDriver.dll
+  Dafny -> /home/livia/dafny/Binaries/Dafny.dll
+  TestDafny -> /home/livia/dafny/Source/TestDafny/bin/Debug/net6.0/TestDafny.dll
+  IntegrationTests -> /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/IntegrationTests.dll
+Test run for /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/IntegrationTests.dll (.NETCoreApp,Version=v6.0)
+Microsoft (R) Test Execution Command Line Tool Version 17.3.1 (x64)
+Copyright (c) Microsoft Corporation.  All rights reserved.
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:09.88]     dafny3/Filter.dfy [FAIL]
+  Failed dafny3/Filter.dfy [8 s]
+  Error Message:
+   System.Exception : Command returned non-zero exit code (4): dotnet /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/Dafny.dll /vcsCores:2 /useBaseNameForFileName /compileVerbose:0 /timeLimit:300 /compile:0 /dprint:/home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/dafny3/Output/Filter.dfy.tmp.dprint TestFiles/LitTests/LitTest/dafny3/Filter.dfy > /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/dafny3/Output/Filter.dfy.tmp
+Output:
+Filter.dfy(222,9): Error: A postcondition might not hold on this return path.
+Filter.dfy(207,10): Related location: This is the postcondition that might not hold.
+Filter.dfy(12,2): Related location
+Filter.dfy(12,40): Related location
+
+Dafny program verifier finished with 27 verified, 1 error
+
+Error:
+
+  Stack Trace:
+     at XUnitExtensions.Lit.LitTestCase.Execute(ITestOutputHelper outputHelper) in /home/livia/dafny/Source/XUnitExtensions/Lit/LitTestCase.cs:line 94
+   at XUnitExtensions.Lit.LitTestCase.Run(String filePath, LitTestConfiguration config, ITestOutputHelper outputHelper) in /home/livia/dafny/Source/XUnitExtensions/Lit/LitTestCase.cs:line 55
+   at IntegrationTests.LitTests.LitTest(String path) in /home/livia/dafny/Source/IntegrationTests/LitTests.cs:line 140
+  Standard Output Messages:
+ Executing command: dotnet /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/Dafny.dll /vcsCores:2 /useBaseNameForFileName /compileVerbose:0 /timeLimit:300 /compile:0 /dprint:/home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/dafny3/Output/Filter.dfy.tmp.dprint TestFiles/LitTests/LitTest/dafny3/Filter.dfy > /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/TestFiles/LitTests/LitTest/dafny3/Output/Filter.dfy.tmp
+ Previous command results:
+
+
+
+Failed!  - Failed:     1, Passed:    19, Skipped:     0, Total:    20, Duration: 20 s - /home/livia/dafny/Source/IntegrationTests/bin/Debug/net6.0/IntegrationTests.dll (net6.0)
