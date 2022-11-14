@@ -1,5 +1,5 @@
 // Dafny 3.9.1.41027
-// Command Line Options: Test/mytest/seq.dfy /print:Test/mytest/seq_generated_reference.bpl /proverLog:Test/mytest/seq_test.smt2
+// Command Line Options: Test/mytest/seq.dfy /print:Test/mytest/seq_generated_reference.bpl
 
 const $$Language$Dafny: bool;
 
@@ -230,7 +230,7 @@ axiom (forall bx: Box, t: Ty ::
 axiom (forall bx: Box, t: Ty :: 
   { $IsBox(bx, TSeq(t)) } 
   $IsBox(bx, TSeq(t))
-     ==> $Box($Unbox(bx)) == bx && $Is($Unbox(bx), TSeq(t)));
+     ==> $Box($Unbox(bx): Seq) == bx && $Is($Unbox(bx): Seq, TSeq(t)));
 
 axiom (forall bx: Box, s: Ty, t: Ty :: 
   { $IsBox(bx, TMap(s, t)) } 
@@ -280,7 +280,7 @@ axiom (forall v: MultiSet Box, t0: Ty ::
   { $Is(v, TMultiSet(t0)) } 
   $Is(v, TMultiSet(t0)) ==> $IsGoodMultiSet(v));
 
-axiom (forall v: Seq t0, t0: Ty :: 
+axiom (forall v: Seq, t0: Ty :: 
   { $Is(v, TSeq(t0)) } 
   $Is(v, TSeq(t0))
      <==> (forall i: int :: 
@@ -348,12 +348,12 @@ axiom (forall v: MultiSet Box, t0: Ty, h: Heap ::
   $IsAlloc(v, TMultiSet(t0), h)
      <==> (forall bx: Box :: { v[bx] } 0 < v[bx] ==> $IsAllocBox(bx, t0, h)));
 
-// axiom (forall v: Seq, t0: Ty, h: Heap :: 
-//   { $IsAlloc(v, TSeq(t0), h) } 
-//   $IsAlloc(v, TSeq(t0), h)
-//      <==> (forall i: int :: 
-//       { Seq#Index(v, i) } 
-//       0 <= i && i < Seq#Length(v) ==> $IsAllocBox(Seq#Index(v, i), t0, h)));
+axiom (forall v: Seq, t0: Ty, h: Heap :: 
+  { $IsAlloc(v, TSeq(t0), h) } 
+  $IsAlloc(v, TSeq(t0), h)
+     <==> (forall i: int :: 
+      { Seq#Index(v, i) } 
+      0 <= i && i < Seq#Length(v) ==> $IsAllocBox(Seq#Index(v, i), t0, h)));
 
 axiom (forall v: Map Box Box, t0: Ty, t1: Ty, h: Heap :: 
   { $IsAlloc(v, TMap(t0, t1), h) } 
@@ -418,7 +418,7 @@ function SetRef_to_SetBox(s: [ref]bool) : Set Box;
 
 axiom (forall s: [ref]bool, bx: Box :: 
   { SetRef_to_SetBox(s)[bx] } 
-  SetRef_to_SetBox(s)[bx] == s[$Unbox(bx): ref]);
+  SetRef_to_SetBox(s)[bx] <==> s[$Unbox(bx): ref]);
 
 axiom (forall s: [ref]bool :: 
   { SetRef_to_SetBox(s) } 
@@ -473,7 +473,7 @@ axiom (forall o: ORDINAL, p: ORDINAL ::
   (ORD#Less(o, p) ==> o != p)
      && (ORD#IsNat(o) && !ORD#IsNat(p) ==> ORD#Less(o, p))
      && (ORD#IsNat(o) && ORD#IsNat(p)
-       ==> ORD#Less(o, p) == (ORD#Offset(o) < ORD#Offset(p)))
+       ==> (ORD#Less(o, p) <==> ORD#Offset(o) < ORD#Offset(p)))
      && (ORD#Less(o, p) && ORD#IsNat(p) ==> ORD#IsNat(o)));
 
 axiom (forall o: ORDINAL, p: ORDINAL :: 
@@ -488,7 +488,7 @@ function ORD#LessThanLimit(ORDINAL, ORDINAL) : bool;
 
 axiom (forall o: ORDINAL, p: ORDINAL :: 
   { ORD#LessThanLimit(o, p) } 
-  ORD#LessThanLimit(o, p) == ORD#Less(o, p));
+  ORD#LessThanLimit(o, p) <==> ORD#Less(o, p));
 
 function ORD#Plus(ORDINAL, ORDINAL) : ORDINAL;
 
@@ -496,7 +496,7 @@ axiom (forall o: ORDINAL, p: ORDINAL ::
   { ORD#Plus(o, p) } 
   (ORD#IsNat(ORD#Plus(o, p)) ==> ORD#IsNat(o) && ORD#IsNat(p))
      && (ORD#IsNat(p)
-       ==> ORD#IsNat(ORD#Plus(o, p)) == ORD#IsNat(o)
+       ==> (ORD#IsNat(ORD#Plus(o, p)) <==> ORD#IsNat(o))
          && ORD#Offset(ORD#Plus(o, p)) == ORD#Offset(o) + ORD#Offset(p)));
 
 axiom (forall o: ORDINAL, p: ORDINAL :: 
@@ -514,7 +514,7 @@ function ORD#Minus(ORDINAL, ORDINAL) : ORDINAL;
 axiom (forall o: ORDINAL, p: ORDINAL :: 
   { ORD#Minus(o, p) } 
   ORD#IsNat(p) && ORD#Offset(p) <= ORD#Offset(o)
-     ==> ORD#IsNat(ORD#Minus(o, p)) == ORD#IsNat(o)
+     ==> (ORD#IsNat(ORD#Minus(o, p)) <==> ORD#IsNat(o))
        && ORD#Offset(ORD#Minus(o, p)) == ORD#Offset(o) - ORD#Offset(p));
 
 axiom (forall o: ORDINAL, p: ORDINAL :: 
@@ -1164,36 +1164,202 @@ axiom (forall<T> s: Seq, i: int, v: T, x: T ::
 
 type {:builtin "Seq"} Seq _;
 
-function {:builtin "seq.len"} Seq#Length<T>(Seq T) : int;
+function {:builtin "seq.len"} Seq#Length<T>(Seq) : int;
 
-function {:builtin "seq.empty"} Seq#Empty<T>() : Seq T;
+function {:builtin "seq.empty"} Seq#Empty<T>() : Seq;
 
-function {:builtin "seq.unit"} Seq#Singleton<T>(T) : Seq T;
+function {:builtin "seq.unit"} Seq#Singleton<T>(T) : Seq;
 
-function {:inline} Seq#Build<T>(s: Seq T, val: T) : Seq T
-{
-  Seq#Append(s, Seq#Singleton(val))
-}
+function Seq#Build<T>(s: Seq, val: T) : Seq;
 
-function {:builtin "seq.++"} Seq#Append<T>(Seq T, Seq T) : Seq T;
+function Seq#Build_inv0<T>(s: Seq) : Seq;
 
-function {:builtin "seq.nth"} Seq#Index<T>(Seq T, int) : T;
+function Seq#Build_inv1<T>(s: Seq) : T;
 
-function {:builtin "seq.update"} Seq_Update_Sub<T>(s: Seq T, i: int, sub: Seq T) : Seq T;
+axiom (forall<T> s: Seq, val: T :: 
+  { Seq#Build(s, val) } 
+  Seq#Build_inv0(Seq#Build(s, val)) == s
+     && Seq#Build_inv1(Seq#Build(s, val)) == val);
 
-function {:inline} Seq#Update<T>(s: Seq T, i: int, val: T) : Seq T
-{
-  Seq_Update_Sub(s, i, Seq#Singleton(val))
-}
+axiom (forall s: Seq, bx: Box, t: Ty :: 
+  { $Is(Seq#Build(s, bx), TSeq(t)) } 
+  $Is(s, TSeq(t)) && $IsBox(bx, t) ==> $Is(Seq#Build(s, bx), TSeq(t)));
 
-function {:builtin "seq.contains"} Seq_Contains_Sub<T>(Seq T, Seq T) : bool;
+function Seq#Create(ty: Ty, heap: Heap, len: int, init: HandleType) : Seq;
 
-function {:inline} Seq#Contains<T>(s: Seq T, x: T) : bool
-{
-  Seq_Contains_Sub(s, Seq#Singleton(x))
-}
+axiom (forall ty: Ty, heap: Heap, len: int, init: HandleType :: 
+  { Seq#Length(Seq#Create(ty, heap, len, init): Seq) } 
+  $IsGoodHeap(heap) && 0 <= len
+     ==> Seq#Length(Seq#Create(ty, heap, len, init): Seq) == len);
 
+axiom (forall ty: Ty, heap: Heap, len: int, init: HandleType, i: int :: 
+  { Seq#Index(Seq#Create(ty, heap, len, init), i) } 
+  $IsGoodHeap(heap) && 0 <= i && i < len
+     ==> Seq#Index(Seq#Create(ty, heap, len, init), i)
+       == Apply1(TInt, TSeq(ty), heap, init, $Box(i)));
 
+function {:builtin "seq.++"} Seq#Append<T>(Seq, Seq) : Seq;
+
+function {:builtin "seq.nth"} Seq#Index<T>(Seq, int) : T;
+
+function Seq#Update<T>(Seq, int, T) : Seq;
+
+axiom (forall<T> s: Seq, i: int, v: T :: 
+  { Seq#Length(Seq#Update(s, i, v)) } 
+  0 <= i && i < Seq#Length(s) ==> Seq#Length(Seq#Update(s, i, v)) == Seq#Length(s));
+
+axiom (forall<T> s: Seq, i: int, v: T, n: int :: 
+  { Seq#Index(Seq#Update(s, i, v), n) } 
+  0 <= n && n < Seq#Length(s)
+     ==> (i == n ==> Seq#Index(Seq#Update(s, i, v), n) == v)
+       && (i != n ==> Seq#Index(Seq#Update(s, i, v), n) == Seq#Index(s, n)));
+
+function {:builtin "seq.contains"} Seq_Contains_Sub<T>(Seq, Seq) : bool;
+
+function Seq#Contains<T>(s: Seq, x: T) : bool;
+
+axiom (forall<T> s: Seq, x: T :: 
+  { Seq#Contains(s, x): bool } 
+  Seq#Contains(s, x): bool == Seq_Contains_Sub(Seq#Singleton(x)));
+
+function Seq#Equal<T>(Seq, Seq) : bool;
+
+axiom (forall<T> s0: Seq, s1: Seq :: 
+  { Seq#Equal(s0, s1) } 
+  Seq#Equal(s0, s1)
+     <==> Seq#Length(s0) == Seq#Length(s1)
+       && (forall j: int :: 
+        { Seq#Index(s0, j) } { Seq#Index(s1, j) } 
+        0 <= j && j < Seq#Length(s0) ==> Seq#Index(s0, j) == Seq#Index(s1, j)));
+
+axiom (forall<T> a: Seq, b: Seq :: { Seq#Equal(a, b) } Seq#Equal(a, b) ==> a == b);
+
+function Seq#SameUntil<T>(Seq, Seq, int) : bool;
+
+axiom (forall<T> s0: Seq, s1: Seq, n: int :: 
+  { Seq#SameUntil(s0, s1, n) } 
+  Seq#SameUntil(s0, s1, n)
+     <==> (forall j: int :: 
+      { Seq#Index(s0, j) } { Seq#Index(s1, j) } 
+      0 <= j && j < n ==> Seq#Index(s0, j) == Seq#Index(s1, j)));
+
+function Seq#Take<T>(s: Seq, howMany: int) : Seq;
+
+axiom (forall<T> s: Seq, n: int :: 
+  { Seq#Length(Seq#Take(s, n)) } 
+  0 <= n && n <= Seq#Length(s) ==> Seq#Length(Seq#Take(s, n)) == n);
+
+axiom (forall<T> s: Seq, n: int, j: int :: 
+  {:weight 25} { Seq#Index(Seq#Take(s, n), j) } { Seq#Index(s, j), Seq#Take(s, n) } 
+  0 <= j && j < n && j < Seq#Length(s)
+     ==> Seq#Index(Seq#Take(s, n), j) == Seq#Index(s, j));
+
+function Seq#Drop<T>(s: Seq, howMany: int) : Seq;
+
+axiom (forall<T> s: Seq, n: int :: 
+  { Seq#Length(Seq#Drop(s, n)) } 
+  0 <= n && n <= Seq#Length(s) ==> Seq#Length(Seq#Drop(s, n)) == Seq#Length(s) - n);
+
+axiom (forall<T> s: Seq, n: int, j: int :: 
+  {:weight 25} { Seq#Index(Seq#Drop(s, n), j) } 
+  0 <= n && 0 <= j && j < Seq#Length(s) - n
+     ==> Seq#Index(Seq#Drop(s, n), j) == Seq#Index(s, j + n));
+
+axiom (forall<T> s: Seq, n: int, k: int :: 
+  {:weight 25} { Seq#Index(s, k), Seq#Drop(s, n) } 
+  0 <= n && n <= k && k < Seq#Length(s)
+     ==> Seq#Index(Seq#Drop(s, n), k - n) == Seq#Index(s, k));
+
+axiom (forall<T> s: Seq, t: Seq, n: int :: 
+  { Seq#Take(Seq#Append(s, t), n) } { Seq#Drop(Seq#Append(s, t), n) } 
+  n == Seq#Length(s)
+     ==> Seq#Take(Seq#Append(s, t), n) == s && Seq#Drop(Seq#Append(s, t), n) == t);
+
+function Seq#FromArray(h: Heap, a: ref) : Seq;
+
+axiom (forall h: Heap, a: ref :: 
+  { Seq#Length(Seq#FromArray(h, a)) } 
+  Seq#Length(Seq#FromArray(h, a)) == _System.array.Length(a));
+
+axiom (forall h: Heap, a: ref :: 
+  { Seq#FromArray(h, a) } 
+  (forall i: int :: 
+    { read(h, a, IndexField(i)) } { Seq#Index(Seq#FromArray(h, a): Seq, i) } 
+    0 <= i && i < Seq#Length(Seq#FromArray(h, a))
+       ==> Seq#Index(Seq#FromArray(h, a), i) == read(h, a, IndexField(i))));
+
+axiom (forall h0: Heap, h1: Heap, a: ref :: 
+  { Seq#FromArray(h1, a), $HeapSucc(h0, h1) } 
+  $IsGoodHeap(h0) && $IsGoodHeap(h1) && $HeapSucc(h0, h1) && h0[a] == h1[a]
+     ==> Seq#FromArray(h0, a) == Seq#FromArray(h1, a));
+
+axiom (forall h: Heap, i: int, v: Box, a: ref :: 
+  { Seq#FromArray(update(h, a, IndexField(i), v), a) } 
+  0 <= i && i < _System.array.Length(a)
+     ==> Seq#FromArray(update(h, a, IndexField(i), v), a)
+       == Seq#Update(Seq#FromArray(h, a), i, v));
+
+axiom (forall<T> s: Seq, i: int, v: T, n: int :: 
+  { Seq#Take(Seq#Update(s, i, v), n) } 
+  0 <= i && i < n && n <= Seq#Length(s)
+     ==> Seq#Take(Seq#Update(s, i, v), n) == Seq#Update(Seq#Take(s, n), i, v));
+
+axiom (forall<T> s: Seq, i: int, v: T, n: int :: 
+  { Seq#Take(Seq#Update(s, i, v), n) } 
+  n <= i && i < Seq#Length(s)
+     ==> Seq#Take(Seq#Update(s, i, v), n) == Seq#Take(s, n));
+
+axiom (forall<T> s: Seq, i: int, v: T, n: int :: 
+  { Seq#Drop(Seq#Update(s, i, v), n) } 
+  0 <= n && n <= i && i < Seq#Length(s)
+     ==> Seq#Drop(Seq#Update(s, i, v), n) == Seq#Update(Seq#Drop(s, n), i - n, v));
+
+axiom (forall<T> s: Seq, i: int, v: T, n: int :: 
+  { Seq#Drop(Seq#Update(s, i, v), n) } 
+  0 <= i && i < n && n <= Seq#Length(s)
+     ==> Seq#Drop(Seq#Update(s, i, v), n) == Seq#Drop(s, n));
+
+axiom (forall h: Heap, a: ref, n0: int, n1: int :: 
+  { Seq#Take(Seq#FromArray(h, a), n0), Seq#Take(Seq#FromArray(h, a), n1) } 
+  n0 + 1 == n1 && 0 <= n0 && n1 <= _System.array.Length(a)
+     ==> Seq#Take(Seq#FromArray(h, a), n1)
+       == Seq#Build(Seq#Take(Seq#FromArray(h, a), n0), read(h, a, IndexField(n0): Field Box)));
+
+axiom (forall<T> s: Seq, v: T, n: int :: 
+  { Seq#Drop(Seq#Build(s, v), n) } 
+  0 <= n && n <= Seq#Length(s)
+     ==> Seq#Drop(Seq#Build(s, v), n) == Seq#Build(Seq#Drop(s, n), v));
+
+function Seq#Rank<T>(Seq) : int;
+
+axiom (forall s: Seq, i: int :: 
+  { DtRank($Unbox(Seq#Index(s, i)): DatatypeType) } 
+  0 <= i && i < Seq#Length(s)
+     ==> DtRank($Unbox(Seq#Index(s, i)): DatatypeType) < Seq#Rank(s));
+
+axiom (forall<T> s: Seq, i: int :: 
+  { Seq#Rank(Seq#Drop(s, i)) } 
+  0 < i && i <= Seq#Length(s) ==> Seq#Rank(Seq#Drop(s, i)) < Seq#Rank(s));
+
+axiom (forall<T> s: Seq, i: int :: 
+  { Seq#Rank(Seq#Take(s, i)) } 
+  0 <= i && i < Seq#Length(s) ==> Seq#Rank(Seq#Take(s, i)) < Seq#Rank(s));
+
+axiom (forall<T> s: Seq, i: int, j: int :: 
+  { Seq#Rank(Seq#Append(Seq#Take(s, i), Seq#Drop(s, j))) } 
+  0 <= i && i < j && j <= Seq#Length(s)
+     ==> Seq#Rank(Seq#Append(Seq#Take(s, i), Seq#Drop(s, j))) < Seq#Rank(s));
+
+axiom (forall<T> s: Seq, n: int :: { Seq#Drop(s, n) } n == 0 ==> Seq#Drop(s, n) == s);
+
+axiom (forall<T> s: Seq, n: int :: 
+  { Seq#Take(s, n) } 
+  n == 0 ==> Seq#Take(s, n) == Seq#Empty());
+
+axiom (forall<T> s: Seq, m: int, n: int :: 
+  { Seq#Drop(Seq#Drop(s, m), n) } 
+  0 <= m && 0 <= n && m + n <= Seq#Length(s)
+     ==> Seq#Drop(Seq#Drop(s, m), n) == Seq#Drop(s, m + n));
 
 type Map _ _;
 
@@ -1239,7 +1405,7 @@ function Map#Values<U,V>(Map U V) : Set V;
 axiom (forall<U,V> m: Map U V, v: V :: 
   { Map#Values(m)[v] } 
   Map#Values(m)[v]
-     == (exists u: U :: 
+     <==> (exists u: U :: 
       { Map#Domain(m)[u] } { Map#Elements(m)[u] } 
       Map#Domain(m)[u] && v == Map#Elements(m)[u]));
 
@@ -1286,7 +1452,7 @@ axiom (forall<U,V> m: Map U V, u: U, u': U, v: V ::
   (u' == u
        ==> Map#Domain(Map#Build(m, u, v))[u'] && Map#Elements(Map#Build(m, u, v))[u'] == v)
      && (u' != u
-       ==> Map#Domain(Map#Build(m, u, v))[u'] == Map#Domain(m)[u']
+       ==> (Map#Domain(Map#Build(m, u, v))[u'] <==> Map#Domain(m)[u'])
          && Map#Elements(Map#Build(m, u, v))[u'] == Map#Elements(m)[u']));
 
 axiom (forall<U,V> m: Map U V, u: U, v: V :: 
@@ -1325,7 +1491,7 @@ function Map#Equal<U,V>(Map U V, Map U V) : bool;
 axiom (forall<U,V> m: Map U V, m': Map U V :: 
   { Map#Equal(m, m') } 
   Map#Equal(m, m')
-     <==> (forall u: U :: Map#Domain(m)[u] == Map#Domain(m')[u])
+     <==> (forall u: U :: Map#Domain(m)[u] <==> Map#Domain(m')[u])
        && (forall u: U :: Map#Domain(m)[u] ==> Map#Elements(m)[u] == Map#Elements(m')[u]));
 
 axiom (forall<U,V> m: Map U V, m': Map U V :: 
@@ -1377,7 +1543,7 @@ function IMap#Values<U,V>(IMap U V) : Set V;
 axiom (forall<U,V> m: IMap U V, v: V :: 
   { IMap#Values(m)[v] } 
   IMap#Values(m)[v]
-     == (exists u: U :: 
+     <==> (exists u: U :: 
       { IMap#Domain(m)[u] } { IMap#Elements(m)[u] } 
       IMap#Domain(m)[u] && v == IMap#Elements(m)[u]));
 
@@ -1420,7 +1586,7 @@ axiom (forall<U,V> m: IMap U V, u: U, u': U, v: V ::
        ==> IMap#Domain(IMap#Build(m, u, v))[u']
          && IMap#Elements(IMap#Build(m, u, v))[u'] == v)
      && (u' != u
-       ==> IMap#Domain(IMap#Build(m, u, v))[u'] == IMap#Domain(m)[u']
+       ==> (IMap#Domain(IMap#Build(m, u, v))[u'] <==> IMap#Domain(m)[u'])
          && IMap#Elements(IMap#Build(m, u, v))[u'] == IMap#Elements(m)[u']));
 
 function IMap#Equal<U,V>(IMap U V, IMap U V) : bool;
@@ -1428,7 +1594,7 @@ function IMap#Equal<U,V>(IMap U V, IMap U V) : bool;
 axiom (forall<U,V> m: IMap U V, m': IMap U V :: 
   { IMap#Equal(m, m') } 
   IMap#Equal(m, m')
-     <==> (forall u: U :: IMap#Domain(m)[u] == IMap#Domain(m')[u])
+     <==> (forall u: U :: IMap#Domain(m)[u] <==> IMap#Domain(m')[u])
        && (forall u: U :: 
         IMap#Domain(m)[u] ==> IMap#Elements(m)[u] == IMap#Elements(m')[u]));
 
@@ -1495,25 +1661,25 @@ function {:never_pattern true} INTERNAL_lt_boogie(x: int, y: int) : bool;
 
 axiom (forall x: int, y: int :: 
   {:never_pattern true} { INTERNAL_lt_boogie(x, y): bool } 
-  INTERNAL_lt_boogie(x, y): bool == (x < y));
+  INTERNAL_lt_boogie(x, y): bool <==> x < y);
 
 function {:never_pattern true} INTERNAL_le_boogie(x: int, y: int) : bool;
 
 axiom (forall x: int, y: int :: 
   {:never_pattern true} { INTERNAL_le_boogie(x, y): bool } 
-  INTERNAL_le_boogie(x, y): bool == (x <= y));
+  INTERNAL_le_boogie(x, y): bool <==> x <= y);
 
 function {:never_pattern true} INTERNAL_gt_boogie(x: int, y: int) : bool;
 
 axiom (forall x: int, y: int :: 
   {:never_pattern true} { INTERNAL_gt_boogie(x, y): bool } 
-  INTERNAL_gt_boogie(x, y): bool == (x > y));
+  INTERNAL_gt_boogie(x, y): bool <==> x > y);
 
 function {:never_pattern true} INTERNAL_ge_boogie(x: int, y: int) : bool;
 
 axiom (forall x: int, y: int :: 
   {:never_pattern true} { INTERNAL_ge_boogie(x, y): bool } 
-  INTERNAL_ge_boogie(x, y): bool == (x >= y));
+  INTERNAL_ge_boogie(x, y): bool <==> x >= y);
 
 function Mul(x: int, y: int) : int;
 
@@ -1795,7 +1961,7 @@ axiom (forall t0: Ty,
     bx0: Box, 
     bx: Box :: 
   { Reads1(t0, t1, heap, Handle1(h, r, rd), bx0)[bx] } 
-  Reads1(t0, t1, heap, Handle1(h, r, rd), bx0)[bx] == rd[heap, bx0][bx]);
+  Reads1(t0, t1, heap, Handle1(h, r, rd), bx0)[bx] <==> rd[heap, bx0][bx]);
 
 function {:inline} Requires1#canCall(t0: Ty, t1: Ty, heap: Heap, f: HandleType, bx0: Box) : bool
 {
@@ -1850,7 +2016,7 @@ axiom (forall t0: Ty, t1: Ty, h0: Heap, h1: Heap, f: HandleType, bx0: Box ::
        && (forall<a> o: ref, fld: Field a :: 
         o != null && Reads1(t0, t1, h0, f, bx0)[$Box(o)]
            ==> read(h0, o, fld) == read(h1, o, fld))
-     ==> Requires1(t0, t1, h0, f, bx0) == Requires1(t0, t1, h1, f, bx0));
+     ==> (Requires1(t0, t1, h0, f, bx0) <==> Requires1(t0, t1, h1, f, bx0)));
 
 // frame axiom for Requires1
 axiom (forall t0: Ty, t1: Ty, h0: Heap, h1: Heap, f: HandleType, bx0: Box :: 
@@ -1865,7 +2031,7 @@ axiom (forall t0: Ty, t1: Ty, h0: Heap, h1: Heap, f: HandleType, bx0: Box ::
        && (forall<a> o: ref, fld: Field a :: 
         o != null && Reads1(t0, t1, h1, f, bx0)[$Box(o)]
            ==> read(h0, o, fld) == read(h1, o, fld))
-     ==> Requires1(t0, t1, h0, f, bx0) == Requires1(t0, t1, h1, f, bx0));
+     ==> (Requires1(t0, t1, h0, f, bx0) <==> Requires1(t0, t1, h1, f, bx0)));
 
 // frame axiom for Apply1
 axiom (forall t0: Ty, t1: Ty, h0: Heap, h1: Heap, f: HandleType, bx0: Box :: 
@@ -1914,7 +2080,7 @@ axiom (forall t0: Ty, t1: Ty, heap: Heap, f: HandleType, bx0: Box ::
       $IsBox(bx0, t0)
        && $Is(f, Tclass._System.___hFunc1(t0, t1))
        && Set#Equal(Reads1(t0, t1, $OneHeap, f, bx0), Set#Empty(): Set Box)
-     ==> Requires1(t0, t1, $OneHeap, f, bx0) == Requires1(t0, t1, heap, f, bx0));
+     ==> (Requires1(t0, t1, $OneHeap, f, bx0) <==> Requires1(t0, t1, heap, f, bx0)));
 
 axiom (forall f: HandleType, t0: Ty, t1: Ty :: 
   { $Is(f, Tclass._System.___hFunc1(t0, t1)) } 
@@ -2092,7 +2258,7 @@ axiom (forall t0: Ty, heap: Heap, h: [Heap]Box, r: [Heap]bool, rd: [Heap]Set Box
 
 axiom (forall t0: Ty, heap: Heap, h: [Heap]Box, r: [Heap]bool, rd: [Heap]Set Box, bx: Box :: 
   { Reads0(t0, heap, Handle0(h, r, rd))[bx] } 
-  Reads0(t0, heap, Handle0(h, r, rd))[bx] == rd[heap][bx]);
+  Reads0(t0, heap, Handle0(h, r, rd))[bx] <==> rd[heap][bx]);
 
 function {:inline} Requires0#canCall(t0: Ty, heap: Heap, f: HandleType) : bool
 {
@@ -2138,7 +2304,7 @@ axiom (forall t0: Ty, h0: Heap, h1: Heap, f: HandleType ::
        && $Is(f, Tclass._System.___hFunc0(t0))
        && (forall<a> o: ref, fld: Field a :: 
         o != null && Reads0(t0, h0, f)[$Box(o)] ==> read(h0, o, fld) == read(h1, o, fld))
-     ==> Requires0(t0, h0, f) == Requires0(t0, h1, f));
+     ==> (Requires0(t0, h0, f) <==> Requires0(t0, h1, f)));
 
 // frame axiom for Requires0
 axiom (forall t0: Ty, h0: Heap, h1: Heap, f: HandleType :: 
@@ -2150,7 +2316,7 @@ axiom (forall t0: Ty, h0: Heap, h1: Heap, f: HandleType ::
        && $Is(f, Tclass._System.___hFunc0(t0))
        && (forall<a> o: ref, fld: Field a :: 
         o != null && Reads0(t0, h1, f)[$Box(o)] ==> read(h0, o, fld) == read(h1, o, fld))
-     ==> Requires0(t0, h0, f) == Requires0(t0, h1, f));
+     ==> (Requires0(t0, h0, f) <==> Requires0(t0, h1, f)));
 
 // frame axiom for Apply0
 axiom (forall t0: Ty, h0: Heap, h1: Heap, f: HandleType :: 
@@ -2189,7 +2355,7 @@ axiom (forall t0: Ty, heap: Heap, f: HandleType ::
   $IsGoodHeap(heap)
        && $Is(f, Tclass._System.___hFunc0(t0))
        && Set#Equal(Reads0(t0, $OneHeap, f), Set#Empty(): Set Box)
-     ==> Requires0(t0, $OneHeap, f) == Requires0(t0, heap, f));
+     ==> (Requires0(t0, $OneHeap, f) <==> Requires0(t0, heap, f)));
 
 axiom (forall f: HandleType, t0: Ty :: 
   { $Is(f, Tclass._System.___hFunc0(t0)) } 
@@ -2592,7 +2758,7 @@ procedure {:verboseName "m (correctness)"} Impl$$_module.__default.m() returns (
 implementation {:verboseName "m (correctness)"} Impl$$_module.__default.m() returns ($_reverifyPost: bool)
 {
   var $_Frame: <beta>[ref,Field beta]bool;
-  var s#0: Seq int where $Is(s#0, TSeq(TInt)) && $IsAlloc(s#0, TSeq(TInt), $Heap);
+  var s#0: Seq where $Is(s#0, TSeq(TInt)) && $IsAlloc(s#0, TSeq(TInt), $Heap);
 
     // AddMethodImpl: m, Impl$$_module.__default.m
     $_Frame := (lambda<alpha> $o: ref, $f: Field alpha :: 
@@ -2601,7 +2767,7 @@ implementation {:verboseName "m (correctness)"} Impl$$_module.__default.m() retu
     // ----- assignment statement ----- /home/livia/dafny/Test/mytest/seq.dfy(4,11)
     assume true;
     assume true;
-    s#0 := Lit(Seq#Build(Seq#Build(Seq#Empty(), $Box(LitInt(1))), $Box(LitInt(2))));
+    s#0 := Lit(Seq#Build(Seq#Build(Seq#Empty(): Seq, $Box(LitInt(1))), $Box(LitInt(2))));
     // ----- assert statement ----- /home/livia/dafny/Test/mytest/seq.dfy(5,5)
     assert {:subsumption 0} 0 <= LitInt(0) && LitInt(0) < Seq#Length(s#0);
     assume true;
