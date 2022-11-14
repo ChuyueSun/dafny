@@ -1943,6 +1943,7 @@ BplBoundVar(varNameGen.FreshId(string.Format("#{0}#", bv.Name)), predef.BoxType,
             name = "timeLimit";
           } else if (name == "_rlimit") {
             name = "rlimit";
+            Console.WriteLine("rlimit here");
           } else if (name == "synthesize") {
             name = "extern";
           }
