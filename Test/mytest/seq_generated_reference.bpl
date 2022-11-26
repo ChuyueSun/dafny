@@ -280,12 +280,12 @@ axiom (forall v: MultiSet Box, t0: Ty ::
   { $Is(v, TMultiSet(t0)) } 
   $Is(v, TMultiSet(t0)) ==> $IsGoodMultiSet(v));
 
-axiom (forall v: Seq t0, t0: Ty :: 
-  { $Is(v, TSeq(t0)) } 
-  $Is(v, TSeq(t0))
-     <==> (forall i: int :: 
-      { Seq#Index(v, i) } 
-      0 <= i && i < Seq#Length(v) ==> $IsBox(Seq#Index(v, i), t0)));
+// axiom (forall v: Seq t0, t0: Ty :: 
+//   { $Is(v, TSeq(t0)) } 
+//   $Is(v, TSeq(t0))
+//      <==> (forall i: int :: 
+//       { Seq#Index(v, i) } 
+//       0 <= i && i < Seq#Length(v) ==> $IsBox(Seq#Index(v, i), t0)));
 
 axiom (forall v: Map Box Box, t0: Ty, t1: Ty :: 
   { $Is(v, TMap(t0, t1)) } 
@@ -1133,34 +1133,34 @@ axiom (forall<T> s: Set T ::
   { MultiSet#Card(MultiSet#FromSet(s)) } 
   MultiSet#Card(MultiSet#FromSet(s)) == Set#Card(s));
 
-axiom (forall<T>  :: 
-  MultiSet#FromSeq(Seq#Empty(): Seq) == MultiSet#Empty(): MultiSet T);
+// axiom (forall<T>  :: 
+//   MultiSet#FromSeq(Seq#Empty(): Seq) == MultiSet#Empty(): MultiSet T);
 
-function MultiSet#FromSeq<T>(Seq) : MultiSet T;
+// function MultiSet#FromSeq<T>(Seq) : MultiSet T;
 
-axiom (forall<T> s: Seq :: 
-  { MultiSet#FromSeq(s) } 
-  $IsGoodMultiSet(MultiSet#FromSeq(s)));
+// axiom (forall<T> s: Seq :: 
+//   { MultiSet#FromSeq(s) } 
+//   $IsGoodMultiSet(MultiSet#FromSeq(s)));
 
-axiom (forall<T> s: Seq :: 
-  { MultiSet#Card(MultiSet#FromSeq(s)) } 
-  MultiSet#Card(MultiSet#FromSeq(s)) == Seq#Length(s));
+// axiom (forall<T> s: Seq :: 
+//   { MultiSet#Card(MultiSet#FromSeq(s)) } 
+//   MultiSet#Card(MultiSet#FromSeq(s)) == Seq#Length(s));
 
-axiom (forall<T> s: Seq, v: T :: 
-  { MultiSet#FromSeq(Seq#Build(s, v)) } 
-  MultiSet#FromSeq(Seq#Build(s, v)) == MultiSet#UnionOne(MultiSet#FromSeq(s), v));
+// axiom (forall<T> s: Seq, v: T :: 
+//   { MultiSet#FromSeq(Seq#Build(s, v)) } 
+//   MultiSet#FromSeq(Seq#Build(s, v)) == MultiSet#UnionOne(MultiSet#FromSeq(s), v));
 
-axiom (forall<T> a: Seq, b: Seq :: 
-  { MultiSet#FromSeq(Seq#Append(a, b)) } 
-  MultiSet#FromSeq(Seq#Append(a, b))
-     == MultiSet#Union(MultiSet#FromSeq(a), MultiSet#FromSeq(b)));
+// axiom (forall<T> a: Seq, b: Seq :: 
+//   { MultiSet#FromSeq(Seq#Append(a, b)) } 
+//   MultiSet#FromSeq(Seq#Append(a, b))
+//      == MultiSet#Union(MultiSet#FromSeq(a), MultiSet#FromSeq(b)));
 
-axiom (forall<T> s: Seq, i: int, v: T, x: T :: 
-  { MultiSet#FromSeq(Seq#Update(s, i, v))[x] } 
-  0 <= i && i < Seq#Length(s)
-     ==> MultiSet#FromSeq(Seq#Update(s, i, v))[x]
-       == MultiSet#Union(MultiSet#Difference(MultiSet#FromSeq(s), MultiSet#Singleton(Seq#Index(s, i))), 
-        MultiSet#Singleton(v))[x]);
+// axiom (forall<T> s: Seq, i: int, v: T, x: T :: 
+//   { MultiSet#FromSeq(Seq#Update(s, i, v))[x] } 
+//   0 <= i && i < Seq#Length(s)
+//      ==> MultiSet#FromSeq(Seq#Update(s, i, v))[x]
+//        == MultiSet#Union(MultiSet#Difference(MultiSet#FromSeq(s), MultiSet#Singleton(Seq#Index(s, i))), 
+//         MultiSet#Singleton(v))[x]);
 
 type {:builtin "Seq"} Seq _;
 
@@ -2591,21 +2591,21 @@ procedure {:verboseName "m (correctness)"} Impl$$_module.__default.m() returns (
 
 implementation {:verboseName "m (correctness)"} Impl$$_module.__default.m() returns ($_reverifyPost: bool)
 {
-  var $_Frame: <beta>[ref,Field beta]bool;
-  var s#0: Seq int where $Is(s#0, TSeq(TInt)) && $IsAlloc(s#0, TSeq(TInt), $Heap);
-
+  // var $_Frame: <beta>[ref,Field beta]bool;
+  // var s#0: Seq int where $Is(s#0, TSeq(TInt)) && $IsAlloc(s#0, TSeq(TInt), $Heap);
+var s#0: Seq int;
     // AddMethodImpl: m, Impl$$_module.__default.m
-    $_Frame := (lambda<alpha> $o: ref, $f: Field alpha :: 
-      $o != null && read($Heap, $o, alloc) ==> false);
-    $_reverifyPost := false;
+    // $_Frame := (lambda<alpha> $o: ref, $f: Field alpha :: 
+    //   $o != null && read($Heap, $o, alloc) ==> false);
+    // $_reverifyPost := false;
     // ----- assignment statement ----- /home/livia/dafny/Test/mytest/seq.dfy(4,11)
     assume true;
     assume true;
-    s#0 := Lit(Seq#Build(Seq#Build(Seq#Empty(), $Box(LitInt(1))), $Box(LitInt(2))));
+    s#0 := Seq#Build(Seq#Build(Seq#Empty(), 1), 2);
     // ----- assert statement ----- /home/livia/dafny/Test/mytest/seq.dfy(5,5)
-    assert {:subsumption 0} 0 <= LitInt(0) && LitInt(0) < Seq#Length(s#0);
+    // assert {:subsumption 0} 0 <= LitInt(0) && LitInt(0) < Seq#Length(s#0);
     assume true;
-    assert $Unbox(Seq#Index(s#0, LitInt(0))): int == LitInt(1);
+    assert Seq#Index(s#0, 0): int == 1;
 }
 
 
